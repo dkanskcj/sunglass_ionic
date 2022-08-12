@@ -1,11 +1,13 @@
 <ion-content>
-  <div class="h-full w-full">
+  <div class="w-full h-16">
       <div class="w-full flex justify-between border border-b bg-gray-100 h-16">
           <div class="flex p-6">
               <div class="flex w-full px-3 py-[12px] text-[14px] h-[18px] items-center justify-center">
-                  <div class=" cursor-pointer hover:bg-gray-200" routerLink="../dashboard">
+                  <div class=" cursor-pointer hover:bg-gray-200" routerLink="/dashboard">
                       대쉬보드
                   </div>
+                  <img src="assets/icons/right.svg" class="w-[14px] h-[14px]">
+                  <div class="text-gray-500">재고 관리</div>
               </div>
           </div>
           <div class="flex px-6 py-4 space-x-4">
@@ -15,4 +17,8 @@
           </div>
       </div>
   </div>
+  <div class="flex justify-between items-center p-12">
+    <div class="text-[24px] h-[29px]">재고 관리</div>
+    <button class="w-14 h-[37px] rounded-[6px] text-white bg-primary">등록</button>
+</div>
 </ion-content>

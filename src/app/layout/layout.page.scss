@@ -1,0 +1,9 @@
+  ion-accordion.accordion-expanding ion-item[slot="header"],
+  ion-accordion.accordion-expanded ion-item[slot="header"]{
+      --background: #334573;
+      --color: white;
+  }
+
+  // ion-content{
+  //   --ion-background-color: #334573;
+  // }
