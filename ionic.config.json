@@ -1,0 +1,7 @@
+{
+  "name": "sunglass",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
