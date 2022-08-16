@@ -15,6 +15,18 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./layout/layout.module').then( m => m.LayoutPageModule)
   },
+  {
+    path: 'brand',
+    loadChildren: () => import('./pages/brand/brand.module').then( m => m.BrandPageModule)
+  },
+  {
+    path: 'items-register',
+    loadChildren: () => import('./pages/items-register/items-register.module').then( m => m.ItemsRegisterPageModule)
+  },
+  {
+    path: 'items-modify',
+    loadChildren: () => import('./pages/items-modify/items-modify.module').then( m => m.ItemsModifyPageModule)
+  },
   
 ];
 

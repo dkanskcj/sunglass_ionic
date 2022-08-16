@@ -1,5 +1,5 @@
 <ion-content>
-  <div class="w-360 h-[1144px] flex">
+  <div class="w-360 h-[1144px] flex select-none">
     <div class="flex-col w-[252px] items-start px-5 bg-primary text-primary-nosel_dot">
       <div class="text-white py-7 flex rounded-[12px] justify-center" routerLink="/dashboard">
         <div class="flex h-6 cursor-pointer hover:bg-primary-select gap-2.5">
@@ -53,6 +53,14 @@
                 <img src="assets/icons/nosel_Dot.svg">
               </div>
               <div>재고 관리</div>
+            </div>
+            <div
+              class="rounded-[12px] bg-primary-noselect flex px-5 py-[14px] rounded-t-lg space-x-3 w-full hover:bg-primary-select cursor-pointer"
+              routerLink="/brand">
+              <div class="w-6 h-6 flex justify-center items-center">
+                <img src="assets/icons/nosel_Dot.svg">
+              </div>
+              <div>브랜드 관리</div>
             </div>
           </div>
           <div class="flex justify-between px-5 py-[14px] w-full hover:bg-primary-select cursor-pointer rounded-[12px]">

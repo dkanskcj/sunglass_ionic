@@ -55,6 +55,18 @@ const routes: Routes = [{
       path: 'refund_buy',
       loadChildren: () => import('../pages/refund-buy/refund-buy.module').then( m => m.RefundBuyPageModule)
     },
+    {
+      path: 'brand',
+      loadChildren: () => import('../pages/brand/brand.module').then( m => m.BrandPageModule)
+    },
+    {
+      path: 'register',
+      loadChildren: () => import('../pages/items-register/items-register.module').then(m=>m.ItemsRegisterPageModule)
+    },
+    {
+      path: 'modify',
+      loadChildren: () => import('../pages/items-modify/items-modify.module').then(m=>m.ItemsModifyPageModule)
+    }
   ]
 }
 

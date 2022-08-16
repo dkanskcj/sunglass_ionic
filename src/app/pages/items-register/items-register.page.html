@@ -1,0 +1,129 @@
+<ion-content>
+  <div class="bg-gray-50">
+    <div class="w-full h-16">
+      <div class="w-full flex justify-between border border-b bg-gray-100 h-16">
+        <div class="flex p-6">
+          <div class="flex w-full px-3 py-[12px] text-[14px] h-[18px] items-center justify-center">
+            <div class=" cursor-pointer hover:bg-gray-200" routerLink="/items">
+              상품 관리
+            </div>
+            <img src="assets/icons/right.svg" class="w-[14px] h-[14px]">
+            <div class="text-gray-500">상품 등록</div>
+          </div>
+        </div>
+        <div class="flex px-6 py-4 space-x-4">
+          <img src="assets/icons/alter.svg" class="cursor-pointer w-6 h-6">
+          <img src="assets/icons/profile_icon.svg" class="cursor-pointer w-8 h-8 hover:bg-red-500 focus:ring-black">
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-between items-center px-12 pt-12">
+      <div class="text-[24px] h-[29px]">상품 등록</div>
+    </div>
+
+    <div class="h-[923px] w-full gap-2 my-8 mx-12 shadow pr-12">
+      <div class="p-5 h-85 w-full flex space-x-2">
+        <div class="w-75 h-75">
+          <div class="px-[10px] gap-[10px] py-[138px] bg-gray-400">
+            클릭하여 이미지를 등록 해주세요
+          </div>
+        </div>
+        <div>
+          <!-- <img src="assets/icons/sea.svg"> -->
+        </div>
+        <div>
+          <!-- <img src="assets/icons/sea.svg"> -->
+        </div>
+        <div>
+          <!-- <img src="assets/icons/sea.svg"> -->
+        </div>
+        <div>
+          <!-- <img src="assets/icons/sea.svg"> -->
+        </div>
+      </div>
+      <div class="h-128 py-2">
+        <div class="w-[265px] h-[57px] flex items-center">
+          <div class="p-[10px] ">
+            <div class="pl-[30px] pr-[10px] py-[10px] w-20 h-[37px] text-[14px]">
+              <div class="h-[17px] text-right whitespace-nowrap">
+                상품명
+              </div>
+            </div>
+          </div>
+          <input type="text"
+            class="w-[157px] h-[37px] text-[14px] px-3 py-[10px] border border-gray-200 rounded-md shadow-sm drop-shadow-sm"
+            placeholder="티쓰-001 블랙 썬글라스">
+        </div>
+        <div class="w-[265px] h-[57px] flex items-center">
+          <div class="p-[10px] ">
+            <div class="pl-[30px] pr-[10px] py-[10px] w-20 h-[37px] text-[14px]">
+              <div class="w-10 h-[17px] whitespace-nowrap text-right">
+                브랜드
+              </div>
+            </div>
+          </div>
+          <div class="px-2 pt-[26px] pb-[30px] flex justify-center items-center w-[73px] h-[37px]">
+            <div class="flex items-center justify-center">
+              <div class="text-[14px] pr-1">
+                <select name="test" id="" class="px-3 w-[73px] h-[37px] justify-center drop-shadow-md border rounded-md">
+                  <option value="10">티쓰</option>
+                  <option value="20">피쓰</option>
+                  <option value="30">투쓰</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-[265px] h-[57px] flex items-center">
+          <div class="p-[10px] ">
+            <div class="pl-[30px] pr-[10px] py-[10px] w-20 h-[37px] text-[14px]">
+              <div class="w-10 h-[17px] whitespace-nowrap text-right">
+                상태
+              </div>
+            </div>
+          </div>
+          <div class="px-2 pt-[26px] pb-[30px] flex justify-center items-center w-[85px] h-[37px]">
+            <div class="flex items-center justify-center">
+              <div class="text-[14px] pr-1">
+                <select name="test" id="" class="px-3 w-[85px] h-[37px] justify-center drop-shadow-md border rounded-md">
+                  <option value="10">판매중</option>
+                  <option value="20">판매완료</option>
+                  <option value="30">품절</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-[265px] h-[57px] flex items-center">
+          <div class="p-[10px] ">
+            <div class="pl-[30px] pr-[10px] py-[10px] w-20 h-[37px] text-[14px]">
+              <div class="w-10 h-[17px] whitespace-nowrap text-right">
+                판매가
+              </div>
+            </div>
+          </div>
+          <input type="text"
+            class="w-[69px] h-[37px] text-[14px] px-3 py-[10px] border border-gray-200 rounded-md shadow-sm drop-shadow-sm"
+            placeholder="30,000">
+            <div class="px-2 items-center">원</div>
+        </div>
+      </div>
+
+      <div class="h-63 pt-2 pb-[63px] w-full px-[10px] pr-12">
+        <div class="p-[10px] h-58 pb-2">
+          <div class="w-20 h-[37px] pl-[10px] pr-[21px] py-[10px]">
+            <div class="h-[17px] text-[14px] whitespace-nowrap">상세설명</div>
+          </div>
+        </div>
+        <div class="h-[187px] drop-shadow-sm rounded-md stroke-gray-200 w-full pr-[10px]">
+          <div class="pt-[10px] pb-[7px] text-[14px] w-full h-full text-left rounded-md drop-shadow-sm border" contenteditable="true"></div>
+        </div>
+      </div>
+      <div class="h-[55px] flex justify-between w-full pr-12">
+          <button class="w-14 h-[37px] rounded-[6px] text-white bg-gray-500" routerLink="/items">목록</button>
+        <button class="w-14 h-[37px] rounded-[6px] text-white bg-primary" routerLink="/items">등록</button>
+      </div>
+    </div>
+  </div>
+</ion-content>

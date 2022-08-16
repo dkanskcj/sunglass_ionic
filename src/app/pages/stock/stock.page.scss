@@ -1,0 +1,17 @@
+// .은 클래스
+.select {
+    -o-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+//   background: url('assets/icons/accordian.svg') calc(100% - 5px) center no-repeat;
+}
+
+// id 입력
+#select {
+
+}
+
+select::-ms-expand{
+    display: none;
+}

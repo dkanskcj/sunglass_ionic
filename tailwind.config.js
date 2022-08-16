@@ -2,7 +2,8 @@
 module.exports = {
   content: ['./src/**/*.{html,ts}'],
   theme: {
-    extend: {colors:{
+    extend: {
+      colors:{
       primary:'#001650',
       'primary-Lighter':'#334573',
       'primary-Light':'#1D2D62',
@@ -11,7 +12,8 @@ module.exports = {
       'primary-nosel_dot':'#9CA3AF',
       'primary-modal' : '#7D7D7E',
     },
-    fontFamily: 'Pretendard'},
+    fontFamily: 'Pretendard'
+  },
   },
   plugins: [],
 };
