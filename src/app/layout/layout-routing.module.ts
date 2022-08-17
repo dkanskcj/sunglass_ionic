@@ -66,6 +66,10 @@ const routes: Routes = [{
     {
       path: 'modify',
       loadChildren: () => import('../pages/items-modify/items-modify.module').then(m=>m.ItemsModifyPageModule)
+    },
+    {
+      path: 'stock_detail',
+      loadChildren: () => import('../pages/stock-detail/stock-detail.module').then(m=>m.StockDetailPageModule)
     }
   ]
 }

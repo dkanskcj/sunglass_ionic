@@ -1,4 +1,5 @@
 <ion-content>
+    <!-- <div class="modal-container" id="modal"> -->
     <div class="w-full h-16">
         <div class="w-full flex justify-between border border-b bg-gray-100 h-16">
             <div class="flex p-6">
@@ -19,32 +20,14 @@
     </div>
     <div class="flex justify-between items-center px-12 pt-12">
         <div class="text-[24px] h-[29px]">재고 관리</div>
-        <button class="w-14 h-[37px] rounded-[6px] text-white bg-primary" (click)="setOpen(true)">등록</button>
-        <ion-modal [isOpen]="isModalOpen" class="mymodal w-full h-full">
-            <ng-template>
-              <div class="w-full h-[56px] flex justify-between bg-primary text-white">
-                <div class="px-5 py-4">상품 삭제</div>
-                <img src="assets/icons/cancel.svg" class="px-5 py-4" (click)="setOpen(false)">
-              </div>
-              <div class="w-full h-[111px] p-5">
-                <div class="h-11">
-                  <div class="text-red-600 p-[10px]">정말 삭제 하시겠습니까?</div>
-                </div>
-              </div>
-              <div class="w-full h-[57px] pb-[30px] px-[30px] items-end flex justify-end">
-                <!-- <ion-buttons slot="end" class="flex justify-end pt-[30px] pb-[10px]">
-                  <ion-button class="w-[61px] h-[30px] bg-primary-Lighter rounded-md text-white" (click)="setOpen(false)">
-                    적용</ion-button>
-                </ion-buttons> -->
-                <button class="w-14 h-[37px] rounded-[6px] text-white bg-primary" (click)="setOpen(false)">삭제</button>
-              </div>
-            </ng-template>
-          </ion-modal>
+        <button class="w-14 h-[37px] rounded-[6px] text-white bg-primary" (click)="setOpen()">등록</button>
+
     </div>
     <div class="h-[915px] flex gap-2 my-8 mx-12 shadow">
         <div class="h-[858px]">
             <div class="flex p-5 space-x-4 w-full h-[53px] text-[14px]">
-                <select name="브랜드" value="거래처 선택" class="select w-[107.67px] h-[37px] border rounded-md px-3 text-[14px]">
+                <select name="브랜드" value="거래처 선택"
+                    class="select w-[107.67px] h-[37px] border rounded-md px-3 text-[14px]">
                     <option value="1">거래처 선택</option>
                     <option value="2">샤넬</option>
                 </select>
@@ -67,7 +50,7 @@
                     </thead>
                     <ng-container *ngFor="let Index_l of index_list | filter:searchText">
                         <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center">
-                            <tr>
+                            <tr routerLink="/stock_detail">
                                 <td class="px-4 h-[66px]">{{Index_l.brand }}</td>
                                 <td class="px-4 h-[66px]">{{ Index_l.name }}</td>
                                 <td class="px-4 h-[66px]">{{ Index_l.stock }}</td>
@@ -122,4 +105,9 @@
             </div>
         </div>
     </div>
+    <!-- <ion-modal [isOpen]="isModalOpen" class="mymodal w-full h-full">
+        <ng-template>
+            
+        </ng-template>
+    </ion-modal> -->
 </ion-content>

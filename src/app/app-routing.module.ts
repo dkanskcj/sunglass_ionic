@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'items-modify',
     loadChildren: () => import('./pages/items-modify/items-modify.module').then( m => m.ItemsModifyPageModule)
   },
+  {
+    path: 'stock-detail',
+    loadChildren: () => import('./pages/stock-detail/stock-detail.module').then( m => m.StockDetailPageModule)
+  },
   
 ];
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { RegisterStockComponent } from './register-stock/register-stock.component';
 
 type Index_l = {
   brand: string;
@@ -14,16 +16,6 @@ type Index_l = {
 })
 export class StockPage implements OnInit {
   isModalOpen = false;
-
-  setOpen(isOpen: boolean) {
-      return this.isModalOpen = isOpen;
-  }
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-
   searchText: any;
 
   index_list: Index_l[] = [
@@ -88,4 +80,21 @@ export class StockPage implements OnInit {
       customer: '거래처B 외 2곳',
     },
   ];
+  
+ 
+  constructor(private modalController:ModalController) { }
+
+  ngOnInit() {
+  }
+
+  async setOpen() {
+    const modal = await this.modalController.create({
+      component: RegisterStockComponent,
+      cssClass: 'mymodal'
+    })
+    modal.present();
+}
+
+
+ 
 }

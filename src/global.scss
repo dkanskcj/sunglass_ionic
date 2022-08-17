@@ -29,3 +29,22 @@
 // @import 'tailwindcss/base';
 // @import 'tailwindcss/components';
 // @import 'tailwindcss/utilities';
+@media (min-width: 680px) {
+    .mymodal {
+        --width: 348px;
+        --height: 375px;
+        font-size: 16px;
+        --border-radius: 4px;
+        border-radius: 8px;
+    }
+}
+
+@media (min-width: 680px) {
+    .modify_modal {
+        --width: 348px;
+        --height: 207px;
+        font-size: 16px;
+        --border-radius: 4px;
+        border-radius: 8px;
+    }
+}

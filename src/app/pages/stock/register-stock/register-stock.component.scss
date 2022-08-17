@@ -15,11 +15,17 @@
 select::-ms-expand{
     display: none;
 }
-
+ion-modal.mymodal {
+    --width: 348px;
+    --height: 100px;
+    font-size: 16px;
+    --border-radius: 4px;
+    border-radius: 8px;
+}
 @media (min-width: 680px) {
   .mymodal {
       --width: 348px;
-      --height: 375px;
+      --height: 100px;
       font-size: 16px;
       --border-radius: 4px;
       border-radius: 8px;

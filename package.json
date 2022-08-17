@@ -25,6 +25,7 @@
     "@capacitor/keyboard": "4.0.1",
     "@capacitor/status-bar": "4.0.1",
     "@ionic/angular": "^6.1.9",
+    "ng2-file-upload": "^1.4.0",
     "ng2-search-filter": "^0.5.1",
     "ngx-tailwind": "^4.0.0",
     "rxjs": "~6.6.0",

@@ -1,0 +1,22 @@
+<!-- <ion-modal [isOpen]="isModalOpen" class="mymodal w-full h-full"> -->
+  <div class="modify_modal">
+    <!-- <ng-template> -->
+      <div class="w-full h-[56px] flex justify-between bg-primary text-white">
+        <div class="px-5 py-4">상품 삭제</div>
+        <img src="assets/icons/cancel.svg" class="px-5 py-4" (click)="handleClose()">
+      </div>
+      <div class="w-full h-[111px] p-5">
+        <div class="h-11">
+          <div class="text-red-600 p-[10px]">정말 삭제 하시겠습니까?</div>
+        </div>
+      </div>
+      <div class="w-full h-[57px] pb-[30px] px-[30px] items-end flex justify-end">
+        <!-- <ion-buttons slot="end" class="flex justify-end pt-[30px] pb-[10px]">
+          <ion-button class="w-[61px] h-[30px] bg-primary-Lighter rounded-md text-white" (click)="handleClose()false)">
+            적용</ion-button>
+        </ion-buttons> -->
+        <button class="w-14 h-[37px] rounded-[6px] text-white bg-primary" (click)="handleClose()">삭제</button>
+      </div>
+    <!-- </ng-template> -->
+  </div>
+<!-- </ion-modal> -->
