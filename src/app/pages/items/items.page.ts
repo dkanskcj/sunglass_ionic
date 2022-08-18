@@ -4,7 +4,7 @@ type Index_l = {
   brand: string;
   name: string;
   stock: number;
-  status: string;
+  status: boolean;
   buy: string;
   sell: string;
   regist: string;
@@ -30,7 +30,7 @@ export class ItemsPage implements OnInit {
       brand: '티쓰',
       name: '티쓰-011 블랙 썬글라스',
       stock: 100,
-      status: '핀매중',
+      status: true,
       buy: '사입가 : 25,200원',
       sell: '판매가 : 30,000원',
       regist: '등록일자 : 2022-07-14',
@@ -40,7 +40,7 @@ export class ItemsPage implements OnInit {
       brand: '티쓰',
       name: '티쓰-011 블랙 썬글라스',
       stock: 100,
-      status: '핀매중',
+      status: true,
       buy: '사입가 : 25,200원',
       sell: '판매가 : 30,000원',
       regist: '등록일자 : 2022-07-14',
@@ -50,7 +50,7 @@ export class ItemsPage implements OnInit {
       brand: '티쓰',
       name: '티쓰-011 블랙 썬글라스',
       stock: 100,
-      status: '핀매중',
+      status: true,
       buy: '사입가 : 25,200원',
       sell: '판매가 : 30,000원',
       regist: '등록일자 : 2022-07-14',
@@ -60,7 +60,7 @@ export class ItemsPage implements OnInit {
       brand: '티쓰',
       name: '티쓰-011 블랙 썬글라스',
       stock: 100,
-      status: '핀매중',
+      status: true,
       buy: '사입가 : 25,200원',
       sell: '판매가 : 30,000원',
       regist: '등록일자 : 2022-07-14',
@@ -70,7 +70,7 @@ export class ItemsPage implements OnInit {
       brand: '티쓰',
       name: '티쓰-011 블랙 썬글라스',
       stock: 100,
-      status: '핀매중',
+      status: false,
       buy: '사입가 : 25,200원',
       sell: '판매가 : 30,000원',
       regist: '등록일자 : 2022-07-14',
@@ -80,7 +80,7 @@ export class ItemsPage implements OnInit {
       brand: '티쓰',
       name: '티쓰-011 블랙 썬글라스',
       stock: 100,
-      status: '핀매중',
+      status: true,
       buy: '사입가 : 25,200원',
       sell: '판매가 : 30,000원',
       regist: '등록일자 : 2022-07-14',
@@ -90,7 +90,7 @@ export class ItemsPage implements OnInit {
       brand: '티쓰',
       name: '티쓰-011 블랙 썬글라스',
       stock: 100,
-      status: '핀매중',
+      status: true,
       buy: '사입가 : 25,200원',
       sell: '판매가 : 30,000원',
       regist: '등록일자 : 2022-07-14',
@@ -100,7 +100,7 @@ export class ItemsPage implements OnInit {
       brand: '티쓰',
       name: '티쓰-011 블랙 썬글라스',
       stock: 100,
-      status: '핀매중',
+      status: true,
       buy: '사입가 : 25,200원',
       sell: '판매가 : 30,000원',
       regist: '등록일자 : 2022-07-14',
@@ -110,7 +110,7 @@ export class ItemsPage implements OnInit {
       brand: '티쓰',
       name: '티쓰-011 블랙 썬글라스',
       stock: 100,
-      status: '핀매중',
+      status: true,
       buy: '사입가 : 25,200원',
       sell: '판매가 : 30,000원',
       regist: '등록일자 : 2022-07-14',
@@ -120,7 +120,7 @@ export class ItemsPage implements OnInit {
       brand: '티쓰',
       name: '티쓰-011 블랙 썬글라스',
       stock: 100,
-      status: '핀매중',
+      status: true,
       buy: '사입가 : 25,200원',
       sell: '판매가 : 30,000원',
       regist: '등록일자 : 2022-07-14',

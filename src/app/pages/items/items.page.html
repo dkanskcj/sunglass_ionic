@@ -36,7 +36,8 @@
                         <option value="1">S급</option>
                         <option value="2">A급</option>
                     </select>
-                    <div class="w-full h-[37px] flex items-center justify-start border border-b rounded-md px-3 space-x-2">
+                    <div
+                        class="w-full h-[37px] flex items-center justify-start border border-b rounded-md px-3 space-x-2">
                         <img src="assets/icons/search_icon.svg">
                         <input type="text" class="w-full" placeholder="검색어를 입력해주세요." [(ngModel)]="searchText">
                     </div>
@@ -62,8 +63,16 @@
                                 <tr>
                                     <td class="px-4 h-[66px]">{{ Index_l.name }}</td>
                                     <td class="px-4 h-[66px]">{{Index_l.brand }}</td>
-                                    <td class="px-4 h-[66px]">{{ Index_l.name }}</td>
                                     <td class="px-4 h-[66px]">{{ Index_l.stock }}</td>
+                                    <td class="px-4 h-[66px]" *ngIf="Index_l.status === true">
+                                        <div
+                                            class="w-[47px] bg-green-50 border border-green-100 rounded-[2px] text-green-700" searchText ='판매중'>
+                                            판매중</div>
+                                    </td>
+                                    <td class="px-4 h-[66px]" *ngIf="Index_l.status === false">
+                                        <div class="w-[60px] whitespace-nowrap bg-red-50 border border-red-100 rounded-[2px] text-red-700">
+                                            판매중지</div>
+                                    </td>
                                     <td class="px-4 h-[66px]">{{ Index_l.buy }}<br>{{ Index_l.sell }}</td>
                                     <td class="px-4 h-[66px]">{{ Index_l.regist }}<br>{{ Index_l.update }}</td>
                                 </tr>
