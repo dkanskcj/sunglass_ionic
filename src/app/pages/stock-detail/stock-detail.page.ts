@@ -22,6 +22,7 @@ type index_l = {
 export class StockDetailPage implements OnInit {
   searchText: any;
 
+  cal_date
   index_list: index_l[] = [
     {
       sort: '입고',
