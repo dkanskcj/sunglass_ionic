@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { AddStockComponent } from '../stock/add-stock/add-stock.component';
 
 
 type index_l = {
@@ -113,9 +115,16 @@ export class StockDetailPage implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor(private modalContorller:ModalController) { }
 
   ngOnInit() {
   }
 
+  async setOpen(){
+    const modal = await this.modalContorller.create({
+      component: AddStockComponent,
+      cssClass: 'add_stock'
+    })
+    modal.present();
+  }
 }
