@@ -23,7 +23,8 @@
     </div>
     <div class="h-[923px] w-full gap-2 my-8 mx-12 shadow pr-12">
       <div class="p-5 h-85 w-full flex space-x-2 drop-shadow-lg">
-        <div class="w-75 h-75">
+        <div class="w-75 h-75" (click)="fileInput.click()">
+          <input hidden #fileInput type="file" for="dropzone-file" (change)="onSelectFile($event)">
           <div class="px-[10px] gap-[10px] py-[138px] bg-gray-400">
             클릭하여 이미지를 등록 해주세요
           </div>
@@ -67,7 +68,8 @@
           <div class="px-2 flex justify-center items-center w-[73px] h-[37px]">
             <div class="flex items-center justify-center">
               <div class="text-[14px] pr-1">
-                <select name="test" id="" class="px-3 w-[73px] h-[37px] justify-center drop-shadow-md border rounded-md">
+                <select name="test" id=""
+                  class="px-3 w-[73px] h-[37px] justify-center drop-shadow-md border rounded-md">
                   <option value="10">티쓰</option>
                   <option value="20">피쓰</option>
                   <option value="30">투쓰</option>
@@ -88,7 +90,8 @@
           <div class="px-2 flex justify-center items-center w-[85px] h-[37px]">
             <div class="flex items-center justify-center">
               <div class="text-[14px] pr-1">
-                <select name="test" id="" class="px-3 w-[85px] h-[37px] justify-center drop-shadow-md border rounded-md">
+                <select name="test" id=""
+                  class="px-3 w-[85px] h-[37px] justify-center drop-shadow-md border rounded-md">
                   <option value="10">판매중</option>
                   <option value="20">판매완료</option>
                   <option value="30">품절</option>
@@ -117,7 +120,8 @@
             </div>
           </div>
           <div class="h-[190px] drop-shadow-sm rounded-md stroke-gray-200 w-full pr-[10px]">
-            <div class="pb-[7px] text-[14px] w-full h-full text-left rounded-md drop-shadow-sm border" contenteditable="true"></div>
+            <div class="pb-[7px] text-[14px] w-full h-full text-left rounded-md drop-shadow-sm border"
+              contenteditable="true"></div>
           </div>
         </div>
       </div>
@@ -134,244 +138,7 @@
         <button class="w-14 h-[37px] rounded-[6px] text-white bg-primary" routerLink="/items">등록</button>
       </div>
     </div>
-    <div class="h-[923px] w-full gap-2 my-8 mx-12 shadow pr-12">
-      <div class="p-5 h-85 w-full flex space-x-2">
-        <div class="w-75 h-75" (click)="fileInput.click()">
-          <input hidden #fileInput type="file" for="dropzone-file" (change)="onSelectFile($event)">
-          <div class="px-[10px] gap-[10px] py-[138px] bg-gray-400">
-            클릭하여 이미지를 등록 해주세요
-          </div>
-          <!-- <div class="drag-drop-wrap">
-            <div class="drag-drop-zone" (click)="fileInput.click()">
-              <input hidden #fileInput type="file" (change)="onUploadImage($event.target.files)"
-                class="drag-drop-input" />
-            </div>
-            <div class="drag-drop-list-zone"></div>
-          </div> -->
-          <!-- <input type="file" (change)="handleUploadFileChanged($event)"> -->
-          <!-- <table class="table">
-            <thead>
-            <tr>
-                <th width="50%">Name</th>
-                <th>Size</th>
-                <th>Progress</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let item of uploader.queue">
-                <td><strong>{{ item?.file?.name }}</strong></td>
-                <td *ngIf="uploader" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
-                <td *ngIf="uploader">
-                    <div class="progress" style="margin-bottom: 0;">
-                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
-                    </div>
-                </td>
-                <td class="text-center">
-                    <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
-                    <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
-                    <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
-                </td>
-                <td nowrap>
-                    <button type="button" class="btn btn-success btn-xs"
-                            (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
-                        <span class="glyphicon glyphicon-upload"></span> Upload
-                    </button>
-                    <button type="button" class="btn btn-warning btn-xs"
-                            (click)="item.cancel()" [disabled]="!item.isUploading">
-                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
-                    </button>
-                    <button type="button" class="btn btn-danger btn-xs"
-                            (click)="item.remove()">
-                        <span class="glyphicon glyphicon-trash"></span> Remove
-                    </button>
-                </td>
-            </tr>
-            </tbody>
-        </table> -->
-        </div>
-        <div class="w-75 h-75">
-          <img [src]="url" class="w-[300px] h-[300px]">
-        </div>
-        <div>
-          <!-- <img src="assets/icons/sea.svg"> -->
-        </div>
-        <div>
-          <!-- <img src="assets/icons/sea.svg"> -->
-        </div>
-        <div>
-          <!-- <img src="assets/icons/sea.svg"> -->
-        </div>
-      </div>
-      <div class="h-[495px] py-2 text-[14px] space-y-2">
-        <div class="w-[265px] h-[62px] items-center space-y-2">
-          <div class="h-[17px]">상품명</div>
-          <!-- <div class="p-[10px] ">
-            <div class="pl-[30px] pr-[10px] py-[10px] w-20 h-[37px] text-[14px]">
-              <div class="h-[17px] text-right whitespace-nowrap">
-                상품명
-              </div>
-            </div>
-          </div> -->
-          <input type="text"
-            class="w-[157px] h-[37px] text-[14px] px-3 border border-gray-200 rounded-md shadow-sm drop-shadow-sm"
-            placeholder="티쓰-001 블랙 썬글라스">
-        </div>
-        <div class="w-[265px] h-[62px] items-center space-y-2">
-          <div class="h-[17px]">거래처</div>
-          <!-- <div class="p-[10px] ">
-            <div class="pl-[30px] pr-[10px] py-[10px] w-20 h-[37px] text-[14px]">
-              <div class="w-10 h-[17px] whitespace-nowrap text-right">
-                거래처
-              </div>
-            </div>
-          </div> -->
-          <div class="px-2 flex justify-center items-center w-[73px] h-[37px]">
-            <div class="flex items-center justify-center">
-              <div class="text-[14px] pr-1">
-                <select name="test" id="" class="px-3 w-[73px] h-[37px] justify-center drop-shadow-md border rounded-md">
-                  <option value="10">티쓰</option>
-                  <option value="20">피쓰</option>
-                  <option value="30">투쓰</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="w-[265px] h-[62px] items-center space-y-2">
-          <div class="h-[17px]">상태</div>
-          <!-- <div class="p-[10px] ">
-            <div class="pl-[30px] pr-[10px] py-[10px] w-20 h-[37px] text-[14px]">
-              <div class="w-10 h-[17px] whitespace-nowrap text-right">
-                상태
-              </div>
-            </div>
-          </div> -->
-          <div class="px-2 flex justify-center items-center w-[85px] h-[37px]">
-            <div class="flex items-center justify-center">
-              <div class="text-[14px] pr-1">
-                <select name="test" id="" class="px-3 w-[85px] h-[37px] justify-center drop-shadow-md border rounded-md">
-                  <option value="10">판매중</option>
-                  <option value="20">판매완료</option>
-                  <option value="30">품절</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="w-[265px] h-[62px] items-center space-y-2">
-          <div class="h-[17px]">판매가</div>
-          <!-- <div class="p-[10px] ">
-            <div class="pl-[30px] pr-[10px] py-[10px] w-20 h-[37px] text-[14px]">
-              <div class="w-10 h-[17px] whitespace-nowrap text-right">
-                판매가
-              </div>
-            </div>
-          </div> -->
-          <input type="text"
-            class="w-[69px] h-[37px] text-[14px] px-3 py-[10px] border border-gray-200 rounded-md shadow-sm drop-shadow-sm"
-            placeholder="30,000">
-        </div>
-        <div class="h-[215px] pb-[63px] w-full pr-12">
-          <div class="h-58">
-            <div class="w-20 h-[37px]">
-              <div class="h-[17px] text-[14px] whitespace-nowrap">상세설명</div>
-            </div>
-          </div>
-          <div class="h-[190px] drop-shadow-sm rounded-md stroke-gray-200 w-full pr-[10px]">
-            <div class="pb-[7px] text-[14px] w-full h-full text-left rounded-md drop-shadow-sm border" contenteditable="true"></div>
-          </div>
-        </div>
-      </div>
-      <!-- <div class="h-128 py-2">
-        <div class="w-[265px] h-[57px] flex items-center">
-          <div class="p-[10px] ">
-            <div class="pl-[30px] pr-[10px] py-[10px] w-20 h-[37px] text-[14px]">
-              <div class="h-[17px] text-right whitespace-nowrap">
-                상품명
-              </div>
-            </div>
-          </div>
-          <input type="text"
-            class="w-[157px] h-[37px] text-[14px] px-3 py-[10px] border border-gray-200 rounded-md shadow-sm drop-shadow-sm"
-            placeholder="티쓰-001 블랙 썬글라스">
-        </div>
-        <div class="w-[265px] h-[57px] flex items-center">
-          <div class="p-[10px] ">
-            <div class="pl-[30px] pr-[10px] py-[10px] w-20 h-[37px] text-[14px]">
-              <div class="w-10 h-[17px] whitespace-nowrap text-right">
-                거래처
-              </div>
-            </div>
-          </div>
-          <div class="px-2 pt-[26px] pb-[30px] flex justify-center items-center w-[73px] h-[37px]">
-            <div class="flex items-center justify-center">
-              <div class="text-[14px] pr-1">
-                <select name="test" id=""
-                  class="px-3 w-[73px] h-[37px] justify-center drop-shadow-md border rounded-md">
-                  <option value="10">티쓰</option>
-                  <option value="20">피쓰</option>
-                  <option value="30">투쓰</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="w-[265px] h-[57px] flex items-center">
-          <div class="p-[10px] ">
-            <div class="pl-[30px] pr-[10px] py-[10px] w-20 h-[37px] text-[14px]">
-              <div class="w-10 h-[17px] whitespace-nowrap text-right">
-                상태
-              </div>
-            </div>
-          </div>
-          <div class="px-2 pt-[26px] pb-[30px] flex justify-center items-center w-[85px] h-[37px]">
-            <div class="flex items-center justify-center">
-              <div class="text-[14px] pr-1">
-                <select name="test" id=""
-                  class="px-3 w-[85px] h-[37px] justify-center drop-shadow-md border rounded-md">
-                  <option value="10">판매중</option>
-                  <option value="20">판매완료</option>
-                  <option value="30">품절</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="w-[265px] h-[57px] flex items-center">
-          <div class="p-[10px] ">
-            <div class="pl-[30px] pr-[10px] py-[10px] w-20 h-[37px] text-[14px]">
-              <div class="w-10 h-[17px] whitespace-nowrap text-right">
-                판매가
-              </div>
-            </div>
-          </div>
-          <input type="text"
-            class="w-[69px] h-[37px] text-[14px] px-3 py-[10px] border border-gray-200 rounded-md shadow-sm drop-shadow-sm"
-            placeholder="30,000">
-          <div class="px-2 items-center">원</div>
-        </div>
-      </div> -->
-      <div class="h-63 pt-2 pb-[63px] w-full px-[10px] pr-12">
-        <div class="p-[10px] h-58 pb-2">
-          <div class="w-20 h-[37px] pl-[10px] pr-[21px] py-[10px]">
-            <div class="h-[17px] text-[14px] whitespace-nowrap">상세설명</div>
-          </div>
-        </div>
-        <div class="h-[187px] drop-shadow-sm rounded-md stroke-gray-200 w-full pr-[10px]">
-          <div class="pt-[10px] pb-[7px] text-[14px] w-full h-full text-left rounded-md drop-shadow-sm border"
-            contenteditable="true"></div>
-        </div>
-      </div>
-      <div class="h-[185px] flex justify-between w-full pr-12">
-        <div class="space-x-2 object-bottom">
-          <button class="w-14 h-[37px] rounded-[6px] text-white bg-gray-500" routerLink="/items">목록</button>
-          <button class="w-14 h-[37px] rounded-[6px] text-[18px] text-white bg-primary" (click)="setOpen()">삭제</button>
-        </div>
-        <button class="w-14 h-[37px] rounded-[6px] text-white bg-primary" routerLink="/items">등록</button>
-      </div>
-    </div>
+
   </div>
   <!-- <div class="flex justify-center items-center w-full">
     <label for="dropzone-file"
