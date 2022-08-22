@@ -1,0 +1,24 @@
+sqllight viewer download
+
+?는 필수와 필수가 아닌 것을 구별
+
+ app.enableCors();
+
+ jason pretty viewer
+<!-- <ion-accordion-group expand="inset" class="w-full">
+            <ion-accordion value="상품">
+              <ion-item slot="header">
+                <ion-label>상품</ion-label>
+              </ion-item>
+              <div class="ion-padding bg-primary-noselect hover:bg-primary-select hover:text-white" slot="content" routerLink="/items">
+                <div class="flex gap-[21px]">
+                  <img src="assets/icons/nosel_Dot.svg">상품 관리
+                </div>
+              </div>
+              <div class="ion-padding bg-primary-noselect hover:bg-primary-select hover:text-white" slot="content" routerLink="/stock">
+                <div class="flex gap-[21px]">
+                  <img src="assets/icons/nosel_Dot.svg">재고 관리
+                </div>
+              </div>
+            </ion-accordion>
+          </ion-accordion-group> -->

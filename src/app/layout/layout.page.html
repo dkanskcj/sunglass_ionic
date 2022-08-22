@@ -1,5 +1,5 @@
 <ion-content>
-  <div class="w-360 h-[1144px] flex select-none">
+  <div class="w-360 h-full flex select-none">
     <div class="flex-col w-[252px] items-start px-5 bg-primary text-primary-nosel_dot">
       <div class="text-white py-7 flex rounded-[12px] justify-center" routerLink="/dashboard">
         <div class="flex h-6 cursor-pointer hover:bg-primary-select gap-2.5">
@@ -9,140 +9,34 @@
       </div>
       <div class="h-px bg-primary-Lighter"></div>
       <div class="py-5">
-        <div class="flex px-5 py-[16.5px] w-full hover:bg-primary-select cursor-pointer rounded-[12px]"
-          routerLink="/dashboard">
-          <img src="assets/icons/dashboard.svg">
-          <div class="px-3 text-white">Dashboard</div>
-        </div>
         <div class="space-y-[2px]">
-          <!-- <ion-accordion-group>
-            <ion-accordion value="상품" class="rounded-[12px]">
-              <ion-item slot="header">
-                <ion-label>상품</ion-label>
-              </ion-item>
-              <div class="ion-padding bg-primary-noselect hover:bg-primary-select hover:text-white" slot="content" routerLink="/items">
-                <div class="flex gap-[21px]">
-                  <img src="assets/icons/nosel_Dot.svg">상품 관리
+          <div *ngFor="let menu of menus">
+            <!-- 상위 메뉴 -->
+            <div (click)="menu.isOpen = !menu.isOpen"
+              class="flex justify-between px-5 py-[14px] w-full hover:bg-primary-select cursor-pointer rounded-[12px]"
+              [routerLink]="menu.url">
+              <div class="flex gap-3 justify-between text-white">
+                <img [src]="menu.icon">{{menu.name}}
+              </div>
+              <img src="assets/icons/accordian.svg" *ngIf="menu.children?.length > 0 && !menu.isOpen">
+              <img src="assets/icons/accordian_top.svg" *ngIf="menu.children?.length > 0 && menu.isOpen">
+            </div>
+            <!-- 하위 메뉴 -->  
+            <div class="flex flex-col gap-0.5" *ngIf="menu.children?.length > 0 && menu.isOpen">
+              <div *ngFor="let child of menu.children"
+                class="bg-primary-noselect rounded-[12px] flex justify-between rounded-t-lg px-5 py-[16.5px] space-x-3 w-full hover:bg-primary-select cursor-pointer"
+                [routerLink]="child.url">
+                <div class="flex gap-3 justify-between">
+                  <img src="assets/icons/nosel_Dot.svg">{{ child.name }}
                 </div>
               </div>
-              <div class="ion-padding bg-primary-noselect hover:bg-primary-select hover:text-white" slot="content" routerLink="/stock">
-                <div class="flex gap-[21px]">
-                  <img src="assets/icons/nosel_Dot.svg">재고 관리
-                </div>
-              </div>
-            </ion-accordion>
-          </ion-accordion-group> -->
-          <div class="flex justify-between px-5 py-[14px] w-full hover:bg-primary-select cursor-pointer rounded-[12px]">
-            <div class="flex gap-3 justify-between text-white">
-              <img src="assets/icons/item.svg">상품
-            </div>
-            <img src="assets/icons/accordian_top.svg">
-          </div>
-          <div class="flex flex-col gap-0.5">
-            <div
-              class="bg-primary-noselect rounded-[12px] flex justify-between rounded-t-lg px-5 py-[16.5px] space-x-3 w-full hover:bg-primary-select cursor-pointer"
-              routerLink="/items">
-              <div class="flex gap-3 justify-between">
-                <img src="assets/icons/nosel_Dot.svg">상품 관리
-              </div>
-            </div>
-            <div
-              class="rounded-[12px] bg-primary-noselect flex px-5 py-[14px] rounded-t-lg space-x-3 w-full hover:bg-primary-select cursor-pointer"
-              routerLink="/stock">
-              <div class="w-6 h-6 flex justify-center items-center">
-                <img src="assets/icons/nosel_Dot.svg">
-              </div>
-              <div>재고 관리</div>
-            </div>
-            <!-- <div
-              class="rounded-[12px] bg-primary-noselect flex px-5 py-[14px] rounded-t-lg space-x-3 w-full hover:bg-primary-select cursor-pointer"
-              routerLink="/brand">
-              <div class="w-6 h-6 flex justify-center items-center">
-                <img src="assets/icons/nosel_Dot.svg">
-              </div>
-              <div>브랜드 관리</div>
-            </div> -->
-          </div>
-          <div class="flex justify-between px-5 py-[14px] w-full hover:bg-primary-select cursor-pointer rounded-[12px]">
-
-            <div class="flex gap-3 justify-between text-white">
-              <img src="assets/icons/sales.svg">매출
-            </div>
-            <img src="assets/icons/accordian_top.svg">
-          </div>
-          <div
-            class="rounded-[12px] bg-primary-noselect flex justify-between px-5 py-[14px] space-x-3 w-full hover:bg-primary-select cursor-pointer"
-            routerLink="/order">
-            <div class="flex gap-3 justify-between">
-              <img src="assets/icons/nosel_Dot.svg">주문 관리
             </div>
           </div>
-          <div
-            class="rounded-[12px] bg-primary-noselect flex justify-between px-5 py-[14px] space-x-3 w-full hover:bg-primary-select cursor-pointer"
-            routerLink="/shipping">
-            <div class="flex gap-3 justify-between">
-              <img src="assets/icons/nosel_Dot.svg">배송 관리
-            </div>
-          </div>
-          <div class="flex justify-between px-5 py-[14px] w-full hover:bg-primary-select cursor-pointer rounded-[12px]"
-            routerLink="/sales_refund">
-
-            <div class="flex gap-3 justify-between text-white">
-              <img src="assets/icons/sales.svg">매출반품 관리
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="flex justify-between px-5 py-[14px] w-full hover:bg-primary-select cursor-pointer rounded-[12px]">
-
-            <div class="flex gap-3 justify-between text-white">
-              <img src="assets/icons/calc.svg">정산
-            </div>
-            <img src="assets/icons/accordian_top.svg">
-          </div>
-          <div
-            class="rounded-[12px] bg-primary-noselect flex justify-between px-5 py-[14px] space-x-3 w-full hover:bg-primary-select cursor-pointer"
-            routerLink="/total_sales">
-            <div class="flex gap-3 justify-betweene">
-              <img src="assets/icons/nosel_Dot.svg">매출 정산 관리
-            </div>
-          </div>
-        </div>
-        <div>
-          <div
-            class="rounded-[12px] bg-primary-noselect flex justify-between px-5 py-[14px] space-x-3 w-full hover:bg-primary-select cursor-pointer"
-            routerLink="/total_refund_sales">
-            <div class="flex gap-3 justify-between">
-              <img src="assets/icons/nosel_Dot.svg">반품 정산 관리
-            </div>
-          </div>
-          <div class="flex justify-between px-5 py-[14px] w-full hover:bg-primary-select cursor-pointer rounded-[12px]"
-            routerLink="/customer">
-
-            <div class="flex gap-3 justify-between text-white">
-              <img src="assets/icons/name=user.svg">고객 관리
-            </div>
-          </div>
-        </div>
-        <div class=" flex px-5 py-[14px] w-full hover:bg-primary-select cursor-pointer rounded-[12px]"
-          routerLink="/connection">
-          <img src="assets/icons/basong.svg">
-          <div class="px-3 text-white">거래처 관리</div>
-        </div>
-        <div class=" flex px-5 py-[14px] w-full hover:bg-primary-select cursor-pointer rounded-[12px]"
-          routerLink="/buy">
-          <img src="assets/icons/basong.svg">
-          <div class="px-3 text-white">사입 관리</div>
-        </div>
-        <div class=" flex px-5 py-[14px] w-full hover:bg-primary-select cursor-pointer rounded-[12px]"
-          routerLink="/refund_buy">
-          <img src="assets/icons/basong.svg">
-          <div class="px-3 text-white">사입반품 관리</div>
         </div>
       </div>
     </div>
     <ion-content>
-      <ion-router-outlet>
+      <ion-router-outlet [animated]="false">
       </ion-router-outlet>
     </ion-content>
   </div>

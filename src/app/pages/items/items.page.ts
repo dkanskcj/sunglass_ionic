@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 type Index_l = {
@@ -17,10 +18,16 @@ type Index_l = {
   styleUrls: ['./items.page.scss'],
 })
 export class ItemsPage implements OnInit {
+  
+  products=[];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.http.get<any[]>('http://localhost:3000/product').subscribe(result => {
+      console.log(result);
+      this.products=result;
+    });
   }
 
   searchText: any;

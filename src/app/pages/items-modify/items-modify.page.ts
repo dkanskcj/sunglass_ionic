@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { ModifyModalComponent } from './modify-modal/modify-modal.component';
 
@@ -21,7 +22,8 @@ export class ItemsModifyPage implements OnInit {
 
   
   constructor(
-    private modalController: ModalController
+    private modalController: ModalController,
+    private route: ActivatedRoute
     ){}
     
     async setOpen() {
@@ -44,23 +46,12 @@ export class ItemsModifyPage implements OnInit {
       }
     }
   }
-  // imageList: Blob[] = [];
-
-  // onUploadImage(event) {
-  //   const repeats = event.length;
-  //   for (let i = 0; i < repeats; i++) {
-  //     const blob: Blob = event[i];
-  //     if (blob.type.includes('image')) return this.imageList.push(blob);
-
-  //     alert('이미지 파일 외에는 지원하지 않습니다.');
-  //   }
-  // }
-
-  // onDeleteImage(index: number) {
-  //   this.imageList.splice(index, 1);
-  // }
+  
 
   ngOnInit() {
+    // this.route.queryParams.subscribe(params => {
+    //   this.id = params['id'];
+    // });
   }
   
 }
@@ -129,3 +120,18 @@ export class ItemsModifyPage implements OnInit {
 //       this.uploader.addToQueue(filteredFiles, options, filters);
 //     }
 //   }
+// imageList: Blob[] = [];
+
+  // onUploadImage(event) {
+  //   const repeats = event.length;
+  //   for (let i = 0; i < repeats; i++) {
+  //     const blob: Blob = event[i];
+  //     if (blob.type.includes('image')) return this.imageList.push(blob);
+
+  //     alert('이미지 파일 외에는 지원하지 않습니다.');
+  //   }
+  // }
+
+  // onDeleteImage(index: number) {
+  //   this.imageList.splice(index, 1);
+  // }

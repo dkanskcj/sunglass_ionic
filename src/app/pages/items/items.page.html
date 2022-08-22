@@ -58,23 +58,50 @@
                                 <th class="p-4 h-[49px]">일자</th>
                             </tr>
                         </thead>
-                        <ng-container *ngFor="let Index_l of index_list | filter:searchText">
+                        <!-- <ng-container *ngFor="let Index_l of index_list | filter:searchText">
                             <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center" routerLink="/modify">
                                 <tr>
                                     <td class="px-4 h-[66px]">{{ Index_l.name }}</td>
-                                    <td class="px-4 h-[66px]">{{Index_l.brand }}</td>
+                                    <td class="px-4 h-[66px]">{{ Index_l.brand }}</td>
                                     <td class="px-4 h-[66px]">{{ Index_l.stock }}</td>
                                     <td class="px-4 h-[66px]" *ngIf="Index_l.status === true">
-                                        <div
-                                            class="w-[47px] bg-green-50 border border-green-100 rounded-[2px] text-green-700" searchText ='판매중'>
+                                        <div class="w-[47px] bg-green-50 border border-green-100 rounded-[2px] text-green-700"
+                                            searchText='판매중'>
                                             판매중</div>
                                     </td>
                                     <td class="px-4 h-[66px]" *ngIf="Index_l.status === false">
-                                        <div class="w-[60px] whitespace-nowrap bg-red-50 border border-red-100 rounded-[2px] text-red-700">
+                                        <div
+                                            class="w-[60px] whitespace-nowrap bg-red-50 border border-red-100 rounded-[2px] text-red-700">
                                             판매중지</div>
                                     </td>
                                     <td class="px-4 h-[66px]">{{ Index_l.buy }}<br>{{ Index_l.sell }}</td>
                                     <td class="px-4 h-[66px]">{{ Index_l.regist }}<br>{{ Index_l.update }}</td>
+                                </tr>
+                            </tbody>
+                        </ng-container> -->
+                        <ng-container *ngFor="let product of products | filter:searchText">
+                            <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center" routerLink="/modify">
+                                <!-- <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center" [routerLink]="'/modify/'+product.id"></tbody> -->
+                                <tr>
+                                    <td class="px-4 h-[66px]">{{ product.brandName }}</td>
+                                    <td class="px-4 h-[66px]">{{ product.name }}</td>
+                                    <td class="px-4 h-[66px]">{{ product.amount }}</td>
+                                    <td class="px-4 h-[66px]">{{ product.stock }}</td>
+                                    <td class="px-4 h-[66px]">{{ product.cost }}</td>
+                                    <td class="px-4 h-[66px]">{{ product.createdAt | date }}</td>
+                                    <!-- <td class="px-4 h-[66px]">{{ product.stock }}</td>
+                                    <td class="px-4 h-[66px]" *ngIf="product.status === true">
+                                        <div class="w-[47px] bg-green-50 border border-green-100 rounded-[2px] text-green-700"
+                                            searchText='판매중'>
+                                            판매중</div>
+                                    </td>
+                                    <td class="px-4 h-[66px]" *ngIf="product.status === false">
+                                        <div
+                                            class="w-[60px] whitespace-nowrap bg-red-50 border border-red-100 rounded-[2px] text-red-700">
+                                            판매중지</div>
+                                    </td>
+                                    <td class="px-4 h-[66px]">{{ product.buy }}<br>{{ product.sell }}</td>
+                                    <td class="px-4 h-[66px]">{{ product.regist }}<br>{{ product.update }}</td> -->
                                 </tr>
                             </tbody>
                         </ng-container>

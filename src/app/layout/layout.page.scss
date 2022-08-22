@@ -4,6 +4,8 @@
       --color: white;
   }
 
-  // ion-content{
-  //   --ion-background-color: #334573;
-  // }
+  ion-accordion.accordion-collapsing ion-item[slot="header"],
+  ion-accordion.accordion-collapsed ion-item[slot="header"] {
+    --background: #001650;
+    --color: white;
+  }
