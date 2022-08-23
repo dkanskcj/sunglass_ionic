@@ -9,3 +9,14 @@ input[type="radio"] {
     border: 0.15em solid #001650;
     border-radius: 50%;
   }
+  input[type="radio"]:checked {
+    // appearance: none;
+    background-color: #001650;
+    margin: 0;
+    font: inherit;
+    color: #001650;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid #001650;
+    border-radius: 50%;
+  }
