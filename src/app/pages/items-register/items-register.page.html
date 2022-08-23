@@ -1,5 +1,5 @@
 <ion-content>
-  <div class="bg-gray-50">
+  <div class="w-full h-full bg-gray-50">
     <div class="w-full h-16">
       <div class="w-full flex justify-between border border-b bg-gray-100 h-16">
         <div class="flex p-6">
@@ -19,120 +19,331 @@
     </div>
 
     <div class="flex justify-between items-center px-12 pt-12">
-      <div class="text-[24px] h-[29px]">상품 등록</div>
+      <div class="text-[24px] h-[29px] font-bold">상품 등록</div>
     </div>
-
-    <div class="h-[923px] w-full gap-2 my-8 mx-12 shadow pr-12">
-      <div class="p-5 h-85 w-full flex space-x-2 drop-shadow-lg">
-        <div class="w-75 h-75">
-          <div class="px-[10px] gap-[10px] py-[138px] bg-gray-400">
-            클릭하여 이미지를 등록 해주세요
+    <div class="w-full h-full bg-white">
+      <div>
+        <div class="font-semibold gap-2 mt-8 mx-12">
+          <div class="flex text-[20px] pb-2">썸네일<div class="text-red-600">*</div>
           </div>
         </div>
-        <div>
-          <!-- <img src="assets/icons/sea.svg"> -->
-        </div>
-        <div>
-          <!-- <img src="assets/icons/sea.svg"> -->
-        </div>
-        <div>
-          <!-- <img src="assets/icons/sea.svg"> -->
-        </div>
-        <div>
-          <!-- <img src="assets/icons/sea.svg"> -->
-        </div>
-      </div>
-      <div class="h-[495px] py-2 text-[14px] space-y-2">
-        <div class="w-[265px] h-[62px] items-center space-y-2">
-          <div class="h-[17px]">상품명</div>
-          <!-- <div class="p-[10px] ">
-            <div class="pl-[30px] pr-[10px] py-[10px] w-20 h-[37px] text-[14px]">
-              <div class="h-[17px] text-right whitespace-nowrap">
-                상품명
+        <div class="h-full w-full gap-2 py-1 mx-12 shadow pr-12 bg-white">
+          <div class="w-full h-full">
+            <div class="w-full flex p-5 space-x-2">
+              <div class="font-semibold flex">대표 이미지</div>
+              <div class="flex">
+                <img src="assets/icons/info.svg">
+                <div class="text-blue-900 text-[12px] whitespace-nowrap flex justify-center items-center px-2">
+                  권장 크기 : 1000x1100(윈도대상) 750x1000
+                </div>
               </div>
             </div>
-          </div> -->
-          <input type="text"
-            class="w-[157px] h-[37px] text-[14px] px-3 border border-gray-200 rounded-md shadow-sm drop-shadow-sm"
-            placeholder="티쓰-001 블랙 썬글라스">
-        </div>
-        <div class="w-[265px] h-[62px] items-center space-y-2">
-          <div class="h-[17px]">거래처</div>
-          <!-- <div class="p-[10px] ">
-            <div class="pl-[30px] pr-[10px] py-[10px] w-20 h-[37px] text-[14px]">
-              <div class="w-10 h-[17px] whitespace-nowrap text-right">
-                거래처
+            <div class="flex px-5">
+              <div class="w-31 h-31 rounded-lg outline-dashed outline-gray-200 p-4">
+                <div class="w-23 h-23 rounded-lg outline-dashed outline-gray-200 p-4">
+                  <img src="assets/icons/add_img.svg" class="p-8">
+                </div>
               </div>
             </div>
-          </div> -->
-          <div class="px-2 flex justify-center items-center w-[73px] h-[37px]">
-            <div class="flex items-center justify-center">
-              <div class="text-[14px] pr-1">
-                <select name="test" id="" class="px-3 w-[73px] h-[37px] justify-center drop-shadow-md border rounded-md">
-                  <option value="10">티쓰</option>
-                  <option value="20">피쓰</option>
-                  <option value="30">투쓰</option>
-                </select>
+            <div class="flex p-5">
+              <div class="w-full flex space-x-2">
+                <div class="font-semibold flex">추가 이미지 (4/9)</div>
+                <div class="flex">
+                  <img src="assets/icons/info.svg" class="flex h-6">
+                  <div class="text-blue-900 text-[12px] px-2 whitespace-nowrap flex justify-center items-center">
+                    권장 크기 : 1000x1000(윈도대상) 750x1000<br>추가 이미지는 최대 9개까지 설정할 수 있습니다.<br>jpg, jpeg, png, bmp 형식의 정지 이미지만
+                    등록됩니다.
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="w-[265px] h-[62px] items-center space-y-2">
-          <div class="h-[17px]">상태</div>
-          <!-- <div class="p-[10px] ">
-            <div class="pl-[30px] pr-[10px] py-[10px] w-20 h-[37px] text-[14px]">
-              <div class="w-10 h-[17px] whitespace-nowrap text-right">
-                상태
+            <!-- 추가 이미지 -->
+            <div class="flex px-5">
+              <div class="w-full h-31 rounded-lg outline-dashed outline-gray-200 p-4 flex space-x-[10px]">
+                <div class="w-23 h-23 rounded-lg outline-dashed outline-gray-200 p-4 flex justify-start">
+                  <img src="assets/icons/add_img.svg" class="p-8">
+                  <!-- <img src="assets/icons/cancel_button.svg"> -->
+                </div>
+                <ng-container *ngFor="let i of Images">
+                  <div class="w-23 h-23 rounded-lg outline-dashed outline-gray-200 p-4 flex justify-start">
+                    <img [src]="i.url" class="p-8">
+                  </div>
+                </ng-container>
               </div>
             </div>
-          </div> -->
-          <div class="px-2 flex justify-center items-center w-[85px] h-[37px]">
-            <div class="flex items-center justify-center">
-              <div class="text-[14px] pr-1">
-                <select name="test" id="" class="px-3 w-[85px] h-[37px] justify-center drop-shadow-md border rounded-md">
-                  <option value="10">판매중</option>
-                  <option value="20">판매완료</option>
-                  <option value="30">품절</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="w-[265px] h-[62px] items-center space-y-2">
-          <div class="h-[17px]">판매가</div>
-          <!-- <div class="p-[10px] ">
-            <div class="pl-[30px] pr-[10px] py-[10px] w-20 h-[37px] text-[14px]">
-              <div class="w-10 h-[17px] whitespace-nowrap text-right">
-                판매가
-              </div>
-            </div>
-          </div> -->
-          <input type="text"
-            class="w-[69px] h-[37px] text-[14px] px-3 py-[10px] border border-gray-200 rounded-md shadow-sm drop-shadow-sm"
-            placeholder="30,000">
-        </div>
-        <div class="h-[215px] pb-[63px] w-full pr-12">
-          <div class="h-58">
-            <div class="w-20 h-[37px]">
-              <div class="h-[17px] text-[14px] whitespace-nowrap">상세설명</div>
-            </div>
-          </div>
-          <div class="h-[190px] drop-shadow-sm rounded-md stroke-gray-200 w-full pr-[10px]">
-            <div class="pb-[7px] text-[14px] w-full h-full text-left rounded-md drop-shadow-sm border" contenteditable="true"></div>
           </div>
         </div>
       </div>
-
-      <!-- <div class="h-18 flex justify-between items-baseline w-full pr-12 pt-[43px]">
-          <button class="w-14 h-[37px] rounded-[6px] text-white bg-gray-500" routerLink="/items">목록</button>
-        <button class="w-14 h-[37px] rounded-[6px] text-white bg-primary" routerLink="/items">등록</button>
-      </div> -->
-      <div class="h-[185px] flex justify-between w-full pr-12 pt-[43px]">
-        <div class="space-x-2 object-bottom">
-          <button class="w-14 h-[37px] rounded-[6px] text-white bg-gray-500" routerLink="/items">목록</button>
-          <button class="w-14 h-[37px] rounded-[6px] text-[18px] text-white bg-primary">삭제</button>
+      <div>
+        <div class="gap-2 mt-8 mx-12 bg-white space-y-1">
+          <div class="font-semibold flex text-[20px] pb-2">상품 정보
+            <div class="text-red-600">*</div>
+          </div>
+          <!-- 상품 정보 아래 내옹-->
+          <div class="w-full h-full p-[10px] space-y-2">
+            <!-- 판매 상태, 카테고리, 상품명 -->
+            <div class="flex space-x-2">
+              <!-- 판매 상태 -->
+              <div class="space-y-2">
+                <div class="font-semibold">판매 상태</div>
+                <select name="판매 상태" class="rounded-md border box-border shadow text-[14px] w-[120px] p-[10px]">
+                  <option value="1">판매중지</option>
+                  <option value="2">판매중</option>
+                </select>
+              </div>
+              <!-- 카테고리 -->
+              <div class="space-y-2">
+                <div class="font-semibold">카테고리</div>
+                <select name="카테고리" class="rounded-md border box-border shadow text-[14px] w-[120px] p-[10px]">
+                  <option value="1">사각 프레임</option>
+                  <option value="2">캣아이 프레임</option>
+                  <option value="3">원형 프레임</option>
+                </select>
+              </div>
+              <!-- 상품명 -->
+              <div class="space-y-2">
+                <div class="font-semibold">상품명</div>
+                <input type="text" class="rounded-md border box-border shadow text-[14px] w-[360px] p-[10px]"
+                  placeholder="티쓰-001 블랙 썬글라스">
+              </div>
+              <!-- 판매가 -->
+            </div>
+            <div class="font-semibold">
+              판매가
+            </div>
+            <div class="rounded-md border box-border shadow h-full">
+              <div class="p-5 space-y-4">
+                <!-- 판매가 -->
+                <div class="font-semibold">판매가</div>
+                <div class="w-[180px] flex justify-between rounded-md border box-border shadow py-[10px] px-3">
+                  <div class="w-full" contenteditable="true">30,000
+                  </div>
+                  <div class="">원</div>
+                </div>
+                <!-- 할인, 할인 금액/율, 할인기간, 할인가 -->
+                <div class="flex space-x-2">
+                  <!-- 할인 -->
+                  <div>
+                    <div class="font-semibold">할인</div>
+                    <div class="flex">
+                      <div class="border box-border shadow active:text-white active:bg-primary rounded-l-lg px-3 py-2">
+                        할인 없음</div>
+                      <div
+                        class="border box-border shadow active:text-white active:bg-primary rounded-r-lg bg-primary text-white px-3 py-2">
+                        할인 있음</div>
+                    </div>
+                  </div>
+                  <!-- 할인 금액/율 -->
+                  <div>
+                    <div class="font-semibold">할인 금액/율</div>
+                    <div class="flex">
+                      <div class="px-3 py-2 w-[180px] border box-border shadow" contenteditable="true">2,000</div>
+                      <select name="가격" class="px-3 py-2 border box-border shadow rounded-r-lg w-[61px]">
+                        <option value="1">원</option>
+                        <option value="2">%</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- 할인기간 -->
+                  <div>
+                    <div class="font-semibold">할인기간</div>
+                    <div class="flex space-x-2">
+                      <div class="flex">
+                        <div
+                          class="border box-border shadow active:text-white active:bg-primary rounded-l-lg px-3 py-2">
+                          설정안함</div>
+                        <div
+                          class="border box-border shadow active:text-white active:bg-primary rounded-r-lg bg-primary text-white px-3 py-2">
+                          설정함</div>
+                      </div>
+                      <div class="w-30 flex items-center justify-start border border-b rounded-md px-3 space-x-2 py-2">
+                        <input type="date">
+                        <!-- <input type="text" class="w-full" placeholder="검색어를 입력해주세요." [(ngModel)]="searchText"> -->
+                      </div>
+                      <div class="flex justify-center items-center ">~</div>
+                      <div
+                        class="w-30 flex items-center justify-start border border-b rounded-md shadow px-3 space-x-2 py-2">
+                        <input type="date" data-placeholder="2022.12.31">
+                        <!-- <input type="text" class="w-full" placeholder="검색어를 입력해주세요." [(ngModel)]="searchText"> -->
+                      </div>
+                    </div>
+                  </div>
+                  <!-- 할인가 -->
+                  <div>
+                    <div class="font-semibold">할인가</div>
+                    <div class="w-[180px] flex justify-between rounded-md border box-border shadow py-2 px-3">
+                      <div class="w-full" contenteditable="true">30,000
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- 부가세 -->
+                <div class="space-y-2">
+                  <div class="font-semibold">부가세</div>
+                  <div class="flex items-center space-x-2">
+                    <input type="radio" name="부가세">
+                    <div>과세 상품</div>
+                    <input type="radio" name="부가세">
+                    <div>면세 상품</div>
+                    <input type="radio" name="부가세">
+                    <div>영세 상품</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 재고수량 -->
+            <div class="py-2 space-y-2">
+              <div class="font-semibold">재고수량</div>
+              <div class="px-3 py-2 w-[66px] text-[14px] rounded-md border box-border shadow" contenteditable="true">
+                999개</div>
+            </div>
+            <!-- Option -->
+            <div class="font-semibold">옵션</div>
+            <!-- Option Settings -->
+            <div>
+              <!-- Option Settings Frame -->
+              <div class="p-5 rounded-md border box-border shadow space-y-4">
+                <!-- Settings -->
+                <div class="space-y-2">
+                  <div class="font-semibold">설정</div>
+                  <div class="flex">
+                    <div class="border box-border shadow active:text-white active:bg-primary rounded-l-lg px-3 py-2">
+                      설정안함</div>
+                    <div
+                      class="border box-border shadow active:text-white active:bg-primary rounded-r-lg bg-primary text-white px-3 py-2">
+                      설정함</div>
+                  </div>
+                </div>
+                <!-- input Settings emthod-->
+                <div class="space-y-2">
+                  <div class="font-semibold">옵션 입력 방식</div>
+                  <div class="flex items-center space-x-2">
+                    <input type="radio" name="부가세">
+                    <div>직접 입력하기</div>
+                    <input type="radio" name="부가세">
+                    <div>엑셀 일괄등록</div>
+                    <input type="radio" name="부가세">
+                    <div>다른상품 옵션 불러오기</div>
+                  </div>
+                </div>
+                <!-- Option type -->
+                <div class="space-y-2">
+                  <div class="flex space-x-2">
+                    <div class="font-semibold flex">옵션 구성 타입
+                    </div>
+                    <div class="flex">
+                      <img src="assets/icons/info.svg" class="flex h-6">
+                      <div class="text-blue-900 text-[12px] px-2 whitespace-nowrap flex justify-center items-center">
+                        옵션별 재고 수량, 옵션별 추가 금액 설정이 필요한 경우 조합형을 선택해주세요.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex">
+                    <div class="border box-border shadow active:text-white active:bg-primary rounded-l-lg px-3 py-2">
+                      단독형</div>
+                    <div
+                      class="border box-border shadow active:text-white active:bg-primary rounded-r-lg bg-primary text-white px-3 py-2">
+                      조합형</div>
+                  </div>
+                </div>
+                <!-- Option Name Frame -->
+                <div class="space-y-2">
+                  <!-- Option Name -->
+                  <div class="space-y-2">
+                    <div class="font-semibold">옵션 명</div>
+                    <div class="w-[120px] border box-border shadow px-3 py-2 text-[14px]">색상 선택</div>
+                  </div>
+                  <!-- Option value Frame -->
+                  <div class="rounded-md bg-gray-50">
+                    <!-- Option value -->
+                    <div class="p-3 text-[14px]">
+                      <!-- Option value 1, 2, 3 -->
+                      <ng-container *ngFor="let o of Options">
+                        <div class="flex space-x-4">
+                          <div class="space-y-2 pb-2">
+                            <div>옵션값</div>
+                            <div class="w-[120px] border box-border shadow px-3 py-2 text-[14px] bg-white">{{ o.value }}
+                            </div>
+                          </div>
+                          <div class="space-y-2 pb-2">
+                            <div>추가금액</div>
+                            <div
+                              class="w-[180px] flex justify-between rounded-md border box-border shadow py-2 px-3 bg-white">
+                              <div class="w-full" contenteditable="true">{{ o.addCost }}</div>
+                              <div>원</div>
+                            </div>
+                          </div>
+                          <div class="space-y-2 pb-2">
+                            <div>재고</div>
+                            <div
+                              class="w-[120px] flex justify-between rounded-md border box-border shadow px-3 py-2 bg-white">
+                              <div class="w-full" contenteditable="true">{{ o.stock }}</div>
+                              <div>개</div>
+                            </div>
+                          </div>
+                          <div class="w-full h-full">
+                            <img [src]="o.icon" class=" w-6 h-6 flex top-[50%]">
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Detailed description Frame -->
+            <div class="space-y-1">
+              <!-- Detailed description Info -->
+              <div class="flex space-x-8">
+                <div class="font-semibold flex">상세 설명
+                </div>
+                <div class="flex">
+                  <img src="assets/icons/info.svg" class="flex h-6">
+                  <div class="text-blue-900 text-[12px] px-2 whitespace-nowrap flex justify-center items-center">
+                    외부 링크를 통한 개인정보(휴대폰 번호, 이메일 주소) 수집은 금지되므로 등록시 노출이 제재될 수 있습니다.<br>
+                    상품명과 직접적 관련 없는 상세설명, 외부 링크 입력 시 관리자에 의해 ㅍ나매 금지 될 수 있습니다.<br>
+                    상세설명 권장 크기 : 가로 860px
+                  </div>
+                </div>
+              </div>
+              <!-- Detailed description Content Frame -->
+              <div class="p-[10px]">
+                <!-- Detailed description Content -->
+                <div class="border box-border shadow px-3 py-2 text-[14px] justify-center items-center"
+                  contenteditable="true">
+                  <img src="assets/icons/detailed_content.svg" class="flex justify-center items-center pt-16">
+                </div>
+              </div>
+            </div>
+            <!-- Items major Information -->
+            <div class="font-semibold">상품 주요 정보</div>
+            <!-- items major Information Frame -->
+            <div>
+              <div class="p-5 rounded-md border box-border shadow space-y-4">
+                <!-- Items major Information content -->
+                  <div class="space-y-2">
+                    <div class="font-semibold">모델명</div>
+                    <input type="text" class="w-[360px] rounded-md border box-border shadow px-3 py-2" placeholder="티쓰-001 블랙 썬글라스">
+                  </div>
+                  <div class="space-y-2 space-x-2">
+                    <div class="font-semibold">브랜드</div>
+                    <div class="flex">
+                      <div class="border box-border shadow active:text-white active:bg-primary rounded-l-lg px-3 py-2">
+                        입력안함</div>
+                      <div
+                        class="border box-border shadow active:text-white active:bg-primary rounded-r-lg bg-primary text-white px-3 py-2">
+                        입력함</div>
+                    </div>
+                    <div class="flex space-x-2">
+                      <input type="text" class="w-[240px] rounded-md border box-border shadow px-3 py-2" placeholder="(주)티쓰">
+                      <input type="checkbox">
+                      <div class="flex justify-center items-center">자체 브랜드</div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <button class="w-14 h-[37px] rounded-[6px] text-white bg-primary" routerLink="/items">등록</button>
       </div>
     </div>
   </div>

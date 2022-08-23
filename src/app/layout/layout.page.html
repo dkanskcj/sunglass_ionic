@@ -21,8 +21,8 @@
               <img src="assets/icons/accordian.svg" *ngIf="menu.children?.length > 0 && !menu.isOpen">
               <img src="assets/icons/accordian_top.svg" *ngIf="menu.children?.length > 0 && menu.isOpen">
             </div>
-            <!-- 하위 메뉴 -->  
-            <div class="flex flex-col gap-0.5" *ngIf="menu.children?.length > 0 && menu.isOpen">
+            <!-- 하위 메뉴 -->
+            <div class="flex flex-col" *ngIf="menu.children?.length > 0 && menu.isOpen">
               <div *ngFor="let child of menu.children"
                 class="bg-primary-noselect rounded-[12px] flex justify-between rounded-t-lg px-5 py-[16.5px] space-x-3 w-full hover:bg-primary-select cursor-pointer"
                 [routerLink]="child.url">

@@ -1,0 +1,10 @@
+<div>
+                    <div class="font-semibold">할인</div>
+                    <div class="flex">
+                      <div class="border box-border shadow active:text-white active:bg-primary rounded-l-lg px-3 py-2">
+                        할인 없음</div>
+                      <div
+                        class="border box-border shadow active:text-white active:bg-primary rounded-r-lg bg-primary text-white px-3 py-2">
+                        할인 있음</div>
+                    </div>
+                  </div>

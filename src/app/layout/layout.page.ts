@@ -55,15 +55,18 @@ export class LayoutPage implements OnInit {
           url: '/order'
         },
         {
+          name: '교환 관리',
+          url: '/exchange'
+        },
+        {
+          name: '반품 관리',
+          url: '/refund'
+        },
+        {
           name: '배송 관리',
           url: '/shipping'
         }
       ]
-    },
-    {
-      icon: 'assets/icons/sales.svg',
-      name: '매출반품 관리',
-      url: '/sales_refund'
     },
     {
       icon: 'assets/icons/calc.svg',

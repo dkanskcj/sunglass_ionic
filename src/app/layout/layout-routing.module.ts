@@ -28,7 +28,7 @@ const routes: Routes = [{
       loadChildren: () => import('../pages/shipping/shipping.module').then( m => m.ShippingPageModule)
     },
     {
-      path: 'sales_refund',
+      path: 'refund',
       loadChildren: () => import('../pages/sales-refund/sales-refund.module').then( m => m.SalesRefundPageModule)
     },
     {
@@ -70,6 +70,10 @@ const routes: Routes = [{
     {
       path: 'stock_detail',
       loadChildren: () => import('../pages/stock-detail/stock-detail.module').then(m=>m.StockDetailPageModule)
+    },
+    {
+      path: 'exchange',
+      loadChildren: () => import('../pages/order/exchange/exchange.module').then(m=>m.ExchangePageModule)
     }
   ]
 }
