@@ -66,7 +66,8 @@ export class LayoutPage implements OnInit {
           name: '배송 관리',
           url: '/shipping'
         }
-      ]
+      ],
+      isOpen: false
     },
     {
       icon: 'assets/icons/calc.svg',
@@ -80,7 +81,8 @@ export class LayoutPage implements OnInit {
           name: '반품 정산 관리',
           url: '/total_refund_sales'
         }
-      ]
+      ],
+      isOpen: false
     },
     {
       icon: 'assets/icons/name=user.svg',
