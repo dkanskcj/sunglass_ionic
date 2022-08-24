@@ -96,12 +96,12 @@
             <div class="space-y-2">
               <div class="font-semibold">카테고리</div>
               <div class="flex">
-                <div class="flex" (click)="toggleMultipleSetting()">
-                  <div class="border box-border shadow rounded-l-lg px-3 py-2 transition-colors cursor-pointer"
+                <div class="flex">
+                  <div class="border box-border shadow rounded-l-lg px-3 py-2 transition-colors cursor-pointer" (click)="toggleMultipleSetting()"
                     [ngClass]="isMultiple ? 'bg-primary hover:bg-primary text-white':'bg-white hover:bg-gray-100'">
                     다중</div>
-                  <div class="border box-border shadow rounded-r-lg px-3 py-2 transition-colors cursor-pointer"
-                    [ngClass]="isMultiple ? 'bg-white hover:bg-gray-100':'bg-primary hover:bg-primary text-white'">
+                  <div class="border box-border shadow rounded-r-lg px-3 py-2 transition-colors cursor-pointer" (click)="toggleMultipleSetting2()"
+                    [ngClass]="isMultiple2 ? 'bg-primary hover:bg-primary/80 text-white':'bg-white hover:bg-gray-100'">
                     단일</div>
                 </div>
               </div>
@@ -151,12 +151,12 @@
                   <div>
                     <div class="font-semibold">할인</div>
                     <div class="flex">
-                      <div class="flex" (click)="toggleDiscountSetting()">
-                        <div class="border box-border shadow rounded-l-lg px-3 py-2 transition-colors cursor-pointer"
+                      <div class="flex">
+                        <div class="border box-border shadow rounded-l-lg px-3 py-2 transition-colors cursor-pointer" (click)="toggleDiscountSetting()"
                           [ngClass]="isDiscount ? 'bg-primary hover:bg-primary text-white':'bg-white hover:bg-gray-100'">
                           할인 없음</div>
-                        <div class="border box-border shadow rounded-r-lg px-3 py-2 transition-colors cursor-pointer"
-                          [ngClass]="isDiscount ? 'bg-white hover:bg-gray-100':'bg-primary hover:bg-primary text-white'">
+                        <div class="border box-border shadow rounded-r-lg px-3 py-2 transition-colors cursor-pointer" (click)="toggleDiscountSetting2()"
+                          [ngClass]="isDiscount2 ? 'bg-primary hover:bg-primary/80 text-white':'bg-white hover:bg-gray-100'">
                           할인 있음</div>
                       </div>
                     </div>
@@ -178,12 +178,12 @@
                       <div class="font-semibold">할인기간</div>
                       <div class="flex space-x-2">
                         <div class="flex">
-                          <div class="flex" (click)="toggleDiscountDateSetting()">
-                            <div class="border box-border shadow rounded-l-lg px-3 py-2 cursor-pointer"
+                          <div class="flex">
+                            <div class="border box-border shadow rounded-l-lg px-3 py-2 cursor-pointer" (click)="toggleDiscountDateSetting()"
                               [ngClass]="isDiscountDate ? 'bg-primary text-white hover:bg-primary':'bg-white hover:bg-gray-100'">
                               설정안함</div>
-                            <div class="border box-border shadow rounded-r-lg px-3 py-2 cursor-pointer"
-                              [ngClass]="isDiscountDate ? 'bg-white hover:bg-gray-100':'bg-primary text-white hover:bg-primary'">
+                            <div class="border box-border shadow rounded-r-lg px-3 py-2 cursor-pointer" (click)="toggleDiscountDateSetting2()"
+                              [ngClass]="isDiscountDate2 ? 'bg-primary hover:bg-primary/80 text-white':'bg-white hover:bg-gray-100'">
                               설정함</div>
                           </div>
                         </div>
@@ -302,12 +302,12 @@
                           </div>
                         </div>
                         <div class="flex">
-                          <div class="flex" (click)="toggleOptionTypeSetting()">
-                            <div class="border box-border shadow rounded-l-lg px-3 py-2 cursor-pointer"
+                          <div class="flex">
+                            <div class="border box-border shadow rounded-l-lg px-3 py-2 cursor-pointer" (click)="toggleOptionTypeSetting()"
                               [ngClass]="isOptionType ? 'bg-primary hover:bg-primary text-white':'bg-white hover:bg-gray-100'">
                               단독형</div>
-                            <div class="border box-border shadow rounded-r-lg px-3 py-2 cursor-pointer"
-                              [ngClass]="!isOptionType ? 'bg-primary hover:bg-primary/80 text-white':'bg-white hover:bg-gray-100'">
+                            <div class="border box-border shadow rounded-r-lg px-3 py-2 cursor-pointer" (click)="toggleOptionTypeSetting2()"
+                              [ngClass]="isOptionType2 ? 'bg-primary hover:bg-primary/80 text-white':'bg-white hover:bg-gray-100'">
                               조합형</div>
                           </div>
                         </div>
@@ -504,12 +504,12 @@
                 <div class="space-y-2">
                   <div class="font-semibold">브랜드</div>
                   <div class="flex">
-                    <div class="flex" (click)="toggleBrandInputSetting()">
-                      <div class="border box-border shadow rounded-l-lg px-3 py-2 cursor-pointer"
+                    <div class="flex">
+                      <div class="border box-border shadow rounded-l-lg px-3 py-2 cursor-pointer" (click)="toggleBrandInputSetting()"
                         [ngClass]="isBrandInput ? 'bg-primary hover:bg-primary text-white':'bg-white hover:bg-gray-100'">
                         입력안함</div>
-                      <div class="border box-border shadow rounded-r-lg px-3 py-2 cursor-pointer"
-                        [ngClass]="!isBrandInput ? 'bg-primary hover:bg-primary/80 text-white':'bg-white hover:bg-gray-100'">
+                      <div class="border box-border shadow rounded-r-lg px-3 py-2 cursor-pointer" (click)="toggleBrandInputSetting2()"
+                        [ngClass]="isBrandInput2 ? 'bg-primary hover:bg-primary/80 text-white':'bg-white hover:bg-gray-100'">
                         입력함</div>
                     </div>
                   </div>
@@ -534,12 +534,12 @@
                 <!-- KC certification -->
                 <div class="space-y-2">
                   <div class="font-semibold">KC인증</div>
-                  <div class="flex" (click)="toggleCertificationSetting()">
-                    <div class="border box-border shadow rounded-l-lg px-3 py-2 cursor-pointer"
+                  <div class="flex">
+                    <div class="border box-border shadow rounded-l-lg px-3 py-2 cursor-pointer" (click)="toggleCertificationSetting()"
                       [ngClass]="isCertification ? 'bg-primary hover:bg-primary text-white':'bg-white hover:bg-gray-100'">
                       KC인증 있음</div>
-                    <div class="border box-border shadow rounded-r-lg px-3 py-2 cursor-pointer"
-                      [ngClass]="!isCertification ? 'bg-primary hover:bg-primary/80 text-white':'bg-white hover:bg-gray-100'">
+                    <div class="border box-border shadow rounded-r-lg px-3 py-2 cursor-pointer" (click)="toggleCertificationSetting2()"
+                      [ngClass]="isCertification2 ? 'bg-primary hover:bg-primary/80 text-white':'bg-white hover:bg-gray-100'">
                       KC인증 없음</div>
                   </div>
                 </div>

@@ -26,16 +26,22 @@ type Image = {
   styleUrls: ['./items-register.page.scss'],
 })
 export class ItemsRegisterPage implements OnInit {
-  @ViewChild('fileUploader') fileUploader:ElementRef;
+  @ViewChild('fileUploader') fileUploader: ElementRef;
 
   isOptionType: boolean = false;
+  isOptionType2: boolean = true;
   isSetting: boolean = false;
   isSetting2: boolean = true;
   isDiscount: boolean = false;
+  isDiscount2: boolean = true;
   isDiscountDate: boolean = false;
+  isDiscountDate2: boolean = true;
   isBrandInput: boolean = false;
+  isBrandInput2: boolean = true;
   isMultiple: boolean = false;
+  isMultiple2: boolean = true;
   isCertification: boolean = false;
+  isCertification2: boolean = true;
   payMethod: boolean = false;
   selected: number;
 
@@ -140,48 +146,77 @@ export class ItemsRegisterPage implements OnInit {
   // }
 
   toggleOptionSetting() {
-    this.isSetting = !this.isSetting;
-    this.isSetting2 = !this.isSetting2;
+    this.isSetting = true;
+    this.isSetting2 = false;
   }
   toggleOptionSetting2() {
-    this.isSetting2 = !this.isSetting2;
-    this.isSetting = !this.isSetting;
+    this.isSetting2 = true;
+    this.isSetting = false;
   }
 
   toggleOptionTypeSetting() {
-    this.isOptionType = !this.isOptionType;
+    this.isOptionType = true;
+    this.isOptionType2 = false;
+  }
+  toggleOptionTypeSetting2() {
+    this.isOptionType = false;
+    this.isOptionType2 = true;
   }
 
   toggleDiscountSetting() {
-    this.isDiscount = !this.isDiscount;
+    this.isDiscount = true;
+    this.isDiscount2 = false;
+  }
+  toggleDiscountSetting2() {
+    this.isDiscount = false;
+    this.isDiscount2 = true;
   }
 
   toggleDiscountDateSetting() {
-    this.isDiscountDate = !this.isDiscountDate;
+    this.isDiscountDate = true;
+    this.isDiscountDate2 = false;
+  }
+  toggleDiscountDateSetting2() {
+    this.isDiscountDate = false;
+    this.isDiscountDate2 = true;
+  }
+
+  toggleBrandInputSetting() {
+    this.isBrandInput = true;
+    this.isBrandInput2 = false;
+  }
+  toggleBrandInputSetting2() {
+    this.isBrandInput = false;
+    this.isBrandInput2 = true;
+  }
+
+  toggleMultipleSetting() {
+    this.isMultiple = true;
+    this.isMultiple2 = false;
+  }
+  toggleMultipleSetting2() {
+    this.isMultiple = false;
+    this.isMultiple2 = true;
+  }
+
+  toggleCertificationSetting() {
+    this.isCertification = true;
+    this.isCertification2 = false;
+  }
+  toggleCertificationSetting2() {
+    this.isCertification = false;
+    this.isCertification2 = true;
+  }
+
+  resetFileUploader() {
+    this.fileUploader.nativeElement.value = null;
   }
 
   checkBoxpayMethod() {
     this.payMethod = !this.payMethod;
   }
 
-  toggleBrandInputSetting(){
-    this.isBrandInput = !this.isBrandInput;
-  }
-
-  toggleMultipleSetting(){
-    this.isMultiple = !this.isMultiple;
-  }
-
-  toggleCertificationSetting(){
-    this.isCertification = !this.isCertification;
-  }
-
-  resetFileUploader() { 
-    this.fileUploader.nativeElement.value = null;
-  }
-
-
-  url:any = '';
+  url: any = '';
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
@@ -189,8 +224,8 @@ export class ItemsRegisterPage implements OnInit {
       // reader.readAsDataURL(event.target.files[0]); // read file as data url
       // reader.
       // reader.readAsBinaryString(event.target.files[0]);
-      // reader.readAsDataURL(event.target.files[0]);
-      reader.readAsText(event.target.files[0]);
+      reader.readAsDataURL(event.target.files[0]);
+      // reader.readAsText(event.target.files[0]);
       reader.onload = (event) => { // called once readAsDataURL is completed
         this.url = event.target.result;
       }
