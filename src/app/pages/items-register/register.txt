@@ -109,3 +109,23 @@
         </div>
         <button class="w-14 h-[37px] rounded-[6px] text-white bg-primary" routerLink="/items">등록</button>
       </div>
+      
+<!-- <img src="assets/icons/upload_image.svg"> -->
+                  <!-- <input hidden type="file" #fileUploader /> -->
+                  <!-- <div>{{ fileUploader }}</div> -->
+                  <!-- <img [src]="url" height="200"> <br /> -->
+                  <!-- <div>{{url}}</div> -->
+                  <!-- <input type='file' (change)="onSelectFile($event)" accept="image/jpg, image/jpeg, image/png, image/bmp" class="drop "> -->
+                  <!-- <div class="custom-file"> -->
+                  <!-- <input type="file" class="custom-file-input" multiple formControlName="importFile" id="importFile"> -->
+                  <!-- <label class="custom-file-label" #labelImport for="importFile"><i class="fas fa-search"></i> Choose
+                      file</label>
+                    </div> -->
+
+      <!-- <div type="file" for="dropzone-file" multiple #f_input
+                  (change)="handleFileInputChange(f_input.files)"
+                  accept="image/jpg, image/jpeg, image/png, image/bmp" class="w-[240px]">asdasdasd</div> -->
+                  <!-- <button (click)="handleSubmit()">저장</button> -->
+                  <!-- <div mat-subheader>Submit Files ({{ file_list.length }})</div> -->
+                  <!-- <button (click)="fileUploader.value = null">Reset from UI</button> &nbsp;
+                  <button (click)="resetFileUploader()">Reset from Component</button> -->

@@ -1,5 +1,6 @@
 <ion-content>
   <div class="w-360 h-full flex select-none">
+    <!-- <input type="file" value="파일첨부" accept="image/*" /> -->
     <div class="flex-col w-[252px] items-start px-5 bg-primary text-primary-nosel_dot">
       <div class="text-white py-7 flex rounded-[12px] justify-center" routerLink="/dashboard">
         <div class="flex h-6 cursor-pointer hover:bg-primary-select gap-2.5">
@@ -18,7 +19,7 @@
               <div class="flex gap-3 justify-between text-white">
                 <img [src]="menu.icon">{{menu.name}}
               </div>
-              <img src="assets/icons/accordian.svg" *ngIf="menu.children?.length > 0 && !menu.isOpen">
+              <img src="assets/icons/accordian.svg" *ngIf="menu.children?.length > 0 && !menu.isOpen"> 
               <img src="assets/icons/accordian_top.svg" *ngIf="menu.children?.length > 0 && menu.isOpen">
             </div>
             <!-- 하위 메뉴 -->

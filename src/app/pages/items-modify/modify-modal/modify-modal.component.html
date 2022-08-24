@@ -1,22 +1,30 @@
 <!-- <ion-modal [isOpen]="isModalOpen" class="mymodal w-full h-full"> -->
-  <div class="modify_modal">
-    <!-- <ng-template> -->
-      <div class="w-full h-[56px] flex justify-between bg-primary text-white">
-        <div class="px-5 py-4">상품 삭제</div>
-        <img src="assets/icons/cancel.svg" class="px-5 py-4" (click)="handleClose()">
-      </div>
-      <div class="w-full h-[111px] p-5">
-        <div class="h-11">
-          <div class="text-red-600 p-[10px]">정말 삭제 하시겠습니까?</div>
-        </div>
-      </div>
-      <div class="w-full h-[57px] pb-[30px] px-[30px] items-end flex justify-end">
-        <!-- <ion-buttons slot="end" class="flex justify-end pt-[30px] pb-[10px]">
+<div class="modify_modal">
+  <!-- <ng-template> -->
+  <div class="w-full h-[56px] flex justify-between">
+    <div class="px-5 py-4 font-semibold">상품 삭제</div>
+    <div class="flex justify-center items-center px-5 py-4">
+      <svg class="cursor-pointer" (click)="handleClose()" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M16.6091 17.7614C16.9272 18.0795 17.4431 18.0795 17.7613 17.7614C18.0795 17.4432 18.0795 16.9272 17.7613 16.6091L13.1523 12L17.7614 7.39091C18.0795 7.07272 18.0795 6.55683 17.7614 6.23864C17.4431 5.92045 16.9272 5.92045 16.6091 6.23864L12 10.8477L7.39091 6.23865C7.07272 5.92046 6.55683 5.92046 6.23864 6.23865C5.92045 6.55684 5.92045 7.07274 6.23864 7.39093L10.8477 12L6.23865 16.6091C5.92046 16.9272 5.92046 17.4431 6.23865 17.7614C6.55684 18.0795 7.07273 18.0795 7.39092 17.7614L12 13.1523L16.6091 17.7614Z"
+          fill="#374151" />
+      </svg>
+    </div>
+  </div>
+  <div class="w-full h-[111px] p-5">
+    <div class="h-11 flex justify-center items-center">
+      <div class="p-5 text-[14px]">정말 삭제 하시겠습니까?</div>
+    </div>
+  </div>
+  <div class="w-full h-[57px] pb-[30px] px-[30px] items-end flex justify-end">
+    <!-- <ion-buttons slot="end" class="flex justify-end pt-[30px] pb-[10px]">
           <ion-button class="w-[61px] h-[30px] bg-primary-Lighter rounded-md text-white" (click)="handleClose()false)">
             적용</ion-button>
         </ion-buttons> -->
-        <button class="w-14 h-[37px] rounded-[6px] text-white bg-primary" (click)="handleClose()">삭제</button>
-      </div>
-    <!-- </ng-template> -->
+    <div class="w-14 h-[37px] rounded-[6px] border border-red-700 flex justify-center items-center">
+      <button class="text-red-600 font-semibold" (click)="handleClose()">삭제</button>
+    </div>
   </div>
+  <!-- </ng-template> -->
+</div>
 <!-- </ion-modal> -->
