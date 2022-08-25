@@ -13,6 +13,7 @@ type Menu = {
 type ChildrenMenu = {
   name: string;
   url: string;
+  // num?: number;
 }
 
 
@@ -104,8 +105,17 @@ export class LayoutPage implements OnInit {
       name: '사입반품 관리',
       url: '/refund_buy'
     },
-
   ]
+
+  isChildMenu = false;
+  activeIndex = -1;
+
+  menuClick(index) {
+    this.activeIndex = index;
+    console.log(this.activeIndex);
+    // console.log(men);
+  }
+
   constructor(private route: ActivatedRoute, private http: HttpClient) {
     // this.route.snapshot
   }

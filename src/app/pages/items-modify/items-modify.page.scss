@@ -28,3 +28,65 @@
       cursor: pointer;
     }
   }
+
+  .btn-upload {
+    width: 150px;
+    height: 30px;
+    background: #fff;
+    border: 1px solid rgb(77, 77, 77);
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        background: rgb(77, 77, 77);
+        color: #fff;
+    }
+}
+
+.myinput {
+    display: none;
+} 
+
+.my_right_btn {
+    position: absolute;
+    // color: black;
+    // opacity: 0.3;
+    left: 440px;
+    top: 44%;
+    z-index: 0;
+}
+.my_index_num{
+  position: absolute;
+  left: 440px;
+  top: 82%
+  // z-index: 9
+  // color: white;
+  // opacity: 1;
+}
+
+.my_right_btn_pro {
+  position: absolute;
+  // color: black;
+  // opacity: 0.3;
+  left: 480px;
+  top: 44%;
+  z-index: 0;
+}
+.my_index_num_pro {
+position: absolute;
+left: 480px;
+top: 90%
+// z-index: 9
+// color: white;
+// opacity: 1;
+}
+.my_addImage{
+    position: relative;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+}

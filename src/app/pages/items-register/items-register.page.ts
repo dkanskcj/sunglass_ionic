@@ -67,6 +67,8 @@ export class ItemsRegisterPage implements OnInit {
   payMethod3: boolean = false;
   payMethod4: boolean = false;
   payMethod5: boolean = false;
+  ShippingArea: boolean = false;
+  ShippingArea2: boolean = false;
   selected: number;
 
   selectedFiles?: FileList;
@@ -327,8 +329,16 @@ export class ItemsRegisterPage implements OnInit {
     this.payMethod3 = false;
     this.payMethod4 = false;
     this.payMethod5 = true;
-  }
+  } 
 
+  checkBoxShippingArea() {
+    this.ShippingArea = true;
+    this.ShippingArea2 = false;
+  }
+  checkBoxShippingArea2() {
+    this.ShippingArea = false;
+    this.ShippingArea2 = true;
+  }
 
 
 

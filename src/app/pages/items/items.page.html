@@ -27,22 +27,37 @@
         <div class="h-[915px] flex gap-2 my-8 mx-12 shadow bg-white">
             <div class="h-[858px]">
                 <div class="flex p-5 space-x-4 w-full h-[53px] text-[14px]">
-                    <select name="브랜드" value="브랜드 선택" class="select w-[107.67px] h-[37px] border rounded-md px-3">
-                        <option value="1">루이비통</option>
-                        <option value="2">샤넬</option>
-                    </select>
-                    <select name="상태 선택" placeholder="상태 선택"
-                        class="select w-[94.67px] h-[37px] border rounded-md px-3 appearance-none">
-                        <option value="1">S급</option>
-                        <option value="2">A급</option>
-                    </select>
+                    <div class="space-y-2">
+                        <select id="select-menu" [(ngModel)]="selectedOption" class="bx--text-input" required
+                          name="actionSelection"
+                          class="w-[120px] border box-border shadow flex justify-center items-center px-3 py-2 text-[14px] cursor-pointer">
+                          <option *ngFor="let action of actions" [value]="action.id">{{action.name}}</option>
+                        </select>
+                        <div>
+                          <div *ngIf="selectedOption==1">
+                            <!-- <div>1 selected</div> -->
+                          </div>
+                          <div *ngIf="selectedOption==2">
+                            <!-- <div>2 selected</div> -->
+                          </div>
+                          <div *ngIf="selectedOption==3">
+                            <!-- <div>3 selected</div> -->
+                          </div>
+                          <div *ngIf="selectedOption==4">
+                            <!-- <div>4 selected</div> -->
+                          </div>
+                          <div *ngIf="selectedOption==5">
+                            <!-- <div>5 selected</div> -->
+                          </div>
+                        </div>
+                      </div>
                     <div
                         class="w-full h-[37px] flex items-center justify-start border border-b rounded-md px-3 space-x-2">
                         <img src="assets/icons/search_icon.svg">
                         <input type="text" class="w-full" placeholder="검색어를 입력해주세요." [(ngModel)]="searchText">
                     </div>
                 </div>
-                <div class="px-3 py-[1.5px] text-[14px]">
+                <div class="px-3 py-[17.5px] text-[14px]">
                     <table class="w-full text-centeritems-center text-left table-fixed">
                         <thead>
                             <tr>

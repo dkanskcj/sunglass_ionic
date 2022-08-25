@@ -21,6 +21,19 @@ export class ItemsPage implements OnInit {
   
   products=[];
 
+  selectedOption = 0;
+  actions = [
+    { id: 0, name: '옵션 선택' },
+    // { id: 1, name: '0개' },
+    { id: 1, name: '1개' },
+    { id: 2, name: '2개' },
+    { id: 3, name: '3개' },
+    { id: 4, name: '4개' },
+    { id: 5, name: '5개' },
+  ]
+
+
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {

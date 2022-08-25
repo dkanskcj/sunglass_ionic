@@ -84,6 +84,52 @@ export class ItemsModifyPage implements OnInit {
 
   previews: string[] = [];
   // imageInfos?: Observable<any>;
+  imageObject = [ 
+    // {
+    //   image: 'assets/icons/second_img.jpg',
+    //   thumbImage: 'assets/icons/personal_trainer3.jfif',
+    //   index_num: 2
+    // }, 
+    {
+      image: 'assets/icons/third_img.jpg',
+      thumbImage: 'assets/icons/personal_trainer.jfif',
+      index_num: 3
+    }, 
+    {
+      image: 'assets/icons/fourth_img.jpg',
+      thumbImage: 'assets/icons/personal_trainer2.jfif',
+      index_num: 4
+    }, 
+    {
+      image: 'assets/icons/fourth_img.jpg',
+      thumbImage: 'assets/icons/trainer1.jfif',
+      index_num: 5
+    },
+    {
+      image: 'assets/icons/fourth_img.jpg',
+      thumbImage: 'assets/icons/personal_trainer.jfif',
+      index_num: 6
+    },
+    {
+      image: 'assets/icons/fourth_img.jpg',
+      thumbImage: 'assets/icons/personal_trainer3.jfif',
+      index_num: 7
+    },
+    {
+      image: 'assets/icons/fourth_img.jpg',
+      thumbImage: 'assets/icons/personal_trainer2.jfif',
+      index_num: 8
+    },
+    {
+      image: 'assets/icons/fourth_img.jpg',
+      thumbImage: 'assets/icons/trainer1.jfif',
+      index_num: 9
+    },
+    {
+      image: 'assets/icons/fourth_img.jpg',
+      thumbImage: 'assets/icons/personal_trainer2.jfif',
+    },
+  ];
 
   Options: Option[] = [
     {
@@ -168,6 +214,18 @@ export class ItemsModifyPage implements OnInit {
       url: 'assets/icons/add_img.svg'
     }
   ]
+  
+  thumbimages = [
+    'assets/icons/personal_trainer3.jfif',
+    'assets/icons/personal_trainer.jfif',
+    'assets/icons/personal_trainer2.jfif',
+    'assets/icons/trainer1.jfif',
+    'assets/icons/personal_trainer.jfif',
+    'assets/icons/personal_trainer3.jfif',
+    'assets/icons/personal_trainer2.jfif',
+    'assets/icons/trainer1.jfif',
+    'assets/icons/personal_trainer2.jfif'
+  ];
 
   selectedOption = 0;
   actions = [
@@ -179,6 +237,16 @@ export class ItemsModifyPage implements OnInit {
     { id: 4, name: '4개' },
     { id: 5, name: '5개' },
   ]
+  slideIndex: number = 0;
+
+  plusSlides(n: number) {
+    if(this.slideIndex > this.thumbimages.length-2){
+      this.slideIndex = 0;
+    }
+    else{
+      this.slideIndex += n;
+    }
+  }
 
   toggleOptionSetting() {
     this.isSetting = true;
@@ -429,118 +497,21 @@ export class ItemsModifyPage implements OnInit {
     this.Options.splice(option, 1)
   }
 
-  
+
   constructor(
     private modalController: ModalController,
     private route: ActivatedRoute
-    ){}
-    
-    async setOpen() {
-      const modal = await this.modalController.create({
-        component: ModifyModalComponent,
-        cssClass: 'modify_modal'
-      })
-      modal.present();
-    }
-      
-  // onSelectFile(event) {
-  //   if (event.target.files && event.target.files[0]) {
-  //     var reader = new FileReader();
+  ) { }
 
-  //     reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-  //     reader.onload = (event: any) => { // called once readAsDataURL is completed
-  //       console.log(event);
-  //       this.url = event.target.result;
-  //     }
-  //   }
-  // }
-  
-
-  ngOnInit() {
-    // this.route.queryParams.subscribe(params => {
-    //   this.id = params['id'];
-    // });
+  async setOpen() {
+    const modal = await this.modalController.create({
+      component: ModifyModalComponent,
+      cssClass: 'modify_modal'
+    })
+    modal.present();
   }
-  
+  ngOnInit() {
+    
+  }
+
 }
-// uploader: FileUploader = new FileUploader({
-//   url: 'http://localhost:4200'
-// })
-// fileInfo = {
-//   originalname: '',
-//   filename: ''
-// }
-
-// constructor() {
-//   let uploadUrl = window.location.protocol + "//" + window.location.host + "/modify"
-//   this.uploader = new FileUploader({ url: 'http://localhost:4200' })
-//   this.uploader.onSuccessItem = (item, response, status, headers) => {
-
-//     this.uploadResult = {
-//       "success": true, "item": item, "response":
-
-//         response, "status": status, "headers": headers
-//     };
-
-//   };
-
-//   this.uploader.onErrorItem = (item, response, status, headers) => {
-
-//     this.uploadResult = {
-//       "success": false, "item": item,
-
-//       "response": response, "status": status, "headers": headers
-//     };
-
-//   };
-
-//   this.uploader.onCompleteAll = () => {
-
-//     this.handleUploadComplete();
-
-//   };
-// }
-// private handleUploadComplete() {
-
-//   console.log("upload compete : " + this.uploadResult.response);
-
-//   if (this.uploadResult.success) {
-
-//   } else {
-
-//   }
-// }
-//   handleUploadFileChanged(event) {
-//     this.uploader.clearQueue();
-//     let files: File[] = event.target.files;
-//     let filteredFiles: File[] = [];
-//     for (var f of files) {
-//       if (f.name.endsWith(".svg")) {
-//         filteredFiles.push(f);
-//       }
-//     }
-//     if (filteredFiles.length == 0) {
-//       this.showGuide = true;
-//     } else {
-//       this.showGuide = false;
-//       let options = null;
-//       let filters = null;
-//       this.uploader.addToQueue(filteredFiles, options, filters);
-//     }
-//   }
-// imageList: Blob[] = [];
-
-  // onUploadImage(event) {
-  //   const repeats = event.length;
-  //   for (let i = 0; i < repeats; i++) {
-  //     const blob: Blob = event[i];
-  //     if (blob.type.includes('image')) return this.imageList.push(blob);
-
-  //     alert('이미지 파일 외에는 지원하지 않습니다.');
-  //   }
-  // }
-
-  // onDeleteImage(index: number) {
-  //   this.imageList.splice(index, 1);
-  // }
