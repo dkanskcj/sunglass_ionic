@@ -1,9 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { ModalController } from '@ionic/angular';
-import { ModifyModalComponent } from './modify-modal/modify-modal.component';
-
 type Option = {
   value: string;
   addCost: string;
@@ -24,17 +20,14 @@ type Image = {
   button?: string;
 }
 
-
 @Component({
-  selector: 'app-items-modify',
-  templateUrl: './items-modify.page.html',
-  styleUrls: ['./items-modify.page.scss'],
+  selector: 'app-customer-register',
+  templateUrl: './customer-register.page.html',
+  styleUrls: ['./customer-register.page.scss'],
 })
-
-export class ItemsModifyPage implements OnInit {
+export class CustomerRegisterPage implements OnInit {
   @ViewChild('fileUploader') fileUploader: ElementRef;
   display: FormControl = new FormControl("", Validators.required);
-  isModalOpen = false;
   file_store: FileList;
   file_list: Array<string> = [];
   urls = [];
@@ -66,7 +59,6 @@ export class ItemsModifyPage implements OnInit {
   isShippingInfo2: boolean = true;
   isOptionGroup: boolean = true;
 
-  url: any = '';
   option: any;
   image: any;
   payMethod: boolean = false;
@@ -86,58 +78,14 @@ export class ItemsModifyPage implements OnInit {
 
   previews: string[] = [];
   // imageInfos?: Observable<any>;
-  imageObject = [ 
-    // {
-    //   image: 'assets/icons/second_img.jpg',
-    //   thumbImage: 'assets/icons/personal_trainer3.jfif',
-    //   index_num: 2
-    // }, 
-    // {
-    //   image: 'assets/icons/third_img.jpg',
-    //   thumbImage: 'assets/icons/sunglass.jpg',
-    //   index_num: 3
-    // }, 
-    {
-      image: 'assets/icons/fourth_img.jpg',
-      thumbImage: 'assets/icons/sunglass2.jpg',
-      index_num: 4
-    }, 
-    {
-      image: 'assets/icons/fourth_img.jpg',
-      thumbImage: 'assets/icons/sunglass3.jpg',
-      index_num: 5
-    },
-    {
-      image: 'assets/icons/fourth_img.jpg',
-      thumbImage: 'assets/icons/sunglass4.jpg',
-      index_num: 6
-    },
-    {
-      image: 'assets/icons/fourth_img.jpg',
-      thumbImage: 'assets/icons/sunglass5.jpg',
-      index_num: 7
-    },
-    {
-      image: 'assets/icons/fourth_img.jpg',
-      thumbImage: 'assets/icons/sunglass6.jpg',
-      index_num: 8
-    },
-    {
-      image: 'assets/icons/fourth_img.jpg',
-      thumbImage: 'assets/icons/sunglass7.jpg',
-      index_num: 9
-    },
-    {
-      image: 'assets/icons/fourth_img.jpg',
-      thumbImage: 'assets/icons/sunglass8.jpg',
-    },
-    {
-      image: 'assets/icons/fourth_img.jpg',
-      thumbImage: 'assets/icons/sunglass9.jpg',
-    },
-  ];
 
   Options: Option[] = [
+    {
+      value: '케이스명',
+      addCost: '',
+      stock: '',
+      icon: "assets/icons/plus.svg"
+    },
     {
       value: '나무케이스',
       addCost: '10,000',
@@ -154,9 +102,10 @@ export class ItemsModifyPage implements OnInit {
       value: '메탈케이스',
       addCost: '30,000',
       stock: '0',
-      icon: "assets/icons/plus.svg"
+      icon: "assets/icons/minus.svg"
     }
   ]
+
   Option_Groups: Option_Group[] = [
     {
       case: '나무케이스',
@@ -220,18 +169,6 @@ export class ItemsModifyPage implements OnInit {
       url: 'assets/icons/add_img.svg'
     }
   ]
-  
-  thumbimages = [
-    'assets/icons/sunglass.jpg',
-    'assets/icons/sunglass2.jpg',
-    'assets/icons/sunglass3.jpg',
-    'assets/icons/sunglass4.jpg',
-    'assets/icons/sunglass5.jpg',
-    'assets/icons/sunglass6.jpg',
-    'assets/icons/sunglass7.jpg',
-    'assets/icons/sunglass8.jpg',
-    'assets/icons/sunglass9.jpg',
-  ];
 
   selectedOption = 0;
   actions = [
@@ -243,16 +180,6 @@ export class ItemsModifyPage implements OnInit {
     { id: 4, name: '4개' },
     { id: 5, name: '5개' },
   ]
-  slideIndex: number = 0;
-
-  plusSlides(n: number) {
-    if(this.slideIndex > this.thumbimages.length-2){
-      this.slideIndex = 0;
-    }
-    else{
-      this.slideIndex += n;
-    }
-  }
 
   toggleOptionSetting() {
     this.isSetting = true;
@@ -364,7 +291,7 @@ export class ItemsModifyPage implements OnInit {
     this.isShippingInfo2 = true;
   }
 
-  toggleOptionGroupSetting() {
+  toggleOptionGroupSetting(){
     this.isOptionGroup = !this.isOptionGroup;
   }
 
@@ -408,7 +335,8 @@ export class ItemsModifyPage implements OnInit {
     this.payMethod3 = false;
     this.payMethod4 = false;
     this.payMethod5 = true;
-  }
+  } 
+
   checkBoxShippingArea() {
     this.ShippingArea = true;
     this.ShippingArea2 = false;
@@ -420,11 +348,17 @@ export class ItemsModifyPage implements OnInit {
 
 
 
+  url: any = '';
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
+
+      // reader.readAsDataURL(event.target.files[0]); // read file as data url
+      // reader.
+      // reader.readAsBinaryString(event.target.files[0]);
       reader.readAsDataURL(event.target.files[0]);
-      reader.onload = (event) => {
+      // reader.readAsText(event.target.files[0]);
+      reader.onload = (event) => { // called once readAsDataURL is completed
         this.url = event.target.result;
       }
     }
@@ -503,23 +437,20 @@ export class ItemsModifyPage implements OnInit {
   // 옵션 삭제
   removeOption(option) {
     this.Options.splice(option, 1)
+    console.log(this.Options[0]);
   }
 
-
-  constructor(
-    private modalController: ModalController,
-    private route: ActivatedRoute
-  ) { }
-
-  async setOpen() {
-    const modal = await this.modalController.create({
-      component: ModifyModalComponent,
-      cssClass: 'modify_modal'
-    })
-    modal.present();
+  addOption(option){
+    this.Options.push(this.Options[1]);
+    console.log(this.Options[1]);
   }
+
+  // remove_Certification(certificaiton) {
+  //   this.Options.splice(index, 1)
+  // }
+  constructor() { }
+
   ngOnInit() {
-    
   }
 
 }

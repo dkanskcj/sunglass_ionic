@@ -82,6 +82,12 @@ export class ItemsRegisterPage implements OnInit {
 
   Options: Option[] = [
     {
+      value: '케이스명',
+      addCost: '',
+      stock: '',
+      icon: "assets/icons/plus.svg"
+    },
+    {
       value: '나무케이스',
       addCost: '10,000',
       stock: '0',
@@ -97,9 +103,10 @@ export class ItemsRegisterPage implements OnInit {
       value: '메탈케이스',
       addCost: '30,000',
       stock: '0',
-      icon: "assets/icons/plus.svg"
+      icon: "assets/icons/minus.svg"
     }
   ]
+
   Option_Groups: Option_Group[] = [
     {
       case: '나무케이스',
@@ -423,16 +430,21 @@ export class ItemsRegisterPage implements OnInit {
       }
     }
   }
-  remove_Image(image) {
+  removeImage(image) {
     this.urls.splice(image, 1)
   }
 
 
   // 옵션 삭제
-  remove_Option(option) {
+  removeOption(option) {
     this.Options.splice(option, 1)
+    console.log(this.Options[0]);
   }
 
+  addOption(option){
+    this.Options.push(this.Options[1]);
+    console.log(this.Options[1]);
+  }
 
   // remove_Certification(certificaiton) {
   //   this.Options.splice(index, 1)

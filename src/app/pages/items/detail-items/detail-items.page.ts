@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { ModifyModalComponent } from './modify-modal/modify-modal.component';
+import { ModifyModalComponent } from '../../items-modify/modify-modal/modify-modal.component';
 
 type Option = {
   value: string;
@@ -25,13 +25,13 @@ type Image = {
 }
 
 
-@Component({
-  selector: 'app-items-modify',
-  templateUrl: './items-modify.page.html',
-  styleUrls: ['./items-modify.page.scss'],
-})
 
-export class ItemsModifyPage implements OnInit {
+@Component({
+  selector: 'app-detail-items',
+  templateUrl: './detail-items.page.html',
+  styleUrls: ['./detail-items.page.scss'],
+})
+export class DetailItemsPage implements OnInit {
   @ViewChild('fileUploader') fileUploader: ElementRef;
   display: FormControl = new FormControl("", Validators.required);
   isModalOpen = false;
@@ -74,8 +74,6 @@ export class ItemsModifyPage implements OnInit {
   payMethod3: boolean = false;
   payMethod4: boolean = false;
   payMethod5: boolean = false;
-  ShippingArea: boolean = false;
-  ShippingArea2: boolean = false;
   selected: number;
 
   selectedFiles?: FileList;
@@ -86,7 +84,7 @@ export class ItemsModifyPage implements OnInit {
 
   previews: string[] = [];
   // imageInfos?: Observable<any>;
-  imageObject = [ 
+  imageObject = [
     // {
     //   image: 'assets/icons/second_img.jpg',
     //   thumbImage: 'assets/icons/personal_trainer3.jfif',
@@ -101,7 +99,7 @@ export class ItemsModifyPage implements OnInit {
       image: 'assets/icons/fourth_img.jpg',
       thumbImage: 'assets/icons/sunglass2.jpg',
       index_num: 4
-    }, 
+    },
     {
       image: 'assets/icons/fourth_img.jpg',
       thumbImage: 'assets/icons/sunglass3.jpg',
@@ -220,7 +218,7 @@ export class ItemsModifyPage implements OnInit {
       url: 'assets/icons/add_img.svg'
     }
   ]
-  
+
   thumbimages = [
     'assets/icons/sunglass.jpg',
     'assets/icons/sunglass2.jpg',
@@ -246,10 +244,10 @@ export class ItemsModifyPage implements OnInit {
   slideIndex: number = 0;
 
   plusSlides(n: number) {
-    if(this.slideIndex > this.thumbimages.length-2){
+    if (this.slideIndex > this.thumbimages.length - 2) {
       this.slideIndex = 0;
     }
-    else{
+    else {
       this.slideIndex += n;
     }
   }
@@ -409,14 +407,7 @@ export class ItemsModifyPage implements OnInit {
     this.payMethod4 = false;
     this.payMethod5 = true;
   }
-  checkBoxShippingArea() {
-    this.ShippingArea = true;
-    this.ShippingArea2 = false;
-  }
-  checkBoxShippingArea2() {
-    this.ShippingArea = false;
-    this.ShippingArea2 = true;
-  }
+
 
 
 
@@ -519,7 +510,8 @@ export class ItemsModifyPage implements OnInit {
     modal.present();
   }
   ngOnInit() {
-    
+
   }
+
 
 }

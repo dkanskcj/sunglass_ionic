@@ -4,7 +4,8 @@
   <div class="w-full h-[56px] flex justify-between">
     <div class="px-5 py-4 font-semibold">상품 삭제</div>
     <div class="flex justify-center items-center px-5 py-4">
-      <svg class="cursor-pointer" (click)="handleClose()" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg class="cursor-pointer" (click)="handleClose()" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd"
           d="M16.6091 17.7614C16.9272 18.0795 17.4431 18.0795 17.7613 17.7614C18.0795 17.4432 18.0795 16.9272 17.7613 16.6091L13.1523 12L17.7614 7.39091C18.0795 7.07272 18.0795 6.55683 17.7614 6.23864C17.4431 5.92045 16.9272 5.92045 16.6091 6.23864L12 10.8477L7.39091 6.23865C7.07272 5.92046 6.55683 5.92046 6.23864 6.23865C5.92045 6.55684 5.92045 7.07274 6.23864 7.39093L10.8477 12L6.23865 16.6091C5.92046 16.9272 5.92046 17.4431 6.23865 17.7614C6.55684 18.0795 7.07273 18.0795 7.39092 17.7614L12 13.1523L16.6091 17.7614Z"
           fill="#374151" />
@@ -21,8 +22,9 @@
           <ion-button class="w-[61px] h-[30px] bg-primary-Lighter rounded-md text-white" (click)="handleClose()false)">
             적용</ion-button>
         </ion-buttons> -->
-    <div class="w-14 h-[37px] rounded-[6px] border border-red-700 flex justify-center items-center">
-      <button class="text-red-600 font-semibold" (click)="handleClose()">삭제</button>
+    <div class="w-14 h-[37px] rounded-[6px] border border-red-700 flex justify-center items-center cursor-pointer"
+      (click)="handleClose()">
+      <button class="text-red-600 font-semibold">삭제</button>
     </div>
   </div>
   <!-- </ng-template> -->
