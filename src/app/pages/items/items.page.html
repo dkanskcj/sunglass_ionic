@@ -13,15 +13,14 @@
                 </div>
                 <div class="flex px-6 py-4 space-x-4">
                     <img src="assets/icons/alter.svg" class="cursor-pointer w-6 h-6">
-                    <img src="assets/icons/profile_icon.svg"
-                        class="cursor-pointer w-8 h-8">
+                    <img src="assets/icons/profile_icon.svg" class="cursor-pointer w-8 h-8">
                 </div>
             </div>
         </div>
 
         <div class="flex justify-between items-center px-12 pt-12">
             <div class="text-[24px] h-[29px] font-bold">상품 관리</div>
-            <div class="px-3 py-2 rounded-[6px] text-primary border border-primary cursor-pointer" routerLink="/register">등록</div>
+            <app-buttons label="등록" routerLink="/register"></app-buttons>
         </div>
 
         <div class="h-[915px] flex gap-2 my-8 mx-12 shadow bg-white">
@@ -29,28 +28,28 @@
                 <div class="flex p-5 space-x-4 w-full h-[53px] text-[14px]">
                     <div class="space-y-2">
                         <select id="select-menu" [(ngModel)]="selectedOption" class="bx--text-input" required
-                          name="actionSelection"
-                          class="w-[120px] border box-border shadow flex justify-center items-center px-3 py-2 text-[14px] cursor-pointer">
-                          <option *ngFor="let action of actions" [value]="action.id">{{action.name}}</option>
+                            name="actionSelection"
+                            class="w-[120px] border box-border shadow flex justify-center items-center px-3 py-2 text-[14px] cursor-pointer">
+                            <option *ngFor="let action of actions" [value]="action.id">{{action.name}}</option>
                         </select>
                         <div>
-                          <div *ngIf="selectedOption==1">
-                            <!-- <div>1 selected</div> -->
-                          </div>
-                          <div *ngIf="selectedOption==2">
-                            <!-- <div>2 selected</div> -->
-                          </div>
-                          <div *ngIf="selectedOption==3">
-                            <!-- <div>3 selected</div> -->
-                          </div>
-                          <div *ngIf="selectedOption==4">
-                            <!-- <div>4 selected</div> -->
-                          </div>
-                          <div *ngIf="selectedOption==5">
-                            <!-- <div>5 selected</div> -->
-                          </div>
+                            <div *ngIf="selectedOption==1">
+                                <!-- <div>1 selected</div> -->
+                            </div>
+                            <div *ngIf="selectedOption==2">
+                                <!-- <div>2 selected</div> -->
+                            </div>
+                            <div *ngIf="selectedOption==3">
+                                <!-- <div>3 selected</div> -->
+                            </div>
+                            <div *ngIf="selectedOption==4">
+                                <!-- <div>4 selected</div> -->
+                            </div>
+                            <div *ngIf="selectedOption==5">
+                                <!-- <div>5 selected</div> -->
+                            </div>
                         </div>
-                      </div>
+                    </div>
                     <div
                         class="w-full h-[37px] flex items-center justify-start border border-b rounded-md px-3 space-x-2">
                         <img src="assets/icons/search_icon.svg">

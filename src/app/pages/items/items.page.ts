@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 type Index_l = {
   brand: string;
@@ -18,7 +18,8 @@ type Index_l = {
   styleUrls: ['./items.page.scss'],
 })
 export class ItemsPage implements OnInit {
-  
+
+
   products=[];
 
   selectedOption = 0;

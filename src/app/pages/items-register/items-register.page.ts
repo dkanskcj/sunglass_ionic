@@ -1,11 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 type Option = {
   value: string;
   addCost: string;
   stock: string;
-  icon?: string;
 }
 
 type Option_Group = {
@@ -28,6 +27,8 @@ type Image = {
 })
 export class ItemsRegisterPage implements OnInit {
   @ViewChild('fileUploader') fileUploader: ElementRef;
+
+
   display: FormControl = new FormControl("", Validators.required);
   file_store: FileList;
   file_list: Array<string> = [];
@@ -35,6 +36,7 @@ export class ItemsRegisterPage implements OnInit {
 
   option_number: any;
 
+  category: string = 'multiple';
 
   isOptionType: boolean = false;
   isOptionType2: boolean = true;
@@ -80,30 +82,42 @@ export class ItemsRegisterPage implements OnInit {
   previews: string[] = [];
   // imageInfos?: Observable<any>;
 
+  categoryList = [
+    {
+      name: '다중',
+      value: 'multiple',
+    },
+    {
+      name: '단일',
+      value: 'single',
+    }
+  ]
+  istoggle: boolean = false;
+  // test_toggl
+  handleCategory(category: string) {
+    this.category = category
+  }
+
   Options: Option[] = [
     {
       value: '케이스명',
       addCost: '',
       stock: '',
-      icon: "assets/icons/plus.svg"
     },
     {
       value: '나무케이스',
       addCost: '10,000',
       stock: '0',
-      icon: "assets/icons/minus.svg"
     },
     {
       value: '플라스틱케이스',
       addCost: '20,000',
       stock: '0',
-      icon: "assets/icons/minus.svg"
     },
     {
       value: '메탈케이스',
       addCost: '30,000',
       stock: '0',
-      icon: "assets/icons/minus.svg"
     }
   ]
 
@@ -400,6 +414,7 @@ export class ItemsRegisterPage implements OnInit {
       this.display.patchValue("");
     }
   }
+  
   handleSubmit(): void {
     var fd = new FormData();
     this.file_list = [];
@@ -409,6 +424,7 @@ export class ItemsRegisterPage implements OnInit {
       console.log(this.file_list);
     }
   }
+
   removeSelectedFile(index) {
     this.file_list.splice(index, 1);
   }
@@ -437,23 +453,26 @@ export class ItemsRegisterPage implements OnInit {
 
   // 옵션 삭제
   removeOption(option) {
-    this.Options.splice(option, 1)
+      this.Options.splice(option, 1)
+    // }
     console.log(this.Options[0]);
   }
 
   addOption(option){
-    this.Options.push(this.Options[1]);
+    this.Options.push({
+      value: '',
+      addCost: null,
+      stock: null,
+    });
     console.log(this.Options[1]);
   }
 
-  // remove_Certification(certificaiton) {
-  //   this.Options.splice(index, 1)
-  // }
   constructor() { }
 
   ngOnInit() {
   }
 
+  
 
 
 

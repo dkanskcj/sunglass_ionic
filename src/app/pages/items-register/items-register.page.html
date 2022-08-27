@@ -99,7 +99,10 @@
             <!-- 카테고리 -->
             <div class="space-y-2">
               <div class="font-semibold">카테고리</div>
-              <div class="flex">
+              <app-segment [toggleBtn]="categoryList" [currentValue]="category" (isToggle)="handleCategory($event)">
+              </app-segment>
+              <div>현재 카테고리 {{category}}</div>
+              <!-- <div class="flex">
                 <div class="flex">
                   <div
                     class="border box-border shadow rounded-l-lg px-3 py-2 transition-colors cursor-pointer text-[14px]"
@@ -112,7 +115,7 @@
                     [ngClass]="isMultiple2 ? 'bg-primary hover:bg-primary/80 text-white':'bg-white hover:bg-gray-100'">
                     단일</div>
                 </div>
-              </div>
+              </div> -->
               <select name="카테고리"
                 class="flex justify-center items-center rounded-md border box-border shadow text-[14px] w-[120px] py-2 pl-3 cursor-pointer">
                 <option value="1">사각 프레임</option>
@@ -387,14 +390,18 @@
                                   <div class="space-y-2 pb-2">
                                     <div>옵션값</div>
                                     <div
-                                      class="w-[120px] border box-border shadow pl-3 text-left py-2 text-[14px] bg-white">
+                                      class="w-[120px] border box-border shadow pl-3 text-left py-2 text-[14px] bg-white" contenteditable="true">
                                       {{ o.value }}
                                     </div>
                                   </div>
                                   <div class="flex justify-start items-center">
                                     <div>
                                       <!-- <img [src]="o.icon" class=" w-6 h-6 flex top-[50%] cursor-pointer" (click)="removeOption(index)"> -->
-                                      <img [src]="o.icon" class=" w-6 h-6 flex top-[50%] cursor-pointer" (click)="removeOption(index)">
+                                      <!-- <img src="assets/icons/minus" class=" w-6 h-6 flex top-[50%] cursor-pointer" (click)="removeOption(index)"> -->
+                                      <img src="assets/icons/minus.svg" class=" w-6 h-6 flex top-[50%] cursor-pointer" *ngIf="index + 1 !== Options.length"
+                                        (click)="removeOption(index)">
+                                        <img src="assets/icons/plus.svg" class=" w-6 h-6 flex top-[50%] cursor-pointer" *ngIf="Options.length === 1 || index + 1 === Options.length"
+                                        (click)="addOption(index)">
                                     </div>
                                   </div>
                                 </div>
@@ -518,7 +525,7 @@
                                   <div class="space-y-2 pb-2">
                                     <div>옵션값</div>
                                     <div
-                                      class="w-[120px] border box-border shadow pl-3 text-left py-2 text-[14px] bg-white">
+                                      class="w-[120px] border box-border shadow pl-3 text-left py-2 text-[14px] bg-white" contenteditable="true">
                                       {{ o.value }}
                                     </div>
                                   </div>
@@ -539,12 +546,10 @@
                                     </div>
                                   </div>
                                   <div class="flex justify-start items-center">
-                                    <div>
-                                      <img [src]="o.icon" class=" w-6 h-6 flex top-[50%] cursor-pointer" *ngIf="o.icon === 'assets/icons/minus.svg'"
+                                      <img src="assets/icons/minus.svg" class=" w-6 h-6 flex top-[50%] cursor-pointer" *ngIf="index + 1 !== Options.length"
                                         (click)="removeOption(index)">
-                                        <img [src]="o.icon" class=" w-6 h-6 flex top-[50%] cursor-pointer" *ngIf="o.icon === 'assets/icons/plus.svg'"
+                                        <img src="assets/icons/plus.svg" class=" w-6 h-6 flex top-[50%] cursor-pointer" *ngIf="Options.length === 1 || index + 1 === Options.length"
                                         (click)="addOption(index)">
-                                    </div>
                                   </div>
                                 </div>
                               </ng-container>

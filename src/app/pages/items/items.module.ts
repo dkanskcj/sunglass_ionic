@@ -8,6 +8,7 @@ import { ItemsPageRoutingModule } from './items-routing.module';
 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ItemsPage } from './items.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { ItemsPage } from './items.page';
     IonicModule,
     ItemsPageRoutingModule,
     Ng2SearchPipeModule,
+    ComponentsModule
   ],
   declarations: [ItemsPage]
 })
