@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { CompanyService } from 'src/service/company/company.service';
 type Index_l = { 
   brand: string;
   name: string;
@@ -16,6 +18,14 @@ type Index_l = {
   styleUrls: ['./connection.page.scss'],
 })
 export class ConnectionPage implements OnInit {
+  createForm = new FormGroup({
+    name:new FormControl(null),
+    tel:new FormControl(null),
+    owner:new FormControl(null),
+    companyNumber:new FormControl(null),
+    address:new FormControl(null)
+  })
+
   searchText: any;
   company=[];
   index_list: Index_l[] = [
@@ -80,7 +90,7 @@ export class ConnectionPage implements OnInit {
       customer: '거래처B 외 2곳',
     },
   ];
-  constructor(private http: HttpClient, private router:Router) { }
+  constructor(private http: HttpClient, private router:Router, private companyService: CompanyService) { }
 
   ngOnInit() {
     this.router.events.pipe(filter(ev => ev instanceof NavigationEnd)).subscribe({
@@ -97,5 +107,16 @@ export class ConnectionPage implements OnInit {
       this.company=result;
     });
   }
-  
+  // remove(){
+  //   const body = this.createForm.removeValidators();
+  //   console.log(body)
+  //   this.companyService.create(body).subscribe({
+  //     next: (res) => {
+  //       this.router.navigateByUrl('/company')
+  //     },
+  //     error: (error) => {
+  //       console.log(error)
+  //     }
+  //   })
+  // }
 }
