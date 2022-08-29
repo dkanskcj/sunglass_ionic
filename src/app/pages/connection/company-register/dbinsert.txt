@@ -1,0 +1,1 @@
+INSERT INTO Company (id, name, tel, owner, companyNumber, address) VALUES ('1', '테스트', '010-1234-5678', '대표', '062-123-4567', '남구 회재로 1290-1');

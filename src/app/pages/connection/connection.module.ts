@@ -7,13 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { ConnectionPageRoutingModule } from './connection-routing.module';
 
 import { ConnectionPage } from './connection.page';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ConnectionPageRoutingModule
+    ConnectionPageRoutingModule,
+    Ng2SearchPipeModule,
+    ComponentsModule
   ],
   declarations: [ConnectionPage]
 })

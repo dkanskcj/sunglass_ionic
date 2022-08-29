@@ -44,7 +44,7 @@ const routes: Routes = [{
       loadChildren: () => import('../pages/customer/customer.module').then( m => m.CustomerPageModule)
     },
     {
-      path: 'connection',
+      path: 'company',
       loadChildren: () => import('../pages/connection/connection.module').then( m => m.ConnectionPageModule)
     },
     {

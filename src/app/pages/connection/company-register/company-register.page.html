@@ -1,0 +1,107 @@
+<ion-content>
+  <div class="w-full h-16">
+    <div class="w-full flex justify-between border border-b bg-gray-100 h-16">
+      <div class="flex p-6">
+        <div class="flex w-full px-3 py-[12px] text-[14px] h-[18px] items-center justify-center">
+          <div class=" cursor-pointer hover:bg-gray-200" routerLink="/company">
+            거래처 관리
+          </div>
+          <img src="assets/icons/right.svg" class="w-[14px] h-[14px]">
+          <div class="text-gray-500">거래처 등록</div>
+        </div>
+      </div>
+      <div class="flex px-6 py-4 space-x-4">
+        <img src="assets/icons/alter.svg" class="cursor-pointer w-6 h-6">
+        <img src="assets/icons/profile_icon.svg" class="cursor-pointer w-8 h-8">
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="createForm" class="mt-8 mx-12">
+    <div class="gap-2 bg-white space-y-1">
+      <div class="font-semibold flex text-[20px] pb-2">거래처 정보
+        <div class="text-red-600">*</div>
+      </div>
+      <!-- 거래처 정보 아래 내옹-->
+      <div class="w-full h-full p-[10px] space-y-2">
+        <!-- 판매 상태, 카테고리, 거래처명 -->
+        <!-- 거래처명 -->
+        <div class="space-y-2">
+          <div class="font-semibold">거래처명</div>
+          <div class="flex space-x-2">
+            <input formControlName="name" type="text"
+              class="rounded-md border box-border shadow text-[14px] w-[22.5rem] p-[10px]">
+            <div class="border box-border shadow rounded-lg px-3 py-2 text-[14px] bg-primary text-white cursor-pointer">
+              중복검사</div>
+          </div>
+        </div>
+        <!-- 거래처요약 -->
+        <div class="space-y-2">
+          <div class="font-semibold">대표자명
+          </div>
+          <div class="flex space-x-2">
+            <input formControlName="owner" type="text"
+              class="rounded-md border box-border shadow text-[14px] w-[22.5rem] p-[10px]">
+            <div class="flex justify-center items-center">
+              <img src="assets/icons/info.svg">
+              <div class="text-blue-900 text-[12px] px-2 whitespace-nowrap flex justify-center items-center">
+                50자 제한
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="space-y-2">
+          <div class="font-semibold">사업자번호
+          </div>
+          <div class="flex space-x-2">
+            <input formControlName="companyNumber" type="text"
+              class="rounded-md border box-border shadow text-[14px] w-[22.5rem] p-[10px]">
+            <div class="flex justify-center items-center">
+              <img src="assets/icons/info.svg">
+              <div class="text-blue-900 text-[12px] px-2 whitespace-nowrap flex justify-center items-center">
+                50자 제한
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="space-y-2">
+          <div class="font-semibold">주소
+          </div>
+          <div class="flex space-x-2">
+            <input formControlName="address" type="text"
+              class="rounded-md border box-border shadow text-[14px] w-[22.5rem] p-[10px]">
+            <div class="flex justify-center items-center">
+              <img src="assets/icons/info.svg">
+              <div class="text-blue-900 text-[12px] px-2 whitespace-nowrap flex justify-center items-center">
+                50자 제한
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="space-y-2">
+          <div class="font-semibold">전화번호
+          </div>
+          <div class="flex space-x-2">
+            <input formControlName="tel" type="text"
+              class="rounded-md border box-border shadow text-[14px] w-[22.5rem] p-[10px]">
+            <div class="flex justify-center items-center">
+              <img src="assets/icons/info.svg">
+              <div class="text-blue-900 text-[12px] px-2 whitespace-nowrap flex justify-center items-center">
+                50자 제한
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-between text-[18px] font-semibold pt-8 pb-[18px]">
+      <div class="flex space-x-4">
+        <div class="border box-border shadow rounded-lg px-3 py-2 cursor-pointer text-gray-500 border-gray-400"
+          routerLink="/company">
+          목록</div>
+      </div>
+      <div class="border box-border shadow rounded-lg px-3 py-2 cursor-pointer text-primary border-primary"
+        (click)="submit()">저장</div>
+    </div>
+  </form>
+</ion-content>

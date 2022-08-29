@@ -19,6 +19,10 @@ type Image = {
   url?: string;
   button?: string;
 }
+type segmentBtn = {
+  name: string;
+  value: string;
+}
 
 @Component({
   selector: 'app-items-register',
@@ -37,6 +41,8 @@ export class ItemsRegisterPage implements OnInit {
   option_number: any;
 
   category: string = 'multiple';
+  settings: string = 'Setting';
+  optiontype: string = 'multiple';
 
   isOptionType: boolean = false;
   isOptionType2: boolean = true;
@@ -61,6 +67,8 @@ export class ItemsRegisterPage implements OnInit {
   isShippingInfo: boolean = false;
   isShippingInfo2: boolean = true;
   isOptionGroup: boolean = true;
+  istoggle: boolean = false;
+  // isSettings: boolean = false;
 
   option: any;
   image: any;
@@ -75,6 +83,7 @@ export class ItemsRegisterPage implements OnInit {
 
   selectedFiles?: FileList;
   selectedFileNames: string[] = [];
+  selectedOption = 0;
 
   progressInfos: any[] = [];
   message: string[] = [];
@@ -82,7 +91,7 @@ export class ItemsRegisterPage implements OnInit {
   previews: string[] = [];
   // imageInfos?: Observable<any>;
 
-  categoryList = [
+  categoryList: segmentBtn[] = [
     {
       name: '다중',
       value: 'multiple',
@@ -92,11 +101,27 @@ export class ItemsRegisterPage implements OnInit {
       value: 'single',
     }
   ]
-  istoggle: boolean = false;
-  // test_toggl
-  handleCategory(category: string) {
-    this.category = category
-  }
+  settingList: segmentBtn[] = [
+    {
+      name: '설정안함',
+      value: 'noSetting'
+    },
+    {
+      name: '설정함',
+      value: 'Setting'
+    }
+  ]
+  optionytypeList: segmentBtn[] =[
+    {
+      name: '단독형',
+      value: 'single'
+    },
+    {
+      name: '조합형',
+      value: 'multiple'
+    }
+  ]
+  // test_tog
 
   Options: Option[] = [
     {
@@ -185,7 +210,6 @@ export class ItemsRegisterPage implements OnInit {
     }
   ]
 
-  selectedOption = 0;
   actions = [
     { id: 0, name: '개수 선택' },
     // { id: 1, name: '0개' },
@@ -306,7 +330,7 @@ export class ItemsRegisterPage implements OnInit {
     this.isShippingInfo2 = true;
   }
 
-  toggleOptionGroupSetting(){
+  toggleOptionGroupSetting() {
     this.isOptionGroup = !this.isOptionGroup;
   }
 
@@ -350,7 +374,7 @@ export class ItemsRegisterPage implements OnInit {
     this.payMethod3 = false;
     this.payMethod4 = false;
     this.payMethod5 = true;
-  } 
+  }
 
   checkBoxShippingArea() {
     this.ShippingArea = true;
@@ -361,19 +385,24 @@ export class ItemsRegisterPage implements OnInit {
     this.ShippingArea2 = true;
   }
 
+  handleCategory(category: string) {
+    this.category = category
+  }
 
+  handleSettings(settings: string) {
+    this.settings = settings
+  }
+  
+  handleOptionType(optiontype: string){
+    this.optiontype = optiontype;
+  }
 
   url: any = '';
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
-
-      // reader.readAsDataURL(event.target.files[0]); // read file as data url
-      // reader.
-      // reader.readAsBinaryString(event.target.files[0]);
       reader.readAsDataURL(event.target.files[0]);
-      // reader.readAsText(event.target.files[0]);
-      reader.onload = (event) => { // called once readAsDataURL is completed
+      reader.onload = (event) => {
         this.url = event.target.result;
       }
     }
@@ -414,7 +443,7 @@ export class ItemsRegisterPage implements OnInit {
       this.display.patchValue("");
     }
   }
-  
+
   handleSubmit(): void {
     var fd = new FormData();
     this.file_list = [];
@@ -453,12 +482,12 @@ export class ItemsRegisterPage implements OnInit {
 
   // 옵션 삭제
   removeOption(option) {
-      this.Options.splice(option, 1)
+    this.Options.splice(option, 1)
     // }
     console.log(this.Options[0]);
   }
 
-  addOption(option){
+  addOption(option) {
     this.Options.push({
       value: '',
       addCost: null,
@@ -472,7 +501,7 @@ export class ItemsRegisterPage implements OnInit {
   ngOnInit() {
   }
 
-  
+
 
 
 

@@ -93,7 +93,7 @@ export class LayoutPage implements OnInit {
     {
       icon: 'assets/icons/basong.svg',
       name: '거래처 관리',
-      url: '/connection'
+      url: '/company'
     },
     {
       icon: 'assets/icons/basong.svg',
