@@ -101,7 +101,21 @@
               <div class="font-semibold">카테고리</div>
               <app-segment [toggleBtn]="categoryList" [currentValue]="category" (isToggle)="handleCategory($event)">
               </app-segment>
-              <!-- <div>현재 카테고리 {{category}}</div> -->
+              <div>현재 카테고리 {{category}}</div>
+              <!-- <div class="flex">
+                <div class="flex">
+                  <div
+                    class="border box-border shadow rounded-l-lg px-3 py-2 transition-colors cursor-pointer text-[14px]"
+                    (click)="toggleMultipleSetting()"
+                    [ngClass]="isMultiple ? 'bg-primary hover:bg-primary text-white':'bg-white hover:bg-gray-100'">
+                    다중</div>
+                  <div
+                    class="ml-[-1px] border box-border shadow rounded-r-lg px-3 py-2 transition-colors cursor-pointer text-[14px]"
+                    (click)="toggleMultipleSetting2()"
+                    [ngClass]="isMultiple2 ? 'bg-primary hover:bg-primary/80 text-white':'bg-white hover:bg-gray-100'">
+                    단일</div>
+                </div>
+              </div> -->
               <select name="카테고리"
                 class="flex justify-center items-center rounded-md border box-border shadow text-[14px] w-[120px] py-2 pl-3 cursor-pointer">
                 <option value="1">사각 프레임</option>
@@ -275,12 +289,23 @@
                   <!-- Settings -->
                   <div class="space-y-2">
                     <div class="font-semibold">설정</div>
-                    <app-segment [toggleBtn]="settingList" [currentValue]="settings" (isToggle)="handleSettings($event)">
-                    </app-segment>
+                    <div class="flex">
+                      <div class="flex">
+                        <div class="border box-border shadow rounded-l-lg px-3 py-2 cursor-pointer transition-colors"
+                          (click)="toggleOptionSetting()"
+                          [ngClass]="isSetting ? 'bg-primary hover:bg-primary text-white':'bg-white hover:bg-gray-100'">
+                          설정안함</div>
+                        <div
+                          class="ml-[-1px] border box-border shadow rounded-r-lg px-3 py-2 cursor-pointer transition-colors"
+                          (click)="toggleOptionSetting2()"
+                          [ngClass]="isSetting2 ? 'bg-primary hover:bg-primary/80 text-white':'bg-white hover:bg-gray-100'">
+                          설정함</div>
+                      </div>
+                    </div>
                   </div>
                   <!-- input Settings emthod-->
-                  <div class="space-y-2 transition-all" *ngIf="settings === 'Setting'">
-                      <div class="space-y-2">
+                  <div class="space-y-2 transition-all" *ngIf="!isSetting">
+                    <div class="space-y-2">
                       <div class="font-semibold">옵션 입력 방식</div>
                       <div class="flex items-center space-x-2">
                         <input type="radio" name="부가세" class="cursor-pointer">
@@ -307,10 +332,20 @@
                             </div>
                           </div>
                         </div>
-                        <app-segment [toggleBtn]="optionytypeList" [currentValue]="optiontype" (isToggle)="handleOptionType($event)">
-                        </app-segment>
+                        <div class="flex">
+                          <div class="flex">
+                            <div class="border box-border shadow rounded-l-lg px-3 py-2 cursor-pointer"
+                              (click)="toggleOptionTypeSetting()"
+                              [ngClass]="isOptionType ? 'bg-primary hover:bg-primary text-white':'bg-white hover:bg-gray-100'">
+                              단독형</div>
+                            <div class="ml-[-1px] border box-border shadow rounded-r-lg px-3 py-2 cursor-pointer"
+                              (click)="toggleOptionTypeSetting2()"
+                              [ngClass]="isOptionType2 ? 'bg-primary hover:bg-primary/80 text-white':'bg-white hover:bg-gray-100'">
+                              조합형</div>
+                          </div>
+                        </div>
                       </div>
-                      <div class="space-y-2" *ngIf="optiontype === 'single'">
+                      <div class="space-y-2" *ngIf="!isOptionType2">
                         <!-- Option Name Frame -->
                         <div class="space-y-2">
                           <!-- Option Name -->

@@ -1,5 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NavigationEnd, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { filter } from 'rxjs/operators';
+import { StockService } from 'src/service/stock/stock.service';
 import { RegisterStockComponent } from './register-stock/register-stock.component';
 
 type Index_l = {
@@ -18,6 +23,7 @@ export class StockPage implements OnInit {
   isModalOpen = false;
   searchText: any;
 
+  stock = [];
   index_list: Index_l[] = [
     {
       brand: '티쓰',
@@ -80,12 +86,81 @@ export class StockPage implements OnInit {
       customer: '거래처B 외 2곳',
     },
   ];
-  
- 
-  constructor(private modalController:ModalController) { }
+
+  updateStockForm: FormGroup;
+  Stock: any;
+
+  constructor(
+    private modalController: ModalController,
+    private http: HttpClient,
+    private router: Router,
+    private stockService: StockService,
+    // private formBuilder: FormBuilder
+  ) {
+    // this.updateStockForm = this.formBuilder.group({
+    //   id: [""],
+    //   company: [""],
+    //   products: [""],
+    //   stock: [""],
+    //   cost : [],
+    //   totalCost: [],
+    //   stock_option: [],
+    // });
+  }
+
 
   ngOnInit() {
+    this.router.events.pipe(filter(ev => ev instanceof NavigationEnd)).subscribe({
+      next: () => {
+        this.getConnections();
+      }
+    })
+    this.getConnections();
   }
+
+  // ngOnInit() {
+  //   const promise = this.getConnections.getstockByGivenId(
+  //     this.sharedService.getViewCustomerId()
+  //   );
+  //   promise.then(
+  //     response => {
+  //       this.updateCustomerForm.controls["id"].setValue(response["id"]);
+  //       this.updateCustomerForm.controls["name"].setValue(response["name"]);
+  //       this.updateCustomerForm.controls["phone"].setValue(
+  //         response["phone"]
+  //       );
+  //       this.updateCustomerForm.controls["email"].setValue(response["email"]);
+  //       this.updateCustomerForm.controls["age"].setValue(response["age"]);
+  //       this.updateCustomerForm.controls["address"].setValue(response["address"]);
+  //     },
+  //     error => {
+  //       console.log("error " + error);
+  //     }
+  //   );
+  // }
+
+  getConnections() {
+    this.http.get<any[]>('http://localhost:3000/stocktest').subscribe(result => {
+      console.log(result);
+      this.stock = result;
+    });
+  }
+  // submit(){
+  //   // const body = this.createForm.getRawValue();
+  //   // console.log(body)
+  //   this.stockService.create(body).subscribe({
+  //     next: (res) => {
+  //       this.router.navigateByUrl('/company')
+  //     },
+  //     error: (error) => {
+  //       console.log(error)
+  //     }
+  //   })
+  // }
+  formControl = new FormControl('', [
+    Validators.required
+    // Validators.email,
+  ]);
 
   async setOpen() {
     const modal = await this.modalController.create({
@@ -93,8 +168,9 @@ export class StockPage implements OnInit {
       cssClass: 'mymodal'
     })
     modal.present();
-}
+    console.log(Validators.required);
+  }
 
 
- 
+
 }

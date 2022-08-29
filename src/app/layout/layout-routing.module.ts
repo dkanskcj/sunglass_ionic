@@ -69,7 +69,7 @@ const routes: Routes = [{
     },
     {
       path: 'stock_detail',
-      loadChildren: () => import('../pages/stock-detail/stock-detail.module').then(m=>m.StockDetailPageModule)
+      loadChildren: () => import('../pages/stock/stock-detail/stock-detail.module').then(m=>m.StockDetailPageModule)
     },
     {
       path: 'exchange',

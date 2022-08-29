@@ -20,7 +20,7 @@
     </div>
     <div class="flex justify-between items-center px-12 pt-12">
         <div class="text-[24px] h-[29px] font-semibold">재고 관리</div>
-        <button class="w-14 h-[37px] rounded-[6px] text-white bg-primary" (click)="setOpen()">등록</button>
+        <!-- <button class="w-14 h-[37px] rounded-[6px] text-white bg-primary" (click)="setOpen()">등록</button> -->
 
     </div>
     <div class="h-[915px] flex gap-2 my-8 mx-12 shadow">
@@ -28,7 +28,7 @@
             <div class="flex p-5 space-x-4 w-full h-[53px] text-[14px]">
                 <select name="브랜드" value="거래처 선택"
                     class="select w-[107.67px] h-[37px] border rounded-md px-3 text-[14px]">
-                    <option value="1">거래처 선택</option>
+                    <option value="1">재고량 선택</option>
                     <option value="2">샤넬</option>
                 </select>
                 <div class="w-full h-[37px] flex items-center justify-start border border-b rounded-md px-3 space-x-2">
@@ -39,22 +39,23 @@
             <div class="px-3 py-[1.5px] text-[14px]">
                 <table class="w-full text-centeritems-center text-left table-fixed">
                     <thead>
-                        <tr> 
-                            <th class="p-4 text-left h-[49px] flex justify-start items-center">브랜드명
+                        <tr>
+                            <th class="p-4 text-left h-[49px] flex justify-start items-center">거래처명
                             </th>
                             <th class="p-4 h-[49px]">상품명</th>
                             <th class="p-4 h-[49px]">현재고</th>
-                            <th class="p-4 h-[49px]">거래처
-                            </th>
+                            <th class="p-4 h-[49px]">최근 입고일</th>
+                            <th class="p-4 h-[49px]">최근 출고일</th>
                         </tr>
                     </thead>
-                    <ng-container *ngFor="let Index_l of index_list | filter:searchText">
+                    <ng-container *ngFor="let sl of stock | filter:searchText">
                         <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center">
-                            <tr routerLink="/stock_detail">
-                                <td class="px-4 h-[66px]">{{Index_l.brand }}</td>
-                                <td class="px-4 h-[66px]">{{ Index_l.name }}</td>
-                                <td class="px-4 h-[66px]">{{ Index_l.stock }}</td>
-                                <td class="px-4 h-[66px]">{{ Index_l.customer }}</td>
+                            <tr routerLink="detail">
+                                <td class="px-4 h-[66px]">{{ sl.company }}</td>
+                                <td class="px-4 h-[66px]">{{ sl.products }}<br> <div *ngIf="sl.stock_option">(옵션){{ sl.stock_option }}</div></td>
+                                <td class="px-4 h-[66px]">{{ sl.stock }}</td>
+                                <td class="px-4 h-[66px]">{{ sl.createdAt | date }}</td>
+                                <td class="px-4 h-[66px]">{{ sl.updatedAt | date }}</td>
                             </tr>
                         </tbody>
                     </ng-container>

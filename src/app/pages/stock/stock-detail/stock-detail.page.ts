@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { AddStockComponent } from '../stock/add-stock/add-stock.component';
+import { AddStockComponent } from '../add-stock/add-stock.component';
 
 
 type index_l = {
@@ -11,6 +11,7 @@ type index_l = {
   total_cost: string;
   reason: string;
   date: string;
+  testnum?: number;
 }
 
 
@@ -31,7 +32,8 @@ export class StockDetailPage implements OnInit {
       cost: '20,000원',
       total_cost: '2,000,000원',
       reason: '-',
-      date: '2022.12.31'
+      date: '2022.12.31',
+      testnum: 123456789
     },
     {
       sort: '입고 취소',
