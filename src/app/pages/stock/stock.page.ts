@@ -117,28 +117,6 @@ export class StockPage implements OnInit {
     })
     this.getConnections();
   }
-
-  // ngOnInit() {
-  //   const promise = this.getConnections.getstockByGivenId(
-  //     this.sharedService.getViewCustomerId()
-  //   );
-  //   promise.then(
-  //     response => {
-  //       this.updateCustomerForm.controls["id"].setValue(response["id"]);
-  //       this.updateCustomerForm.controls["name"].setValue(response["name"]);
-  //       this.updateCustomerForm.controls["phone"].setValue(
-  //         response["phone"]
-  //       );
-  //       this.updateCustomerForm.controls["email"].setValue(response["email"]);
-  //       this.updateCustomerForm.controls["age"].setValue(response["age"]);
-  //       this.updateCustomerForm.controls["address"].setValue(response["address"]);
-  //     },
-  //     error => {
-  //       console.log("error " + error);
-  //     }
-  //   );
-  // }
-
   getConnections() {
     this.http.get<any[]>('http://localhost:3000/stocktest').subscribe(result => {
       // console.log(result);
