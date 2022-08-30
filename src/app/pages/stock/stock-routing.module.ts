@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'detail',
     loadChildren: () => import('./stock-detail/stock-detail.module').then(m=>m.StockDetailPageModule)
+  },
+  {
+    path: ':id',
+    loadChildren: () => import('./stock-detail/stock-detail.module').then(m=>m.StockDetailPageModule)
   }
 ];
 

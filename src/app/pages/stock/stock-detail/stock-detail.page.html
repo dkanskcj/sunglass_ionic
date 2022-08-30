@@ -18,14 +18,16 @@
     </div>
   </div>
   <div class="flex justify-between items-center px-12 pt-12">
-    <div class="text-[24px] h-[29px] font-semibold">재고 상세</div>
-    <button class="w-14 h-[37px] rounded-[6px] text-white bg-primary">등록</button>
+    <div class="text-[24px] h-[42px] font-semibold">재고 상세</div>
+    <!-- <app-buttons>등록</app-buttons> -->
   </div>
   <div class="flex w-full h-6 space-x-8 my-8 mx-12 font-semibold justify-start items-center">
-    <div>거래처 명 : 티쓰</div>
-    <div>상품명 : 티쓰-011 블랙 썬글라스</div>
-    <div>현재고 : 200개</div>
-    <div>총액 : 4,000,000원</div>
+    <ng-container>
+      <div>거래처 명 : {{ stock?.company }}</div>
+      <div>상품명 : {{ stock?.products }}</div>
+      <div>현재고 : {{ stock?.stock }}개</div>
+      <div>총액 : {{ stock?.cost*stock?.stock | number : '1.0-0'}}</div>
+    </ng-container>
   </div>
   <div class="h-[915px] flex gap-2 my-8 mx-12 shadow">
     <div class="h-[858px]">
@@ -49,7 +51,8 @@
 
         </div>
         <div>
-          <button class="text-[18px] bg-primary text-white w-[91px] h-[37px] rounded-[6px]" (click)="setOpen()">내역 추가</button>
+          <app-buttons class="text-[1.125rem] font-semibold whitespace-nowrap" (click)="setOpen()">내역 추가
+          </app-buttons>
         </div>
       </div>
       <div class="px-3 py-4 text-[14px]">

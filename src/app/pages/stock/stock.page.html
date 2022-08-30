@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="flex justify-between items-center px-12 pt-12">
-        <div class="text-[24px] h-[29px] font-semibold">재고 관리</div>
+        <div class="text-[24px] font-semibold">재고 관리</div>
         <!-- <button class="w-14 h-[37px] rounded-[6px] text-white bg-primary" (click)="setOpen()">등록</button> -->
 
     </div>
@@ -48,9 +48,9 @@
                             <th class="p-4 h-[49px]">최근 출고일</th>
                         </tr>
                     </thead>
-                    <ng-container *ngFor="let sl of stock | filter:searchText">
+                    <ng-container *ngFor="let sl of stocks | filter:searchText">
                         <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center">
-                            <tr routerLink="detail">
+                            <tr [routerLink]="sl.id">
                                 <td class="px-4 h-[66px]">{{ sl.company }}</td>
                                 <td class="px-4 h-[66px]">{{ sl.products }}<br> <div *ngIf="sl.stock_option">(옵션){{ sl.stock_option }}</div></td>
                                 <td class="px-4 h-[66px]">{{ sl.stock }}</td>

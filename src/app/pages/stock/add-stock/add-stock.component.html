@@ -1,6 +1,5 @@
-<div class="w-full h-full">
+<ion-content class="add_stock">
   <div class="flex h-14 justify-between items-center px-5 py-[18.5px]">내역 추가
-    
     <svg (click)="handleClose()" width="24" height="24" viewBox="0 0 24 24" fill="none"
       xmlns="http://www.w3.org/2000/svg">
       <path fill-rule="evenodd" clip-rule="evenodd"
@@ -8,10 +7,39 @@
         fill="rgb(55, 65, 81)" />
     </svg>
   </div>
-  <div class="h-[321px] space-y-2.5">
-    <div>구분</div>
-    <div>재고변동량</div>
-    <div>사유</div>
-    <div>변동일자</div>
+  <div class="text-[0.875rem]">
+    <div class="p-5 space-y-[10px]">
+      <!-- 입, 출고 -->
+      <div class="space-y-2">
+        <div>구분</div>
+        <select name="구분" class="w-full px-3 py-2 border box-border shadow rounded-md cursor-pointer">
+          <option value="In">입고</option>
+          <option value="Ex">출고</option>
+        </select>
+      </div>
+      <!-- 재고 변동량 -->
+      <div class="space-y-2">
+        <div>재고 변동량</div>
+        <div class="w-full px-3 py-2 border box-border shadow rounded-md flex justify-between">
+          <div contenteditable="true" class="w-full cursor-pointer"></div>
+          <div>개</div>
+        </div>
+      </div>
+      <!-- 변동 사유 -->
+      <div class="space-y-2">
+        <div>사유</div>
+        <div class="w-full px-3 py-2 border box-border shadow rounded-md flex justify-between">
+          <div contenteditable="true" class="w-full cursor-pointer">제품 하차</div>
+        </div>
+      </div>
+      <!-- 변동 일자 -->
+      <div class="space-y-2">
+        <div>변동일자</div>
+        <input type="date" class="px-3 py-2 border box-border shadow rounded-md cursor-pointer w-full">
+      </div>
+    </div>
   </div>
-</div>
+  <div class="flex justify-end p-5 whitespace-nowrap">
+    <app-buttons class="items-end">추가</app-buttons>
+  </div>
+</ion-content>

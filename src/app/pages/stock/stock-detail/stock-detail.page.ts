@@ -1,7 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { stocks } from 'src/service/stock/stock-interface';
+import { StockService } from 'src/service/stock/stock.service';
 import { AddStockComponent } from '../add-stock/add-stock.component';
-
 
 type index_l = {
   sort: string;
@@ -23,7 +26,9 @@ type index_l = {
 export class StockDetailPage implements OnInit {
   searchText: any;
 
-  cal_date
+  stock: any
+
+  stockId: number;
   index_list: index_l[] = [
     {
       sort: '입고',
@@ -118,12 +123,48 @@ export class StockDetailPage implements OnInit {
     },
   ];
 
-  constructor(private modalContorller:ModalController) { }
+  constructor(
+    private modalContorller: ModalController,
+    private router: Router,
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private stockService: StockService
+  ) { }
 
   ngOnInit() {
+    // this.router.events.pipe(filter(ev => ev instanceof NavigationEnd)).subscribe({
+    //   next: () => {
+    //     this.getStocks();
+    //   }
+    // })
+    // this.getStocks();
+    this.stockId = this.route.snapshot.params['id']
+    if (this.stockId) {
+      this.getStock(this.stockId);
+    }
   }
 
-  async setOpen(){
+  getStock(id: number) {
+    this.stockService.getStock(id).subscribe({
+      next: (res) => {
+        console.log(res)
+        this.stock = res;
+      },
+      error: (error) => {
+        console.log(error)
+      }
+    })
+  }
+
+  // getStocks() {
+  //   this.http.get<any[]>('http://localhost:3000/stocktest').subscribe(result => {
+  //     // console.log(result);
+  //     this.stock = result;
+  //   });
+  // }
+
+
+  async setOpen() {
     const modal = await this.modalContorller.create({
       component: AddStockComponent,
       cssClass: 'add_stock'

@@ -19,8 +19,8 @@
         </div>
     </div>
     <div class="flex justify-between items-center px-12 pt-12">
-        <div class="text-[24px] h-[29px] font-semibold">거래처 관리</div>
-        <app-buttons label="등록" routerLink="register"></app-buttons>
+        <div class="text-[24px] h-[42px] font-semibold">거래처 관리</div>
+        <app-buttons routerLink="register">등록</app-buttons>
     </div>
     <div class="gap-2 mt-8 mx-12 bg-white space-y-1">
         <div class="h-[915px] flex gap-2  shadow">
@@ -51,15 +51,15 @@
                                 </th>
                             </tr>
                         </thead>
-                        <ng-container *ngFor="let companys of company | filter:searchText">
-                            <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center">
-                                <tr routerLink="/stock_detail">
-                                    <td class="px-4 h-[66px]">{{ companys.name }}</td>
-                                    <td class="px-4 h-[66px]">{{ companys.owner }}</td>
-                                    <td class="px-4 h-[66px]">{{ companys.companyNumber }}</td>
-                                    <td class="px-4 h-[66px]">{{ companys.address }}</td>
-                                    <td class="px-4 h-[66px]">{{ companys.tel }}</td>
-                                    <td class="px-4 h-[66px]">{{ companys.createdAt|date }}</td>
+                        <ng-container *ngFor="let company of companys | filter:searchText">
+                            <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center cursor-pointer">
+                                <tr [routerLink]="company.id">
+                                    <td class="px-4 h-[66px]">{{ company.name }}</td>
+                                    <td class="px-4 h-[66px]">{{ company.owner }}</td>
+                                    <td class="px-4 h-[66px]">{{ company.companyNumber }}</td>
+                                    <td class="px-4 h-[66px]">{{ company.address }}</td>
+                                    <td class="px-4 h-[66px]">{{ company.tel }}</td>
+                                    <td class="px-4 h-[66px]">{{ company.createdAt|date }}</td>
                                 </tr>
                             </tbody>
                         </ng-container>

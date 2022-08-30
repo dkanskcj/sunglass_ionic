@@ -23,7 +23,7 @@ export class StockPage implements OnInit {
   isModalOpen = false;
   searchText: any;
 
-  stock = [];
+  stocks = [];
   index_list: Index_l[] = [
     {
       brand: '티쓰',
@@ -141,8 +141,8 @@ export class StockPage implements OnInit {
 
   getConnections() {
     this.http.get<any[]>('http://localhost:3000/stocktest').subscribe(result => {
-      console.log(result);
-      this.stock = result;
+      // console.log(result);
+      this.stocks = result;
     });
   }
   // submit(){
@@ -157,10 +157,9 @@ export class StockPage implements OnInit {
   //     }
   //   })
   // }
-  formControl = new FormControl('', [
-    Validators.required
-    // Validators.email,
-  ]);
+  // formControl = new FormControl('', [
+  //   Validators.required
+  // ]);
 
   async setOpen() {
     const modal = await this.modalController.create({
