@@ -132,12 +132,6 @@ export class StockDetailPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.router.events.pipe(filter(ev => ev instanceof NavigationEnd)).subscribe({
-    //   next: () => {
-    //     this.getStocks();
-    //   }
-    // })
-    // this.getStocks();
     this.stockId = this.route.snapshot.params['id']
     if (this.stockId) {
       this.getStock(this.stockId);
@@ -152,6 +146,17 @@ export class StockDetailPage implements OnInit {
       },
       error: (error) => {
         console.log(error)
+      }
+    })
+  }
+
+  testStock(id:number){
+    this.stockService.getStock(id).subscribe({
+      next: () => {
+        
+      },
+      error: (error) => {
+
       }
     })
   }

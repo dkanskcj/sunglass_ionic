@@ -251,6 +251,14 @@ export class DetailItemsPage implements OnInit {
       this.slideIndex += n;
     }
   }
+  minusSlides(n: number) {
+    if (this.slideIndex > this.thumbimages.length - 2) {
+      this.slideIndex = 0;
+    }
+    else {
+      this.slideIndex -= n;
+    }
+  }
 
   toggleOptionSetting() {
     this.isSetting = true;

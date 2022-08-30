@@ -50,7 +50,15 @@
 .myinput {
     display: none;
 } 
-
+.my_left_btn {
+  position: absolute;
+  // color: black;
+  // opacity: 0.3;
+  left: 300px;
+  top: 44%;
+  z-index: 0;
+  // rotate: ;
+}
 .my_right_btn {
     position: absolute;
     // color: black;
@@ -67,7 +75,15 @@
   // color: white;
   // opacity: 1;
 }
-
+.my_left_btn_pro {
+  position: absolute;
+  // color: black;
+  // opacity: 0.3;
+  left: 10px;
+  top: 44%;
+  z-index: 0;
+  rotate: 180;
+}
 .my_right_btn_pro {
   position: absolute;
   // color: black;

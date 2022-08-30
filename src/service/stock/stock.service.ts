@@ -17,43 +17,15 @@ export class StockService {
   getStock(id: number) {
     return this.httpClient.get(`${this.baseUrl}/${id}`);
   }
-  // stockEdit(stocks) {
+
+  // stockEdit(stock){
   //   let present: Boolean = false;
-  //   this.stockList.map((val, index) => {
-  //     if (val.id == stocks.id) { this.stockList[index] = stocks; present = true }
+  //   this.stockList.map((val, index)=>{
+  //     if(val.id == stock.id) {this.stockList[index] = stock;present=true}
   //   });
   //   return present;
   // }
-  // getStock(id){
-  //   let stock: stocks;
-  //   this.stockList.map(val=>{
-  //     if(val.id == id) stock = val;
-  //   });
-  //   return stock;
-  // }
-
-  stockEdit(stock){
-    let present: Boolean = false;
-    this.stockList.map((val, index)=>{
-      if(val.id == stock.id) {this.stockList[index] = stock;present=true}
-    });
-    return present;
-
-  }
   
-  
-  
-  
-  // getStock(id){
-  //   let stock: stocks;
-  //   this.stockList.map(val=>{
-  //     if(val.id == id) stock = val;
-  //   });
-  //   return stock;
-  // }
-  // getStocks(){
-  //   return this.stockList;
-  // }
 
 
   create(body: any) {
