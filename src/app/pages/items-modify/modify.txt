@@ -10,12 +10,12 @@
               1/9</div>
           </div>
           <div class="flex space-x-[9.5px] justify-center items-center">
-            <div class="w-[44px] h-[44px] border-2 border-green-800 rounded-lg bg-green-800">
+            <div class="w-[2.75rem] h-[2.75rem] border-2 border-green-800 rounded-lg bg-green-800">
               <img src="assets/icons/spoon_img.jpg" class="rounded-lg">
             </div>
             <ng-container *ngFor="let t of imageObject">
-              <div class="w-[44px] h-[44px]">
-                <img [src]="t.thumbImage" class="w-[44px] h-[44px] rounded-lg">
+              <div class="w-[2.75rem] h-[2.75rem]">
+                <img [src]="t.thumbImage" class="w-[2.75rem] h-[2.75rem] rounded-lg">
               </div>
             </ng-container>
           </div>

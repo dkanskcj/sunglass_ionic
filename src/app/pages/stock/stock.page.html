@@ -1,107 +1,131 @@
 <ion-content>
     <!-- <div class="modal-container" id="modal"> -->
-    <div class="w-full h-16">
-        <div class="w-full flex justify-between border border-b bg-gray-100 h-16">
-            <div class="flex p-6">
-                <div class="flex w-full px-3 py-[12px] text-[14px] h-[18px] items-center justify-center">
-                    <!-- <div class=" cursor-pointer hover:bg-gray-200" routerLink="/dashboard">
+    <div class="bg-gray-50">
+        <div class="w-full h-16">
+            <div class="w-full flex justify-between border border-b bg-gray-100 h-16">
+                <div class="flex p-6">
+                    <div class="flex w-full px-3 py-[0.75rem] text-[0.875rem] h-[1.125rem] items-center justify-center">
+                        <!-- <div class=" cursor-pointer hover:bg-gray-200" routerLink="/dashboard">
                         대쉬보드
                     </div>
-                    <img src="assets/icons/right.svg" class="w-[14px] h-[14px]"> -->
-                    <div class="text-gray-500">재고 관리</div>
+                    <img src="assets/icons/right.svg" class="w-[0.875rem] h-[0.875rem]"> -->
+                        <div class="text-gray-500">재고 관리</div>
+                    </div>
                 </div>
-            </div>
-            <div class="flex px-6 py-4 space-x-4">
-                <img src="assets/icons/alter.svg" class="cursor-pointer w-6 h-6">
-                <img src="assets/icons/profile_icon.svg"
-                    class="cursor-pointer w-8 h-8 hover:bg-red-500 focus:ring-black">
+                <div class="flex px-6 py-4 space-x-4">
+                    <img src="assets/icons/alter.svg" class="cursor-pointer w-6 h-6">
+                    <img src="assets/icons/profile_icon.svg"
+                        class="cursor-pointer w-8 h-8 hover:bg-red-500 focus:ring-black">
+                </div>
             </div>
         </div>
-    </div>
-    <div class="flex justify-between items-center px-12 pt-12">
-        <div class="text-[24px] font-semibold">재고 관리</div>
-        <!-- <button class="w-14 h-[37px] rounded-[6px] text-white bg-primary" (click)="setOpen()">등록</button> -->
+        <div class="flex justify-between items-center px-12 pt-12">
+            <div class="text-[1.5rem] h-[2.625rem] font-semibold">재고 관리</div>
+            <!-- <button class="w-14 h-[2.3125rem] rounded-0.375rem text-white bg-primary" (click)="setOpen()">등록</button> -->
 
-    </div>
-    <div class="h-[915px] flex gap-2 my-8 mx-12 shadow">
-        <div class="h-[858px]">
-            <div class="flex p-5 space-x-4 w-full h-[53px] text-[14px]">
-                <select name="브랜드" value="거래처 선택"
-                    class="select w-[107.67px] h-[37px] border rounded-md px-3 text-[14px]">
-                    <option value="1">재고량 선택</option>
-                    <option value="2">샤넬</option>
-                </select>
-                <div class="w-full h-[37px] flex items-center justify-start border border-b rounded-md px-3 space-x-2">
-                    <img src="assets/icons/search_icon.svg">
-                    <input type="text" class="w-full" placeholder="검색어를 입력해주세요." [(ngModel)]="searchText">
-                </div>
-            </div>
-            <div class="px-3 py-[1.5px] text-[14px]">
-                <table class="w-full text-centeritems-center text-left table-fixed">
-                    <thead>
-                        <tr>
-                            <th class="p-4 text-left h-[49px] flex justify-start items-center">거래처명
-                            </th>
-                            <th class="p-4 h-[49px]">상품명</th>
-                            <th class="p-4 h-[49px]">현재고</th>
-                            <th class="p-4 h-[49px]">최근 입고일</th>
-                            <th class="p-4 h-[49px]">최근 출고일</th>
-                        </tr>
-                    </thead>
-                    <ng-container *ngFor="let sl of stocks | filter:searchText">
-                        <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center">
-                            <tr [routerLink]="sl.id">
-                                <td class="px-4 h-[66px]">{{ sl.company }}</td>
-                                <td class="px-4 h-[66px]">{{ sl.products }}<br> <div *ngIf="sl.stock_option">(옵션){{ sl.stock_option }}</div></td>
-                                <td class="px-4 h-[66px]">{{ sl.stock }}</td>
-                                <td class="px-4 h-[66px]">{{ sl.createdAt | date }}</td>
-                                <td class="px-4 h-[66px]">{{ sl.updatedAt | date }}</td>
-                            </tr>
-                        </tbody>
-                    </ng-container>
-                </table>
-            </div>
-            <div class="flex justify-between px-5">
-                <div class="pt-[26px] pb-[30px] flex justify-center items-center">
-                    <div
-                        class="ml-2 flex w-[63px] h-[38px] border border-gray-700 rounded-lg items-center justify-center shadow-sm">
-                        <div class="text-[14px] pr-1">
-                            <select name="test" id="" class="w-full px-2 justify-center">
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                            </select>
+        </div>
+        <div class=" flex gap-2 my-8 mx-12 shadow bg-white">
+            <div>
+                <div class="flex p-5 space-x-4 w-full text-[0.875rem]">
+                    <div class="space-y-2">
+                        <select id="select-menu" [(ngModel)]="selectedOption" class="bx--text-input" required
+                            name="actionSelection"
+                            class="w-[7.5rem] border box-border shadow flex justify-center items-center px-3 py-2 text-[0.875rem] cursor-pointer">
+                            <option *ngFor="let action of actions" [value]="action.id">{{action.name}}</option>
+                        </select>
+                        <div>
+                            <div *ngIf="selectedOption==1">
+                                <!-- <div>1 selected</div> -->
+                            </div>
+                            <div *ngIf="selectedOption==2">
+                                <!-- <div>2 selected</div> -->
+                            </div>
+                            <div *ngIf="selectedOption==3">
+                                <!-- <div>3 selected</div> -->
+                            </div>
+                            <div *ngIf="selectedOption==4">
+                                <!-- <div>4 selected</div> -->
+                            </div>
+                            <div *ngIf="selectedOption==5">
+                                <!-- <div>5 selected</div> -->
+                            </div>
                         </div>
                     </div>
-                    <div class="px-2 text-[14px]">
-                        개씩 보기
+                    <div
+                        class="w-full h-[2.3125rem] flex items-center justify-start border border-b rounded-md px-3 space-x-2">
+                        <img src="assets/icons/search_icon.svg" class="">
+                        <input type="text" class="w-full" placeholder="검색어를 입력해주세요." [(ngModel)]="searchText">
                     </div>
                 </div>
+                <div class="px-3 py-[0.09375rem] text-[0.875rem]">
+                    <table class="w-full text-centeritems-center text-left table-fixed">
+                        <thead>
+                            <tr>
+                                <th class="p-4 text-left h-[3.0625rem] flex justify-start items-center">거래처명
+                                </th>
+                                <th class="p-4 h-[3.0625rem]">상품명</th>
+                                <th class="p-4 h-[3.0625rem]">현재고</th>
+                                <th class="p-4 h-[3.0625rem]">최근 입고일</th>
+                                <th class="p-4 h-[3.0625rem]">최근 출고일</th>
+                            </tr>
+                        </thead>
+                        <ng-container *ngFor="let sl of stocks | filter:searchText">
+                            <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center">
+                                <tr [routerLink]="sl.id">
+                                    <td class="px-4 h-[4.125rem]">{{ sl.company }}</td>
+                                    <td class="px-4 h-[4.125rem]">{{ sl.products }}<br>
+                                        <div *ngIf="sl.stock_option">(옵션){{ sl.stock_option }}</div>
+                                    </td>
+                                    <td class="px-4 h-[4.125rem]">{{ sl.stock }}</td>
+                                    <td class="px-4 h-[4.125rem]">{{ sl.createdAt | date }}</td>
+                                    <td class="px-4 h-[4.125rem]">{{ sl.updatedAt | date }}</td>
+                                </tr>
+                            </tbody>
+                        </ng-container>
+                    </table>
+                </div>
+                <div class="flex justify-between px-5">
+                    <div class="pt-[1.625rem] pb-[1.875rem] flex justify-center items-center">
+                        <div
+                            class="ml-2 flex w-[3.9375rem] h-[2.375rem] border border-gray-700 rounded-lg items-center justify-center shadow-sm">
+                            <div class="text-[0.875rem] pr-1">
+                                <select name="test" id="" class="w-full px-2 justify-center">
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="30">30</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="px-2 text-[0.875rem]">
+                            개씩 보기
+                        </div>
+                    </div>
 
-                <div class="grid grid-flow-col justify-center items-center pr-5 text-center text-gray-700">
-                    <img src="assets/icons/first_page.svg"
-                        class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
-                    <img src="assets/icons/left_page.svg"
-                        class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
-                    <div
-                        class="rounded-lg w-9 h-9 flex justify-center items-center bg-primary text-white active:bg-primary active:text-white cursor-pointer">
-                        1</div>
-                    <div
-                        class="w-9 h-9 rounded-lg flex justify-center items-center bg-gray-100 hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
-                        2</div>
-                    <div
-                        class="w-9 h-9 rounded-lg flex justify-center items-center hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
-                        3</div>
-                    <div
-                        class="w-9 h-9 rounded-lg flex justify-center items-center hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
-                        4</div>
-                    <img src="assets/icons/more_dot.svg"
-                        class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+                    <div class="grid grid-flow-col justify-center items-center pr-5 text-center text-gray-700">
+                        <img src="assets/icons/first_page.svg"
+                            class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+                        <img src="assets/icons/left_page.svg"
+                            class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+                        <div
+                            class="rounded-lg w-9 h-9 flex justify-center items-center bg-primary text-white active:bg-primary active:text-white cursor-pointer">
+                            1</div>
+                        <div
+                            class="w-9 h-9 rounded-lg flex justify-center items-center bg-gray-100 hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+                            2</div>
+                        <div
+                            class="w-9 h-9 rounded-lg flex justify-center items-center hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+                            3</div>
+                        <div
+                            class="w-9 h-9 rounded-lg flex justify-center items-center hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+                            4</div>
+                        <img src="assets/icons/more_dot.svg"
+                            class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
 
-                    <img src="assets/icons/right_page.svg"
-                        class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
-                    <img src="assets/icons/last_page.svg"
-                        class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+                        <img src="assets/icons/right_page.svg"
+                            class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+                        <img src="assets/icons/last_page.svg"
+                            class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 <div class="flex pt-2">
   <div class="flex rounded-md overflow-hidden border box-border shadow">
-    <div class="flex transition-colors cursor-pointer text-[14px]" *ngFor="let t of toggleBtn; index as i"
+    <div class="flex transition-colors cursor-pointer text-[0.875rem]" *ngFor="let t of toggleBtn; index as i"
       (click)="selected(t.value)"
       [ngClass]="t.value === currentValue ? 'bg-primary text-white' : 'bg-white hover:bg-gray-100'">
       <div class="flex justify-center items-center py-2 px-3">

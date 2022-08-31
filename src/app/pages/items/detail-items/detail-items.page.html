@@ -3,11 +3,11 @@
     <div class="w-full h-16">
       <div class="w-full flex justify-between border border-b bg-gray-100 h-16">
         <div class="flex p-6">
-          <div class="flex w-full px-3 py-[12px] text-[14px] h-[18px] items-center justify-center">
+          <div class="flex w-full px-3 py-[0.75rem] text-[0.875rem] h-[1.125rem] items-center justify-center">
             <div class=" cursor-pointer hover:bg-gray-200" routerLink="/items">
               상품 관리
             </div>
-            <img src="assets/icons/right.svg" class="w-[14px] h-[14px]">
+            <img src="assets/icons/right.svg" class="w-[0.875rem] h-[0.875rem]">
             <div class="text-gray-500">상품 상세</div>
           </div>
         </div>
@@ -18,12 +18,12 @@
       </div>
     </div>
     <div class="flex justify-between items-center px-12 pt-12">
-      <div class="text-[24px] h-[29px] font-bold">상품 상세</div>
+      <div class="text-[1.5rem] h-[1.8125rem] font-bold">상품 상세</div>
     </div>
     <div class="w-full h-full">
       <div>
         <div class="font-semibold gap-2 mt-8 mx-12">
-          <div class="flex text-[20px] pb-2">썸네일<div class="text-red-600">*</div>
+          <div class="flex text-[1.25rem] pb-2">썸네일<div class="text-red-600">*</div>
           </div>
         </div>
         <div class="h-full w-full gap-2 py-1 mx-12 shadow pr-12 bg-white border box-border rounded-lg">
@@ -32,7 +32,7 @@
               <div>
                 <div class="my_index_num_pro relative text-white bg-black bg-opacity-20 rounded-lg p-2">{{ slideIndex +
                   1}} / {{ thumbimages.length }}</div>
-                <img class="w-[540px] h-[540px] rounded-lg" [src]="thumbimages[slideIndex]" />
+                <img class="w-[33.75rem] h-[33.75rem] rounded-lg" [src]="thumbimages[slideIndex]" />
                 <div (click)="plusSlides(1)"
                   class="my_right_btn_pro flex items-center bg-black bg-opacity-30 justify-center w-12 h-12 rounded-full cursor-pointer active:bg-black active:bg-opacity-50">
                   <img src="assets/icons/right_icon.svg" class="my_right_icon_pro">
@@ -42,17 +42,17 @@
                   <img src="assets/icons/right_icon.svg" class="my_left_icon_pro rotate-180">
                 </div>
               </div>
-              <div class="flex justify-center itece px-[33px]">
-                <div class="flex space-x-[9.5px] justify-center items-center">
-                  <div class="w-[47px] h-[47px] border-2 border-green-800 rounded-lg bg-green-800">
-                    <img src="assets/icons/sunglass.jpg" class="rounded-lg w-[44px] h-[44px] mt-[-1px]">
+              <div class="flex justify-center itece px-[2.0625rem]">
+                <div class="flex space-x-[0.59375rem] justify-center items-center">
+                  <div class="w-[2.9375rem] h-[2.9375rem] border-2 border-green-800 rounded-lg bg-green-800">
+                    <img src="assets/icons/sunglass.jpg" class="rounded-lg w-[2.75rem] h-[2.75rem] mt-[-0.0625rem]">
                   </div>
                   <ng-container *ngFor="let t of imageObject; index as i">
-                    <!-- <div class="w-[47px] h-[47px] border-2 border-green-800 rounded-lg bg-green-800" *ngIf="slideIndex+1 === i"> -->
+                    <!-- <div class="w-[2.9375rem] h-[2.9375rem] border-2 border-green-800 rounded-lg bg-green-800" *ngIf="slideIndex+1 === i"> -->
                     <!-- <div class="relative"> -->
                       <!-- </div> -->
-                      <div class="w-[47px] h-[47px] border-2 border-green-800 rounded-lg bg-green-800" *ngIf="slideIndex+1 === i || thumbimages.length">
-                        <img [src]="t.thumbImage" class="w-[44px] h-[44px] rounded-lg mt-[-1px]">
+                      <div class="w-[2.9375rem] h-[2.9375rem] border-2 border-green-800 rounded-lg bg-green-800" *ngIf="slideIndex+1 === i || thumbimages.length">
+                        <img [src]="t.thumbImage" class="w-[2.75rem] h-[2.75rem] rounded-lg mt-[-0.0625rem]">
                       </div>
                     <!-- </div> -->
                   </ng-container>
@@ -65,15 +65,15 @@
       <div>
         <!-- Product Information -->
         <div class="gap-2 mt-8 mx-12 space-y-4">
-          <div class="font-semibold flex text-[20px] pb-2">상품 정보
+          <div class="font-semibold flex text-[1.25rem] pb-2">상품 정보
           </div>
           <!-- Product Information Frame -->
-          <div class="border box-border shadow rounded-lg bg-white text-[14px]">
+          <div class="border box-border shadow rounded-lg bg-white text-[0.875rem]">
             <div class="p-2 space-y-3">
               <div>
                 <!-- Product Information line_1 -->
                 <div class="flex">
-                  <div class="w-[272px]">
+                  <div class="w-[17rem]">
                     <div class="flex">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="12" r="3" fill="black" />
@@ -83,12 +83,12 @@
                       </div>
                     </div>
                     <div>
-                      <div class="font-semibold p-[10px]">
+                      <div class="font-semibold p-[0.625rem]">
                         판매중지
                       </div>
                     </div>
                   </div>
-                  <div class="w-[272px]">
+                  <div class="w-[17rem]">
                     <div class="flex">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="12" r="3" fill="black" />
@@ -98,12 +98,12 @@
                       </div>
                     </div>
                     <div>
-                      <div class="font-semibold p-[10px]">
+                      <div class="font-semibold p-[0.625rem]">
                         사각 프레임
                       </div>
                     </div>
                   </div>
-                  <div class="w-[272px]">
+                  <div class="w-[17rem]">
                     <div class="flex">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="12" r="3" fill="black" />
@@ -113,7 +113,7 @@
                       </div>
                     </div>
                     <div>
-                      <div class="font-semibold p-[10px]">
+                      <div class="font-semibold p-[0.625rem]">
                         티쓰-001 블랙 썬글라스
                       </div>
                     </div>
@@ -121,7 +121,7 @@
                 </div>
                 <!-- Product Information line2 -->
                 <div class="flex">
-                  <div class="w-[272px]">
+                  <div class="w-[17rem]">
                     <div class="flex">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="12" r="3" fill="black" />
@@ -131,12 +131,12 @@
                       </div>
                     </div>
                     <div>
-                      <div class="font-semibold p-[10px]">
+                      <div class="font-semibold p-[0.625rem]">
                         30,000원
                       </div>
                     </div>
                   </div>
-                  <div class="w-[272px]">
+                  <div class="w-[17rem]">
                     <div class="flex">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="12" r="3" fill="black" />
@@ -146,12 +146,12 @@
                       </div>
                     </div>
                     <div>
-                      <div class="font-semibold p-[10px]">
+                      <div class="font-semibold p-[0.625rem]">
                         2,000원
                       </div>
                     </div>
                   </div>
-                  <div class="w-[272px]">
+                  <div class="w-[17rem]">
                     <div class="flex">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="12" r="3" fill="black" />
@@ -161,12 +161,12 @@
                       </div>
                     </div>
                     <div>
-                      <div class="font-semibold p-[10px]">
+                      <div class="font-semibold p-[0.625rem]">
                         2022-12-31 ~ 2022-12-31
                       </div>
                     </div>
                   </div>
-                  <div class="w-[272px]">
+                  <div class="w-[17rem]">
                     <div class="flex">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="12" r="3" fill="black" />
@@ -176,7 +176,7 @@
                       </div>
                     </div>
                     <div>
-                      <div class="font-semibold p-[10px]">
+                      <div class="font-semibold p-[0.625rem]">
                         28,000원
                       </div>
                     </div>
@@ -184,7 +184,7 @@
                 </div>
                 <!-- Product Information line3 -->
                 <div class="flex">
-                  <div class="w-[272px]">
+                  <div class="w-[17rem]">
                     <div class="flex">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="12" r="3" fill="black" />
@@ -194,12 +194,12 @@
                       </div>
                     </div>
                     <div>
-                      <div class="font-semibold p-[10px]">
+                      <div class="font-semibold p-[0.625rem]">
                         999개
                       </div>
                     </div>
                   </div>
-                  <div class="w-[272px]">
+                  <div class="w-[17rem]">
                     <div class="flex">
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="12" cy="12" r="3" fill="black" />
@@ -209,7 +209,7 @@
                       </div>
                     </div>
                     <div>
-                      <div class="font-semibold p-[10px]">
+                      <div class="font-semibold p-[0.625rem]">
                         과세 상품
                       </div>
                     </div>
@@ -227,7 +227,7 @@
                       </div>
                     </div>
                     <div>
-                      <div class="font-semibold p-[10px]">
+                      <div class="font-semibold p-[0.625rem]">
                         나무케이스(+10,000원, 블랙-9,999개, 레드-9,999개),<br>
                         플라스틱케이스(+20,000원, 레드-9,999개, 블루-9,999개, 그린-0개),<br>
                         메탈케이스(+30,000원, 실버-10개, 골드9,999개)
@@ -251,7 +251,7 @@
               </div>
               <!-- Text Line ~~ -->
               <div>
-                <div class="p-[10px] font-semibold">
+                <div class="p-[0.625rem] font-semibold">
                   텍스트도 들어가고~<br><br><br><br><br>이미지도 들어가고~<br><br>텍스트도 들어가고~
                   <br><br><br><br>이미지도 들어가고~<br><br>텍스트도 들어가고~<br><br><br><br>이미지도 들어가고~<br><br>
                   텍스트도 들어가고~<br><br><br>이미지도 들어가고~
@@ -262,12 +262,12 @@
           <!-- Product settings Information -->
           <div>
             <!-- Product settings Information Frame -->
-            <div class="border box-border shadow rounded-lg bg-white text-[14px]">
+            <div class="border box-border shadow rounded-lg bg-white text-[0.875rem]">
               <div class="p-2 space-y-3">
                 <div>
                   <!-- Product settings Information line_1 -->
                   <div class="flex">
-                    <div class="w-[272px]">
+                    <div class="w-[17rem]">
                       <div class="flex">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="12" cy="12" r="3" fill="black" />
@@ -277,12 +277,12 @@
                         </div>
                       </div>
                       <div>
-                        <div class="font-semibold p-[10px]">
+                        <div class="font-semibold p-[0.625rem]">
                           티쓰001-블랙 썬글라스
                         </div>
                       </div>
                     </div>
-                    <div class="w-[272px]">
+                    <div class="w-[17rem]">
                       <div class="flex">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="12" cy="12" r="3" fill="black" />
@@ -292,12 +292,12 @@
                         </div>
                       </div>
                       <div>
-                        <div class="font-semibold p-[10px]">
+                        <div class="font-semibold p-[0.625rem]">
                           (주)티쓰
                         </div>
                       </div>
                     </div>
-                    <div class="w-[272px]">
+                    <div class="w-[17rem]">
                       <div class="flex">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="12" cy="12" r="3" fill="black" />
@@ -307,12 +307,12 @@
                         </div>
                       </div>
                       <div>
-                        <div class="font-semibold p-[10px]">
+                        <div class="font-semibold p-[0.625rem]">
                           티쓰-001 블랙 썬글라스
                         </div>
                       </div>
                     </div>
-                    <div class="w-[272px]">
+                    <div class="w-[17rem]">
                       <div class="flex">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="12" cy="12" r="3" fill="black" />
@@ -322,7 +322,7 @@
                         </div>
                       </div>
                       <div>
-                        <div class="font-semibold p-[10px]">
+                        <div class="font-semibold p-[0.625rem]">
                           대한민국
                         </div>
                       </div>
@@ -330,7 +330,7 @@
                   </div>
                   <!-- Product settings Information line2 -->
                   <div class="flex">
-                    <div class="w-[272px]">
+                    <div class="w-[17rem]">
                       <div class="flex">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="12" cy="12" r="3" fill="black" />
@@ -340,12 +340,12 @@
                         </div>
                       </div>
                       <div>
-                        <div class="font-semibold p-[10px]">
+                        <div class="font-semibold p-[0.625rem]">
                           KC인증 없음
                         </div>
                       </div>
                     </div>
-                    <div class="w-[272px]">
+                    <div class="w-[17rem]">
                       <div class="flex">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="12" cy="12" r="3" fill="black" />
@@ -355,12 +355,12 @@
                         </div>
                       </div>
                       <div>
-                        <div class="font-semibold p-[10px]">
+                        <div class="font-semibold p-[0.625rem]">
                           썬글라스 렌즈 품질 보증서.jpg
                         </div>
                       </div>
                     </div>
-                    <div class="w-[272px]">
+                    <div class="w-[17rem]">
                       <div class="flex">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="12" cy="12" r="3" fill="black" />
@@ -370,12 +370,12 @@
                         </div>
                       </div>
                       <div>
-                        <div class="font-semibold p-[10px]">
+                        <div class="font-semibold p-[0.625rem]">
                           설정함
                         </div>
                       </div>
                     </div>
-                    <div class="w-[272px]">
+                    <div class="w-[17rem]">
                       <div class="flex">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="12" cy="12" r="3" fill="black" />
@@ -385,7 +385,7 @@
                         </div>
                       </div>
                       <div>
-                        <div class="font-semibold p-[10px]">
+                        <div class="font-semibold p-[0.625rem]">
                           2022-12-31 / 2022-12-31
                         </div>
                       </div>
@@ -393,7 +393,7 @@
                   </div>
                   <!-- Product settings Information line3 -->
                   <div class="flex">
-                    <div class="w-[272px]">
+                    <div class="w-[17rem]">
                       <div class="flex">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="12" cy="12" r="3" fill="black" />
@@ -403,7 +403,7 @@
                         </div>
                       </div>
                       <div>
-                        <div class="font-semibold p-[10px]">
+                        <div class="font-semibold p-[0.625rem]">
                           가능함
                         </div>
                       </div>
@@ -415,15 +415,15 @@
           </div>
           <!-- Refund/Exchange Information Frame -->
           <div>
-            <div class="font-semibold flex text-[20px] pb-2">반품/교환 정보
+            <div class="font-semibold flex text-[1.25rem] pb-2">반품/교환 정보
             </div>
             <!-- Refund/Exchange Information -->
-            <div class="border box-border shadow rounded-lg bg-white text-[14px]">
+            <div class="border box-border shadow rounded-lg bg-white text-[0.875rem]">
               <div class="p-2 space-y-3">
                 <div>
                   <!-- Refund/Exchange Information line_1 -->
                   <div class="flex">
-                    <div class="w-[272px]">
+                    <div class="w-[17rem]">
                       <div class="flex">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="12" cy="12" r="3" fill="black" />
@@ -433,12 +433,12 @@
                         </div>
                       </div>
                       <div>
-                        <div class="font-semibold p-[10px]">
+                        <div class="font-semibold p-[0.625rem]">
                           한진택배
                         </div>
                       </div>
                     </div>
-                    <div class="w-[272px]">
+                    <div class="w-[17rem]">
                       <div class="flex">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="12" cy="12" r="3" fill="black" />
@@ -448,12 +448,12 @@
                         </div>
                       </div>
                       <div>
-                        <div class="font-semibold p-[10px]">
+                        <div class="font-semibold p-[0.625rem]">
                           3,000원
                         </div>
                       </div>
                     </div>
-                    <div class="w-[272px]">
+                    <div class="w-[17rem]">
                       <div class="flex">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="12" cy="12" r="3" fill="black" />
@@ -463,12 +463,12 @@
                         </div>
                       </div>
                       <div>
-                        <div class="font-semibold p-[10px]">
+                        <div class="font-semibold p-[0.625rem]">
                           6,000원
                         </div>
                       </div>
                     </div>
-                    <div class="w-[272px]">
+                    <div class="w-[17rem]">
                       <div class="flex">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="12" cy="12" r="3" fill="black" />
@@ -478,7 +478,7 @@
                         </div>
                       </div>
                       <div>
-                        <div class="font-semibold p-[10px]">
+                        <div class="font-semibold p-[0.625rem]">
                           광주 남구 회재로 1290-1, 4층
                         </div>
                       </div>
@@ -486,7 +486,7 @@
                   </div>
                   <!-- Refund/Exchange Information line2 -->
                   <div class="flex">
-                    <div class="w-[272px]">
+                    <div class="w-[17rem]">
                       <div class="flex">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="12" cy="12" r="3" fill="black" />
@@ -496,7 +496,7 @@
                         </div>
                       </div>
                       <div>
-                        <div class="font-semibold p-[10px]">
+                        <div class="font-semibold p-[0.625rem]">
                           010-1111-1111
                         </div>
                       </div>
@@ -504,7 +504,7 @@
                   </div>
                   <!-- Refund/Exchange Information line3 -->
                   <div class="flex">
-                    <div class="w-[272px]">
+                    <div class="w-[17rem]">
                       <div class="flex">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <circle cx="12" cy="12" r="3" fill="black" />
@@ -514,7 +514,7 @@
                         </div>
                       </div>
                       <div>
-                        <div class="font-semibold p-[10px]">
+                        <div class="font-semibold p-[0.625rem]">
                           1. 구매일로 부터 7일이 지난 경우<br>
                           2. 고객의 부주의로 제품이 파손된 경우<br>
                           3. 택을 제거한 경우<br>
@@ -531,11 +531,11 @@
             </div>
           </div>
           <div>
-            <div class="font-semibold flex text-[20px] pb-2">AS 및 특이사항
+            <div class="font-semibold flex text-[1.25rem] pb-2">AS 및 특이사항
             </div>
             <div class="border box-border shadow rounded-lg">
               <div>
-                <div class="p-[10px]">
+                <div class="p-[0.625rem]">
                   AS 및 특이사항<br>
                   당장은<br>
                   뭘 입력해야할련지....감은 안오지만...<br>
@@ -545,7 +545,7 @@
               </div>
             </div>
           </div>
-          <div class="flex justify-between text-[18px] font-semibold pt-8 pb-[18px]">
+          <div class="flex justify-between text-[1.125rem] font-semibold pt-8 pb-[1.125rem]">
             <div class="flex space-x-4">
               <div class="border box-border shadow rounded-lg px-3 py-2 cursor-pointer text-gray-500 border-gray-400"
                 routerLink="/items">

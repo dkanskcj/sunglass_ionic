@@ -1,0 +1,41 @@
+insert into Ordertest(orderNumber, orderId, company, product, stock, orderStatus, amount, phoneNumber, purchaseMethod, purchase, shippingStatus, shipping, shipcost, shipAddress)
+VALUES (1, 'testId', 'testcompany', '티쓰-001 블랙 썬글라스', '광주광역시 남구 회재로 1290-1, 4층', '주문승인', 2, 01012345678, '카드결제', 1234231235, '배송완료', '한진택배', 3000, '광주광역시 남구 회재로 1290-1, 4층');
+model Ordertest {
+  id Int @id @default(autoincrement())
+  // 주문 번호
+  orderNumber Int
+  // 주문자 아이디
+  orderId String
+  // 주문 회사
+  company String
+  // 주문 제품
+  product String
+  // 상품명
+  stock String
+  // company Company[]?
+  // companyId Int?
+  // product Product[]?
+  // productId Int?
+  // stock Stocktest[]?
+  // stockId Int?
+  orderStatus String
+  // 주문 수량
+  amount Int
+  // 전화번호
+  phoneNumber Int
+  // 구매방법
+  purchaseMethod String
+  // 계좌
+  purchase Int
+  // 배송 상태
+  shippingStatus String
+  // 택배사
+  shipping String
+  // 배송비
+  shipcost Int
+  // 배송 주소
+  shipAddress String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt @default(now())
+  deletedAt DateTime?
+}

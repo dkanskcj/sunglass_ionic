@@ -1,20 +1,20 @@
 <ion-content>
   <div class="w-360 h-full flex">
     <!-- <input type="file" value="파일첨부" accept="image/*" /> -->
-    <div class="flex-col w-[252px] items-start px-5 bg-primary text-primary-nosel_dot">
-      <div class="text-white py-7 flex rounded-[12px] justify-center" routerLink="/dashboard">
+    <div class="flex-col w-[15.75rem] items-start px-5 bg-primary text-primary-nosel_dot">
+      <div class="text-white py-7 flex rounded-[0.75rem] justify-center" routerLink="/dashboard">
         <div class="flex h-6 cursor-pointer hover:bg-primary-select gap-2.5">
           <img src="assets/icons/logo.svg">
-          <div class="text-white h-[19px] pt-[5px]" routerLink="/dashboard">썬글라스 관리자페이지</div>
+          <div class="text-white h-[1.1875rem] pt-[0.3125rem]" routerLink="/dashboard">썬글라스 관리자페이지</div>
         </div>
       </div>
-      <div class="h-px bg-primary-Lighter"></div>
+      <div class="h-[0.0625rem] bg-primary-Lighter"></div>
       <div class="py-5">
-        <div class="space-y-[2px]">
+        <div class="space-y-[0.125rem]">
           <div *ngFor="let menu of menus; index as mi">
             <!-- 상위 메뉴 -->
             <div (click)="menu.isOpen = !menu.isOpen"
-              class="flex justify-between px-5 py-[14px] w-full hover:bg-primary-select cursor-pointer rounded-[12px]"
+              class="flex justify-between px-5 py-[0.875rem] w-full hover:bg-primary-select cursor-pointer rounded-[0.75rem]"
               [routerLink]="menu.url">
               <div class="flex gap-3 justify-between text-white">
                 <img [src]="menu.icon">{{menu.name}}
@@ -26,7 +26,7 @@
             <div class="flex flex-col rounded-lg bg-primary-noselect" *ngIf="menu.children?.length > 0 && menu.isOpen">
               <ng-container *ngFor="let child of menu.children; index as i">
                 <div (click)="menuClick(i)" [ngClass]="activeIndex === i ? 'text-white':'bg-primary-noselect'"
-                  class="bg-primary-noselect rounded-[12px] flex justify-between rounded-t-lg px-5 py-[16.5px] space-x-3 w-full hover:bg-primary-select cursor-pointer"
+                  class="bg-primary-noselect rounded-[0.75rem] flex justify-between rounded-t-lg px-5 py-[1.03125rem] space-x-3 w-full hover:bg-primary-select cursor-pointer"
                   [routerLink]="child.url">
                   <div class="flex gap-3 justify-between">
                     <img src="assets/icons/nosel_Dot.svg">{{ child.name }}

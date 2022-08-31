@@ -1,62 +1,62 @@
 <div class="h-128 py-2 flex justify-between">
-        <div class="w-full space-x-[18px]">
+        <div class="w-full space-x-[1.125rem]">
           <div class="w-[289px] h-[57px] flex items-center px-[10px]">
-            <div class=" w-20 h-[37px] px-[10px] py-[10px] text-[14px]">
+            <div class=" w-20 h-[2.3125rem] px-[10px] py-[10px] text-[0.875rem]">
               <div class=" h-[17px] text-right whitespace-nowrap">
                 상품 선택
               </div>
             </div>
             <div class="px-2">
-              <select name="test" id="" class="px-3 w-[181px] h-[37px] justify-center border rounded-md text-[14px]">
+              <select name="test" id="" class="px-3 w-[181px] h-[2.3125rem] justify-center border rounded-md text-[0.875rem]">
                 <option value="10">티쓰-001 블랙 썬글라스</option>
                 <option value="20">피쓰</option>
                 <option value="30">투쓰</option>
               </select>
             </div>
           </div>
-          <div class="w-[137px] h-[57px] flex items-center text-[14px]">
+          <div class="w-[12.3125rem] h-[57px] flex items-center text-[0.875rem]">
             <div class="w-20">
-              <div class="pl-[23px] py-[10px] w-20 h-[37px]">
+              <div class="pl-[23px] py-[10px] w-20 h-[2.3125rem]">
                 <div class="w-10 h-[17px] whitespace-nowrap text-right">
                   브랜드
                 </div>
               </div>
             </div>
-            <div class="flex justify-center items-center w-[49px] h-[37px]">
+            <div class="flex justify-center items-center w-[49px] h-[2.3125rem]">
               <div
-                class="w-[49px] h-[37px] flex items-center justify-center drop-shadow-md border rounded-md whitespace-nowrap"
+                class="w-[49px] h-[2.3125rem] flex items-center justify-center drop-shadow-md border rounded-md whitespace-nowrap"
                 contenteditable="true" placeholder="티쓰">티쓰
               </div>
             </div>
           </div>
-          <div class="w-[265px] h-[57px] flex items-center text-[14px]">
+          <div class="w-[265px] h-[57px] flex items-center text-[0.875rem]">
             <div class="">
-              <div class="pl-[23px] pr-[10px] py-[10px] w-20 h-[37px]">
+              <div class="pl-[23px] pr-[10px] py-[10px] w-20 h-[2.3125rem]">
                 <div class="w-10 h-[17px] whitespace-nowrap text-right">
                   재고
                 </div>
               </div>
             </div>
-            <div class="flex justify-center items-center w-[47px] h-[37px]">
+            <div class="flex justify-center items-center w-[47px] h-[2.3125rem]">
               <div
-                class="w-[47px] h-[37px] flex items-center justify-center drop-shadow-md border rounded-md whitespace-nowrap"
+                class="w-[47px] h-[2.3125rem] flex items-center justify-center drop-shadow-md border rounded-md whitespace-nowrap"
                 contenteditable="true" placeholder="100">100
               </div>
             </div>
           </div>
           <div class="w-[265px] h-[57px] flex items-center">
             <div class=" ">
-              <div class="pl-[20px] pr-[10px] py-[10px] w-20 h-[37px] text-[14px]">
+              <div class="pl-[20px] pr-[10px] py-[10px] w-20 h-[2.3125rem] text-[0.875rem]">
                 <div class="w-10 h-[17px] whitespace-nowrap text-right">
                   상태
                 </div>
               </div>
             </div>
-            <div class="px-2 pt-[26px] pb-[30px] flex justify-center items-center w-[85px] h-[37px]">
+            <div class="px-2 pt-[26px] pb-[30px] flex justify-center items-center w-[85px] h-[2.3125rem]">
               <div class="flex items-center justify-center">
-                <div class="text-[14px] pr-1">
+                <div class="text-[0.875rem] pr-1">
                   <select name="test" id=""
-                    class="px-3 w-[85px] h-[37px] justify-center drop-shadow-md border rounded-md">
+                    class="px-3 w-[85px] h-[2.3125rem] justify-center drop-shadow-md border rounded-md">
                     <option value="10">판매중</option>
                     <option value="20">판매완료</option>
                     <option value="30">품절</option>
@@ -67,39 +67,39 @@
           </div>
           <div class="w-[265px] h-[57px] flex items-center">
             <div class="">
-              <div class="pl-[20px] pr-[10px] py-[10px] w-20 h-[37px] text-[14px]">
+              <div class="pl-[20px] pr-[10px] py-[10px] w-20 h-[2.3125rem] text-[0.875rem]">
                 <div class="w-10 h-[17px] whitespace-nowrap text-right">
                   사입가
                 </div>
               </div>
             </div>
             <input type="text"
-              class="w-[81px] h-[37px] text-[14px] px-3 py-[10px] border border-gray-200 rounded-md shadow-sm drop-shadow-sm"
+              class="w-[81px] h-[2.3125rem] text-[0.875rem] px-3 py-[10px] border border-gray-200 rounded-md shadow-sm drop-shadow-sm"
               placeholder="20,000원">
             <div class="px-2 items-center"></div>
           </div>
           <div class="w-[265px] h-[57px] flex items-center">
             <div class="">
-              <div class="pl-[20px] pr-[10px] py-[10px] w-20 h-[37px] text-[14px]">
+              <div class="pl-[20px] pr-[10px] py-[10px] w-20 h-[2.3125rem] text-[0.875rem]">
                 <div class="w-10 h-[17px] whitespace-nowrap text-right">
                   판매가
                 </div>
               </div>
             </div>
             <input type="text"
-              class="w-[81px] h-[37px] text-[14px] px-3 py-[10px] border border-gray-200 rounded-md shadow-sm drop-shadow-sm"
+              class="w-[81px] h-[2.3125rem] text-[0.875rem] px-3 py-[10px] border border-gray-200 rounded-md shadow-sm drop-shadow-sm"
               value="30,000원">
             <div class="px-2 items-center"></div>
           </div>
         </div>
         <div class="h-[382px] pb-[63px] w-full px-[10px] pr-12">
           <div class="p-[10px] h-58 pb-2">
-            <div class="w-20 h-[37px] pl-[10px] pr-[21px] py-[10px]">
-              <div class="h-[17px] text-[14px] whitespace-nowrap">상세설명</div>
+            <div class="w-20 h-[2.3125rem] pl-[10px] pr-[21px] py-[10px]">
+              <div class="h-[17px] text-[0.875rem] whitespace-nowrap">상세설명</div>
             </div>
           </div>
           <div class="h-[187px] drop-shadow-sm rounded-md stroke-gray-200 w-full pr-[10px]">
-            <div class="pt-[10px] pb-[7px] text-[14px] w-full h-full text-left rounded-md drop-shadow-sm border"
+            <div class="pt-[10px] pb-[7px] text-[0.875rem] w-full h-full text-left rounded-md drop-shadow-sm border"
               contenteditable="true"></div>
           </div>
         </div>
