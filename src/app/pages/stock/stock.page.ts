@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavigationEnd, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { filter } from 'rxjs/operators';
-import { StockService } from 'src/service/stock/stock.service';
+import { StockService } from 'src/app/service/stock/stock.service';
 import { RegisterStockComponent } from './register-stock/register-stock.component';
 
 type Index_l = {

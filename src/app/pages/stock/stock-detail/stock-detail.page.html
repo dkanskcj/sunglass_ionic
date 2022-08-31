@@ -29,31 +29,31 @@
       <div>총액 : {{ stock?.cost*stock?.stock | number : '1.0-0'}}</div>
     </ng-container>
   </div>
-  <div class="h-[57.1875rem] flex gap-2 my-8 mx-12 shadow">
-    <div class="h-[53.625rem]">
-      <div class="flex p-5 space-x-4 w-full h-[3.5rem] text-[0.875rem]">
-        <div class="w-full h-10 flex space-x-4">
+  <div class=" flex gap-2 my-8 mx-12 shadow">
+    <div>
+      <div class="flex justify-between p-5 space-x-4 w-full text-[0.875rem]">
+        <div class="w-full flex space-x-4">
           <!-- <div class="whitespace-nowrap py-[10.09375rem] pr-4">일자 선택</div> -->
-          <select name="구분 선택" class="select pr-4 border rounded-md px-3 text-[0.875rem]">
+          <select name="구분 선택" class="select py-2 border rounded-md px-3 text-[0.875rem]">
             <option value="1">구분 선택</option>
             <option value="2">2</option>
             <option value="3">3</option>
           </select>
-          <div class="w-30 h-[2.5rem] flex items-center justify-start border border-b rounded-md px-3 space-x-2">
+          <div class="flex items-center justify-start border border-b rounded-md px-3 space-x-2">
             <input type="date">
             <!-- <input type="text" class="w-full" placeholder="검색어를 입력해주세요." [(ngModel)]="searchText"> -->
           </div>
           <div class="flex justify-center items-center ">~</div>
-          <div class="w-30 h-[2.5rem] flex items-center justify-start border border-b rounded-md px-3 space-x-2">
+          <div class="flex items-center justify-start border border-b rounded-md px-3 space-x-2">
             <input type="date" data-placeholder="2022.12.31">
             <!-- <input type="text" class="w-full" placeholder="검색어를 입력해주세요." [(ngModel)]="searchText"> -->
           </div>
 
         </div>
-        <div>
-          <app-buttons class="text-[1.125rem] font-semibold whitespace-nowrap" (click)="setOpen()">내역 추가
-          </app-buttons>
-        </div>
+        <app-buttons
+          class="text-[1.125rem] text-primary border border-primary font-semibold whitespace-nowrap rounded-md"
+          (click)="setOpen()">내역 추가
+        </app-buttons>
       </div>
       <div class="px-3 py-4 text-[0.875rem]">
         <table class="w-full text-centeritems-center text-left table-fixed">
@@ -64,7 +64,8 @@
               <th class="p-4 h-[3.0625rem]">재고</th>
               <th class="p-4 h-[3.0625rem]">금액</th>
               <th class="p-4 h-[3.0625rem]">사유</th>
-              <th class="p-4 h-[3.0625rem] flex justify-start items-center">변동 일자<img src="assets/icons/asc.svg" class="p-2">
+              <th class="p-4 h-[3.0625rem] flex justify-start items-center">변동 일자<img src="assets/icons/asc.svg"
+                  class="p-2">
               </th>
             </tr>
           </thead>
@@ -74,7 +75,8 @@
                 <td class="px-4 h-[4.125rem]">{{ Index_l.sort }}</td>
                 <td class="px-4 h-[4.125rem]">{{ Index_l.stock_variance }}</td>
                 <td class="px-4 h-[4.125rem]">{{ Index_l.stock }}</td>
-                <td class="px-4 h-[4.125rem]">단가 : {{ Index_l.cost }}<br>총액 : {{ Index_l.testnum | number:'1.0-0' }}</td>
+                <td class="px-4 h-[4.125rem]">단가 : {{ Index_l.cost }}<br>총액 : {{ Index_l.testnum | number:'1.0-0' }}
+                </td>
                 <td class="px-4 h-[4.125rem]">{{ Index_l.reason }}</td>
                 <td class="px-4 h-[4.125rem]">{{ Index_l.date }}</td>
               </tr>
@@ -101,28 +103,28 @@
 
         <div class="grid grid-flow-col justify-center items-center pr-5 text-center text-gray-700">
           <img src="assets/icons/first_page.svg"
-            class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+            class="w-[2.25rem] h-[2.25rem] rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
           <img src="assets/icons/left_page.svg"
-            class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+            class="w-[2.25rem] h-[2.25rem] rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
           <div
-            class="rounded-lg w-9 h-9 flex justify-center items-center bg-primary text-white active:bg-primary active:text-white cursor-pointer">
+            class="rounded-lg w-[2.25rem] h-[2.25rem] flex justify-center items-center bg-primary text-white active:bg-primary active:text-white cursor-pointer">
             1</div>
           <div
-            class="w-9 h-9 rounded-lg flex justify-center items-center bg-gray-100 hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+            class="w-[2.25rem] h-[2.25rem] rounded-lg flex justify-center items-center bg-gray-100 hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
             2</div>
           <div
-            class="w-9 h-9 rounded-lg flex justify-center items-center hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+            class="w-[2.25rem] h-[2.25rem] rounded-lg flex justify-center items-center hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
             3</div>
           <div
-            class="w-9 h-9 rounded-lg flex justify-center items-center hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+            class="w-[2.25rem] h-[2.25rem] rounded-lg flex justify-center items-center hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
             4</div>
           <img src="assets/icons/more_dot.svg"
-            class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+            class="w-[2.25rem] h-[2.25rem] rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
 
           <img src="assets/icons/right_page.svg"
-            class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+            class="w-[2.25rem] h-[2.25rem] rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
           <img src="assets/icons/last_page.svg"
-            class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+            class="w-[2.25rem] h-[2.25rem] rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
         </div>
       </div>
     </div>

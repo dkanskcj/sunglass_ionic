@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { CompanyService } from 'src/service/company/company.service';
+import { CompanyService } from 'src/app/service/company/company.service';
 type Index_l = { 
   brand: string;
   name: string;
@@ -109,6 +109,7 @@ export class ConnectionPage implements OnInit {
   getConnections() {
     this.http.get<any[]>('http://localhost:3000/company').subscribe(result => {
       this.companys=result;
+      console.log(this.companys);
     });
   }
 }

@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { stocks } from 'src/service/stock/stock-interface';
-import { StockService } from 'src/service/stock/stock.service';
+import { stocks } from 'src/app/service/stock/stock-interface';
+import { StockService } from 'src/app/service/stock/stock.service';
 import { AddStockComponent } from '../add-stock/add-stock.component';
 
 type index_l = {

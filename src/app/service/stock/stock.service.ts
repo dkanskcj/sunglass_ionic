@@ -18,15 +18,6 @@ export class StockService {
     return this.httpClient.get(`${this.baseUrl}/${id}`);
   }
 
-  // stockEdit(stock){
-  //   let present: Boolean = false;
-  //   this.stockList.map((val, index)=>{
-  //     if(val.id == stock.id) {this.stockList[index] = stock;present=true}
-  //   });
-  //   return present;
-  // }
-  
-
 
   create(body: any) {
     return this.httpClient.post(`${this.baseUrl}`, body);

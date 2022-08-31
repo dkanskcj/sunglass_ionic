@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CompanyService } from 'src/service/company/company.service';
+import { CompanyService } from 'src/app/service/company/company.service';
 import { ConnectionPage } from '../connection.page';
 
 @Component({
