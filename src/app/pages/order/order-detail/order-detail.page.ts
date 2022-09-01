@@ -72,4 +72,10 @@ export class OrderDetailPage implements OnInit {
         }
       })
   }
+  test: boolean = false;
+  checked(id: number){
+    if(this.order.orderStatus = '주문승인'){
+      return !this.test
+    }
+  }
 }

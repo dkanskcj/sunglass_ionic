@@ -68,7 +68,8 @@ export class OrderPage implements OnInit {
   }
 
   getAuth() {
-    console.log(this.orders)
+    console.log(this.orders.orderStatus)
+    
   }
 
   isClicked(){

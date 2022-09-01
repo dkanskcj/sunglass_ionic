@@ -1,7 +1,9 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 import { postcode } from 'src/assets/js/postcode.js';
-
 type Option = {
   value: string;
   addCost: string;
@@ -33,7 +35,40 @@ type segmentBtn = {
 export class ItemsRegisterPage implements OnInit {
   @ViewChild('fileUploader') fileUploader: ElementRef;
   @ViewChild('daum_popup', { read: ElementRef, static: true }) popup: ElementRef;
+  products=[];
 
+  createForm = new FormGroup({
+    // id: new FormControl(null),
+    // thumbnailMain: new FormControl(null),
+    // thumbnailSub: new FormControl(null),
+    name: new FormControl(null),
+    cost: new FormControl(null),
+    discount: new FormControl(null),
+    discountStartDate: new FormControl(null),
+    discountEndDate: new FormControl(null),
+    amount: new FormControl(null),
+    // optionName: new FormControl(null),
+    // optionValues: new FormControl(null),
+    // optionList: new FormControl(null),
+    description: new FormControl(null),
+    modelName: new FormControl(null),
+    brandName: new FormControl(null),
+    isKC: new FormControl(null),
+    origin: new FormControl(null),
+    // madeStartDate: new FormControl(null),
+    // validEndDate: new FormControl(null),
+    isTeenager: new FormControl(null),
+    isShowDetail: new FormControl(null),
+    courier: new FormControl(null),
+    refundDeliveryFee: new FormControl(null),
+    changeDeliveryFee: new FormControl(null),
+    address: new FormControl(null),
+    addressDetail: new FormControl(null),
+    tel: new FormControl(null),
+    // referenceDate: new FormControl(null),
+    cancelReason: new FormControl(null),
+    remark: new FormControl(null),
+  })
 
   display: FormControl = new FormControl("", Validators.required);
   file_store: FileList;
@@ -62,7 +97,7 @@ export class ItemsRegisterPage implements OnInit {
   isCertification2: boolean = true;
   isCustomMade: boolean = false;
   isCustomMade2: boolean = true;
-  isTeenager: boolean = false;
+  isTeenager1: boolean = false;
   isTeenager2: boolean = true;
   isNoticeProduct: boolean = false;
   isNoticeProduct2: boolean = true;
@@ -303,12 +338,12 @@ export class ItemsRegisterPage implements OnInit {
   }
 
   toggleTeenagerSetting() {
-    this.isTeenager = true;
+    this.isTeenager1 = true;
     this.isTeenager2 = false;
   }
 
   toggleTeenagerSetting2() {
-    this.isTeenager = false;
+    this.isTeenager1 = false;
     this.isTeenager2 = true;
   }
 
@@ -500,7 +535,10 @@ export class ItemsRegisterPage implements OnInit {
 
   constructor(
     private formbuilder: FormBuilder,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private router:Router,
+    private http: HttpClient,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -509,6 +547,19 @@ export class ItemsRegisterPage implements OnInit {
       addr2: [''],
     })
   }
+
+  getConnections(){
+    this.http.get<any[]>('http://localhost:3000/product').subscribe(res => {
+      this.products = res;
+      console.log(this.products);
+    })
+  }
+  submit(){
+    const body = this.createForm.getRawValue();
+    console.log(body);
+  }
+
+
   openDaumPopup() {
     postcode(this.renderer, this.popup.nativeElement, data => {
       this.frm.controls.addr1.setValue(data.address);
