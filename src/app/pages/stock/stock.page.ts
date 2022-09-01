@@ -104,17 +104,7 @@ export class StockPage implements OnInit {
     private http: HttpClient,
     private router: Router,
     private stockService: StockService,
-    // private formBuilder: FormBuilder
   ) {
-    // this.updateStockForm = this.formBuilder.group({
-    //   id: [""],
-    //   company: [""],
-    //   products: [""],
-    //   stock: [""],
-    //   cost : [],
-    //   totalCost: [],
-    //   stock_option: [],
-    // });
   }
 
 
@@ -128,25 +118,9 @@ export class StockPage implements OnInit {
   }
   getConnections() {
     this.http.get<any[]>('http://localhost:3000/stocktest').subscribe(result => {
-      // console.log(result);
       this.stocks = result;
     });
   }
-  // submit(){
-  //   // const body = this.createForm.getRawValue();
-  //   // console.log(body)
-  //   this.stockService.create(body).subscribe({
-  //     next: (res) => {
-  //       this.router.navigateByUrl('/company')
-  //     },
-  //     error: (error) => {
-  //       console.log(error)
-  //     }
-  //   })
-  // }
-  // formControl = new FormControl('', [
-  //   Validators.required
-  // ]);
 
   async setOpen() {
     const modal = await this.modalController.create({

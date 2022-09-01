@@ -54,7 +54,8 @@
                                     [ngClass]="isOptionGroup ? '':'rotate-180 hover:bg-gray-100'">
                                 <div class="whitespace-nowrap flex items-center">자동 승인</div>
                             </div>
-                            <app-buttons class="border border-green-500 text-green-400 rounded-md" (click)="getAuth()">승인</app-buttons>
+                            <app-buttons class="border border-green-500 text-green-400 rounded-md" (click)="getAuth()">
+                                승인</app-buttons>
                         </div>
                     </div>
                 </div>
@@ -66,9 +67,9 @@
                                 <th class="p-4 w-full">
                                     <div class="flex space-x-2 justify-center items-center">
                                         <div>
-                                            전체 
+                                            전체
                                         </div>
-                                        <input type="checkbox">
+                                        <input type="checkbox" class="cursor-pointer" (click)="isClicked()">
                                     </div>
                                 </th>
                                 <th class="p-4 w-full">주문번호</th>
@@ -80,66 +81,72 @@
                                 <th class="p-4 w-full">주문요청일자</th>
                             </tr>
                         </thead>
-                        <ng-container *ngFor="let o of orders;">
-                            <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center w-full"
-                                routerLink="details">
+                        <ng-container *ngFor="let order of orders;">
+                            <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center w-full" (click)="goDetail($event, order.orderNumber)">
                                 <tr>
-                                    <td class="w-full h-full">
+                                    <td class=" w-full h-full">
                                         <div class="flex justify-center items-center">
-                                            <input type="checkbox">
+                                            <input type="checkbox" class="cursor-pointer checkbox" [checked]="test">
                                         </div>
                                     </td>
-                                    <td class="p-4">{{o.createdAt | date: 'yyyyMMdd'}}{{ o.orderNumber }}
-                                    </td>
-                                    <td class="p-4">
-                                        <div *ngIf="o.orderStatus === '주문승인'" class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500">
-                                            {{ o.orderStatus }}
-                                        </div>
-                                        <div *ngIf="o.orderStatus === '주문취소'" class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500">
-                                            {{ o.orderStatus }}
-                                        </div>
-                                        <div *ngIf="o.orderStatus === '주문대기'" class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500">
-                                            {{ o.orderStatus }}
-                                        </div>
-                                        <div *ngIf="o.orderStatus === '주문거절'" class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500">
-                                            {{ o.orderStatus }}
-                                        </div>
+                                    <td class="p-4">{{order.createdAt | date: 'yyyyMMdd'}}{{ order.orderNumber }}
                                     </td>
                                     <td class="p-4">
-                                        <div *ngIf="o.shippingStatus === '배송완료'" class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500">
-                                            {{ o.shippingStatus }}
+                                        <div *ngIf="order.orderStatus === '주문승인'"
+                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500">
+                                            {{ order.orderStatus }}
                                         </div>
-                                        <div *ngIf="o.shippingStatus === '배송대기중'" class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500">
-                                            {{ o.shippingStatus }}
+                                        <div *ngIf="order.orderStatus === '주문취소'"
+                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500">
+                                            {{ order.orderStatus }}
                                         </div>
-                                        <div *ngIf="o.shippingStatus === '배송중'" class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500">
-                                            {{ o.shippingStatus }}
+                                        <div *ngIf="order.orderStatus === '주문대기'"
+                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500">
+                                            {{ order.orderStatus }}
+                                        </div>
+                                        <div *ngIf="order.orderStatus === '주문거절'"
+                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500">
+                                            {{ order.orderStatus }}
                                         </div>
                                     </td>
                                     <td class="p-4">
-                                        {{ o.product }}<br>
-                                        수량 : {{o.amount}}<br>
-                                        {{ o.orderName }} : {{ o.phoneNumber }}<br>
-                                        {{ o.shipAddress}}
+                                        <div *ngIf="order.shippingStatus === '배송완료'"
+                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500">
+                                            {{ order.shippingStatus }}
+                                        </div>
+                                        <div *ngIf="order.shippingStatus === '배송대기중'"
+                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500">
+                                            {{ order.shippingStatus }}
+                                        </div>
+                                        <div *ngIf="order.shippingStatus === '배송중'"
+                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500">
+                                            {{ order.shippingStatus }}
+                                        </div>
+                                    </td>
+                                    <td class="p-4">
+                                        {{ order.product }}<br>
+                                        수량 : {{order.amount}}<br>
+                                        {{ order.orderName }} : {{ order.phoneNumber }}<br>
+                                        {{ order.shipAddress}}
                                     </td>
                                     <!-- 결제 정보 -->
-                                    <td class="p-4" *ngIf="o.purchaseMethod === '카드결제'">
-                                        {{ o.orderName }} : {{ o.phoneNumber }}<br>
-                                        온라인 {{ o.purchaseMethod }}
+                                    <td class="p-4" *ngIf="order.purchaseMethod === '카드결제'">
+                                        {{ order.orderName }} : {{ order.phoneNumber }}<br>
+                                        온라인 {{ order.purchaseMethod }}
                                     </td>
-                                    <td class="p-4" *ngIf="o.purchaseMethod !== '카드결제'">
-                                        {{ o.orderName }} : {{ o.phoneNumber }}<br>
+                                    <td class="p-4" *ngIf="order.purchaseMethod !== '카드결제'">
+                                        {{ order.orderName }} : {{ order.phoneNumber }}<br>
                                         ㅇㅇ은행<br>
-                                        {{ o.purchase}}
+                                        {{ order.purchase}}
                                     </td>
                                     <td class="p-4">
-                                        {{ o.shipping }}<br>
-                                        배송비 : {{ o.shipcost | number: '1.0-0' }}원(자부담)<br>
-                                        {{ o.shipAddress }}
+                                        {{ order.shipping }}<br>
+                                        배송비 : {{ order.shipcost | number: '1.0-0' }}원(자부담)<br>
+                                        {{ order.shipAddress }}
                                     </td>
-                                    <td class="p-4">{{ o.createdAt | date: 'yyyy-MM-dd' }}</td>
-                                    <td class="px-4 h-[4.125rem]">{{ o.buy }}<br>{{ o.sell }}</td>
-                                    <td class="px-4 h-[4.125rem]">{{ o.regist }}<br>{{ o.update }}</td>
+                                    <td class="p-4">{{ order.createdAt | date: 'yyyy-MM-dd' }}</td>
+                                    <td class="px-4 h-[4.125rem]">{{ order.buy }}<br>{{ order.sell }}</td>
+                                    <td class="px-4 h-[4.125rem]">{{ order.regist }}<br>{{ order.update }}</td>
                                 </tr>
                             </tbody>
                         </ng-container>

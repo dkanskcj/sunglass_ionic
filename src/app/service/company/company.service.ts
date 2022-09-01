@@ -22,7 +22,7 @@ export class CompanyService {
   }
 
   getCompany(id: number) {
-    return this.httpClient.get<any[]>(`${this.baseUrl}`);
+    return this.httpClient.get<any[]>(`${this.baseUrl}/${id}`);
   }
 
   create(body: any) {

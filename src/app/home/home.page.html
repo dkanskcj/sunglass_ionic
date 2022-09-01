@@ -1,33 +1,6 @@
-<!-- <ion-content>
-    <div class="h-full w-full gap-2 py-1 mx-12 shadow pr-12 bg-white border box-border rounded-md">
-        <div class="flex relative">
-            <div class="relative">
-                <img src="assets/icons/spoon_img.svg" class="w-[33.75rem] p-5">
-                <div
-                    class="my_right_btn flex items-center bg-black bg-opacity-30 justify-center w-12 h-12 rounded-full">
-                    <img src="assets/icons/right_icon.svg" class="my_right_icon">
-                </div>
-                <div
-                    class="my_index_num bg-black bg-opacity-20 px-2 py-1 rounded-lg flex justify-center items-center text-white">
-                    1/9</div>
-            </div>
-            <div class="flex space-x-[0.59375rem] justify-center items-center">
-                <div class="w-[2.75rem] h-[2.75rem] border-2 border-green-800 rounded-lg bg-green-800">
-                    <img src="assets/icons/spoon_img.jpg" class="rounded-lg">
-                </div>
-                <div class="w-[2.75rem] h-[2.75rem]">
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="flex relative">
-                <div class="my_index_num relative text-white">{{ slideIndex + 1}} / {{ images.length }}</div>
-                <img class="w-[33.75rem] h-[33.75rem] rounded-lg" [src]="images[slideIndex]" />
-                <div (click)="plusSlides(1)"
-                    class="my_right_btn flex items-center bg-black bg-opacity-30 justify-center w-12 h-12 rounded-full">
-                    <img src="assets/icons/right_icon.svg" class="my_right_icon">
-                </div>
-            </div>
-        </div>
-    </div>
-</ion-content> -->
+<ion-content>
+    <form action="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=" method="get">
+        <input type="text" name="query" value="광주광역시" />
+        <button type="submit">보내기</button>
+    </form>
+</ion-content>

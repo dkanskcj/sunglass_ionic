@@ -34,16 +34,6 @@ export class CompanyRegisterPage implements OnInit {
   ngOnInit() {
   }
 
-  // checkVerify() {
-  //   this.http.get<any[]>('http://localhost:3000/company').subscribe(result => {
-  //     const verify = this.verifyForm.getRawValue();
-  //     console.log("checkVerify() => "+ result);
-  //     if(verify)
-  //     this.company = result;
-  //   });
-  //   console.log("test Company" + this.company)
-  // }
-
 
   submit() {
     const body = this.createForm.getRawValue();

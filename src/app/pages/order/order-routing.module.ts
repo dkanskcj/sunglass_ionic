@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'exchange',
     loadChildren: () => import('./exchange/exchange.module').then( m => m.ExchangePageModule)
+  },
+  {
+    path: ':id',
+    loadChildren: () => import('./order-detail/order-detail.module').then( m => m.OrderDetailPageModule)
   }
 ];
 

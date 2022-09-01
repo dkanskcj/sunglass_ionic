@@ -1,0 +1,196 @@
+<ion-content>
+  <div class="w-full h-full bg-gray-50">
+    <div class="w-full h-16">
+      <div class="w-full flex justify-between border border-b bg-gray-100 h-16">
+        <div class="flex p-6">
+          <div class="flex w-full px-3 py-[0.75rem] text-[0.875rem] h-[1.125rem] items-center justify-center">
+            <div class=" cursor-pointer hover:bg-gray-200" routerLink="/dashboard">
+              대쉬보드
+            </div>
+            <img src="assets/icons/right.svg" class="w-[0.875rem] h-[0.875rem]">
+            <div class="text-gray-500 cursor-pointer hover:bg-gray-200" routerLink="../">주문 관리</div>
+            <img src="assets/icons/right.svg" class="w-[0.875rem] h-[0.875rem]">
+            <div class="text-gray-500">주문 상세</div>
+          </div>
+        </div>
+        <div class="flex px-6 py-4 space-x-4">
+          <img src="assets/icons/alter.svg" class="cursor-pointer w-6 h-6">
+          <img src="assets/icons/profile_icon.svg" class="cursor-pointer w-8 h-8 hover:bg-red-500 focus:ring-black">
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="items-center px-12 pt-8 text-[0.875rem]">
+        <div class="font-bold text-[1.5rem]">
+          주문 상세
+        </div>
+        <!-- 주문정보 Frame -->
+        <div class="pt-8">
+          <div class="w-full justify-between flex">
+            <!-- 주문정보, 주문상태 -->
+            <div class="flex space-x-8">
+              <div class="font-semibold text-[1.25rem]">주문 정보</div>
+              <div *ngIf="order?.orderStatus === '주문승인'"
+                class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500">
+                {{ order?.orderStatus }}
+              </div>
+              <div *ngIf="order?.orderStatus === '주문취소'"
+                class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500">
+                {{ order?.orderStatus }}
+              </div>
+              <div *ngIf="order?.orderStatus === '주문대기'"
+                class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500">
+                {{ order?.orderStatus }}
+              </div>
+              <div *ngIf="order?.orderStatus === '주문거절'"
+                class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500">
+                {{ order?.orderStatus }}
+              </div>
+            </div>
+            <!-- radio order status -->
+            <div class="flex">
+              <!-- !주문 상태 변경 알림 -->
+              <div class="flex space-x-4">
+                <img src="assets/icons/info.svg" class="absolute pt-1">
+                <div class="text-blue-900 text-[0.75rem] px-2 whitespace-nowrap flex justify-center items-center">
+                  주문 상태를 변경할 수 있습니다.<br>단, 한 번 거절한 주문은 되돌릴 수 없습니다.
+                </div>
+              </div>
+              <div class="flex items-center space-x-2">
+                <input type="radio" name="status" class="cursor-pointer">
+                <div
+                  class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500">
+                  주문대기</div>
+                <input type="radio" name="status" class="cursor-pointer">
+                <div
+                  class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500">
+                  주문승인</div>
+                <input type="radio" name="status" class="cursor-pointer">
+                <div class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500">
+                  주문거절
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Order Frame -->
+          <div class="mt-8 bg-white">
+            <!-- Order Information Frame -->
+            <div class="border box-border shadow rounded-lg bg-white text-[0.875rem]">
+              <div class="p-2 space-y-3">
+                <div>
+                  <!-- Order Information line_1 -->
+                  <div class="flex">
+                    <app-tables label="주문번호" [nextLabel]="order?.createdAt | date: 'yyyyMMdd'"
+                      [nextLabel2]="order?.orderNumber"></app-tables>
+                    <app-tables label="상품명" [nextLabel]="order?.product"></app-tables>
+                    <app-tables label="상품 수량" [nextLabel]="order?.amount" nextLabel2="개"></app-tables>
+                    <app-tables label="옵션" nextLabel="나무케이스(+110,000, 레드-1개"></app-tables>
+                  </div>
+                  <!-- Order Information line2 -->
+                  <div class="flex">
+                    <app-tables label="주문액" [nextLabel]="order?.total_cost | number: '1.0-0'" nextLabel2="원">
+                    </app-tables>
+                    <app-tables label="쿠폰" [nextLabel]="shipping?.coupon">
+                    </app-tables>
+                    <app-tables label="주문자 명" [nextLabel]="order?.orderName"></app-tables>
+                    <app-tables label="주문자 연락처" [nextLabel]="order?.phoneNumber"></app-tables>
+                  </div>
+                  <!-- Order Information line3 -->
+                  <div class="flex">
+                    <app-tables label="메모" [nextLabel]="order?.notice"></app-tables>
+                    <app-tables label="배송지" [nextLabel]="order?.shipAddress"></app-tables>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- purchase Information Frame -->
+        <div class="pt-8">
+          <div class="font-semibold text-[1.25rem]">
+            결제 정보
+          </div>
+          <!-- purchase Frame -->
+          <div class="mt-8 bg-white">
+            <!-- purchase Information Frame -->
+            <div class="border box-border shadow rounded-lg bg-white text-[0.875rem]">
+              <div class="p-2 space-y-3">
+                <div>
+                  <!-- purchase Information line_1 -->
+                  <div class="flex">
+                    <app-tables label="입금정보" [nextLabel]="order?.orderName" nextLabel3="기업은행 " [nextLabel4]="order?.purchase">
+                    </app-tables>
+                    <app-tables label="결제액" [nextLabel]="order?.total_cost+order?.shipcost | number: '1.0-0'"
+                      nextLabel2="원"></app-tables>
+                    <app-tables label="결제 방법" nextLabel="온라인 " [nextLabel2]="order?.purchaseMethod"></app-tables>
+                    <app-tables label="결제일시" [nextLabel]="order?.createdAt | date: 'yyyy-MM-dd, hh:mm:ss'"></app-tables>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- shipping Information Frame -->
+        <div class="pt-8">
+          <div class="flex space-x-8">
+            <div class="font-semibold text-[1.25rem]">배송 정보</div>
+            <div *ngIf="order?.shippingStatus === '배송완료'"
+              class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500">
+              {{ order?.shippingStatus }}
+            </div>
+            <div *ngIf="order?.shippingStatus === '배송중'"
+              class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500">
+              {{ order?.shippingStatus }}
+            </div>
+            <div *ngIf="order?.shippingStatus === '배송대기중'"
+              class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500">
+              {{ order?.shippingStatus }}
+            </div>
+          </div>
+          <!-- shipping Frame -->
+          <div class="mt-8 bg-white">
+            <!-- shipping Information Frame -->
+            <div class="border box-border shadow rounded-lg bg-white text-[0.875rem]">
+              <div class="p-2 space-y-3">
+                <div>
+                  <!-- shipping Information line_1 -->
+                  <div class="flex">
+                    <app-tables label="입금정보" [nextLabel]="company?.owner" nextLabel3="기업은행 " [nextLabel4]="order?.purchase">
+                    </app-tables>
+                    <app-tables label="결제액" [nextLabel]="order?.total_cost+order?.shipcost | number: '1.0-0'"
+                      nextLabel2="원"></app-tables>
+                    <app-tables label="결제 방법" nextLabel="온라인 " [nextLabel2]="order?.purchaseMethod"></app-tables>
+                    <app-tables label="결제일시" [nextLabel]="order?.createdAt | date: 'yyyy-MM-dd, hh:mm:ss'"></app-tables>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pt-8">
+            <div class="font-semibold text-[1.25rem]">
+              이력
+            </div>
+            <!-- recode Frame -->
+            <div class="mt-8 bg-white">
+              <!-- recode Information Frame -->
+              <div class="border box-border shadow rounded-lg bg-white text-[0.875rem]">
+                <div class="p-2 space-y-3">
+                  <div>
+                    <!-- recode Information line_1 -->
+                    <div class="flex">
+                      <app-tables label="일자" [nextLabel]="company?.owner" nextLabel3="기업은행 " [nextLabel4]="order?.purchase">
+                      </app-tables>
+                      <app-tables label="구분" [nextLabel]="order?.total_cost+order?.shipcost | number: '1.0-0'"
+                        nextLabel2="원"></app-tables>
+                      <app-tables label="사유" nextLabel="온라인 " [nextLabel2]="order?.purchaseMethod"></app-tables>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

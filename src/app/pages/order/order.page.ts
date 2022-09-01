@@ -22,7 +22,7 @@ type Index_l = {
 })
 export class OrderPage implements OnInit {
   orders: any;
-  
+  test: boolean;
   // ships = [];
   isOptionGroup: boolean = true;
 
@@ -31,109 +31,6 @@ export class OrderPage implements OnInit {
   }
 
   searchText: any;
-
-  index_list: Index_l[] = [
-    {
-      brand: '티쓰',
-      name: '티쓰-011 블랙 썬글라스',
-      stock: 100,
-      status: true,
-      buy: '사입가 : 25,200원',
-      sell: '판매가 : 30,000원',
-      regist: '등록일자 : 2022-07-14',
-      update: '수정일자 : 2022-07-15'
-    },
-    {
-      brand: '티쓰',
-      name: '티쓰-011 블랙 썬글라스',
-      stock: 100,
-      status: true,
-      buy: '사입가 : 25,200원',
-      sell: '판매가 : 30,000원',
-      regist: '등록일자 : 2022-07-14',
-      update: '수정일자 : 2022-07-15'
-    },
-    {
-      brand: '티쓰',
-      name: '티쓰-011 블랙 썬글라스',
-      stock: 100,
-      status: true,
-      buy: '사입가 : 25,200원',
-      sell: '판매가 : 30,000원',
-      regist: '등록일자 : 2022-07-14',
-      update: '수정일자 : 2022-07-15'
-    },
-    {
-      brand: '티쓰',
-      name: '티쓰-011 블랙 썬글라스',
-      stock: 100,
-      status: true,
-      buy: '사입가 : 25,200원',
-      sell: '판매가 : 30,000원',
-      regist: '등록일자 : 2022-07-14',
-      update: '수정일자 : 2022-07-15'
-    },
-    {
-      brand: '티쓰',
-      name: '티쓰-011 블랙 썬글라스',
-      stock: 100,
-      status: false,
-      buy: '사입가 : 25,200원',
-      sell: '판매가 : 30,000원',
-      regist: '등록일자 : 2022-07-14',
-      update: '수정일자 : 2022-07-15'
-    },
-    {
-      brand: '티쓰',
-      name: '티쓰-011 블랙 썬글라스',
-      stock: 100,
-      status: true,
-      buy: '사입가 : 25,200원',
-      sell: '판매가 : 30,000원',
-      regist: '등록일자 : 2022-07-14',
-      update: '수정일자 : 2022-07-15'
-    },
-    {
-      brand: '티쓰',
-      name: '티쓰-011 블랙 썬글라스',
-      stock: 100,
-      status: true,
-      buy: '사입가 : 25,200원',
-      sell: '판매가 : 30,000원',
-      regist: '등록일자 : 2022-07-14',
-      update: '수정일자 : 2022-07-15'
-    },
-    {
-      brand: '티쓰',
-      name: '티쓰-011 블랙 썬글라스',
-      stock: 100,
-      status: true,
-      buy: '사입가 : 25,200원',
-      sell: '판매가 : 30,000원',
-      regist: '등록일자 : 2022-07-14',
-      update: '수정일자 : 2022-07-15'
-    },
-    {
-      brand: '티쓰',
-      name: '티쓰-011 블랙 썬글라스',
-      stock: 100,
-      status: true,
-      buy: '사입가 : 25,200원',
-      sell: '판매가 : 30,000원',
-      regist: '등록일자 : 2022-07-14',
-      update: '수정일자 : 2022-07-15'
-    },
-    {
-      brand: '티쓰',
-      name: '티쓰-011 블랙 썬글라스',
-      stock: 100,
-      status: true,
-      buy: '사입가 : 25,200원',
-      sell: '판매가 : 30,000원',
-      regist: '등록일자 : 2022-07-14',
-      update: '수정일자 : 2022-07-15'
-    }
-  ];
 
   constructor(
     private http: HttpClient,
@@ -148,9 +45,19 @@ export class OrderPage implements OnInit {
     this.router.events.pipe(filter(ev => ev instanceof NavigationEnd)).subscribe({
       next: () => {
         this.getConnections();
+        // this.test1();
       }
     })
     this.getConnections();
+  }
+
+  goDetail(ev:any, id:number){
+    const { className } = ev.target;
+    if(className.includes('checkbox')){
+      return;
+    }
+
+    this.router.navigateByUrl(`/order/${id}`);
   }
 
   getConnections() {
@@ -163,4 +70,26 @@ export class OrderPage implements OnInit {
   getAuth() {
     console.log(this.orders)
   }
+
+  isClicked(){
+    this.test = !this.test;
+  }
+  
+  // test1():string{
+  //   if(this.orders.orderStatus = '주문승인'){
+  //     console.log(this.orders.orderStatus)
+  //     return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500'
+  //   }
+  //   if(this.orders.orderStatus = '주문취소'){
+  //     console.log(this.orders.orderStatus)
+  //     return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500'
+  //   }
+  //   if(this.orders.orderStatus = '주문대기'){
+  //     console.log(this.orders.orderStatus)
+  //     return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500'
+  //   }
+  //   if(this.orders.orderStatus = '주문거절'){
+  //     return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500'
+  //   }
+  // }
 }
