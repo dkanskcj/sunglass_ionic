@@ -57,7 +57,7 @@ export class ItemsRegisterPage implements OnInit {
     cost: new FormControl(null),
     discount: new FormControl(null),
     discountStartDate: new FormControl(null),
-  discountEndDate: new FormControl(null),
+    discountEndDate: new FormControl(null),
     amount: new FormControl(null),
     // optionName: new FormControl(null),
     // optionValues: new FormControl(null),
@@ -563,7 +563,7 @@ export class ItemsRegisterPage implements OnInit {
 
   openDaumPopup() {
     postcode(this.renderer, this.popup.nativeElement, data => {
-      this.frm.controls.addr1.setValue(data.address);
+      this.createForm.controls.address.setValue(data.address);
       console.log(data);
       /*
           {
