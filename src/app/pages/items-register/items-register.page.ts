@@ -37,6 +37,18 @@ export class ItemsRegisterPage implements OnInit {
   @ViewChild('daum_popup', { read: ElementRef, static: true }) popup: ElementRef;
   products=[];
 
+  constructor(
+    private formbuilder: FormBuilder,
+    private renderer: Renderer2,
+    private router:Router,
+    private http: HttpClient,
+    private route: ActivatedRoute
+  ) { }
+
+  ngOnInit() {
+    
+  }
+
   createForm = new FormGroup({
     // id: new FormControl(null),
     // thumbnailMain: new FormControl(null),
@@ -45,7 +57,7 @@ export class ItemsRegisterPage implements OnInit {
     cost: new FormControl(null),
     discount: new FormControl(null),
     discountStartDate: new FormControl(null),
-    discountEndDate: new FormControl(null),
+  discountEndDate: new FormControl(null),
     amount: new FormControl(null),
     // optionName: new FormControl(null),
     // optionValues: new FormControl(null),
@@ -74,7 +86,10 @@ export class ItemsRegisterPage implements OnInit {
   file_store: FileList;
   file_list: Array<string> = [];
   urls = [];
-  frm: FormGroup;
+  frm = new FormGroup({
+    addr1:new FormControl(null),
+    addr2:new FormControl(null),
+  });
   option_number: any;
 
   category: string = 'multiple';
@@ -533,20 +548,6 @@ export class ItemsRegisterPage implements OnInit {
     console.log(this.Options[1]);
   }
 
-  constructor(
-    private formbuilder: FormBuilder,
-    private renderer: Renderer2,
-    private router:Router,
-    private http: HttpClient,
-    private route: ActivatedRoute
-  ) { }
-
-  ngOnInit() {
-    this.frm = this.formbuilder.group({
-      addr1: [''],
-      addr2: [''],
-    })
-  }
 
   getConnections(){
     this.http.get<any[]>('http://localhost:3000/product').subscribe(res => {

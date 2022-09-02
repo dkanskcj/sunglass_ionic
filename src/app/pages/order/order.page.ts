@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, findIndex } from 'rxjs/operators';
 import { OrderService } from 'src/app/service/order/order.service';
@@ -21,6 +21,10 @@ type Index_l = {
   styleUrls: ['./order.page.scss'],
 })
 export class OrderPage implements OnInit {
+  @ViewChildren('checkbox') checkboxes:QueryList<ElementRef>;
+  
+  allChecked = false;
+
   orders: any;
   test: boolean;
   // ships = [];
@@ -72,9 +76,22 @@ export class OrderPage implements OnInit {
     
   }
 
-  isClicked(){
+  isClicked(id: number){
+    console.log(id);
     this.test = !this.test;
   }
+
+  checkAll(){
+    for(const item of this.checkboxes){
+      if(this.allChecked){
+        item.nativeElement.checked = false;
+      } else {
+        item.nativeElement.checked = true;
+      }
+    }
+  }
+  
+  
   
   // test1():string{
   //   if(this.orders.orderStatus = '주문승인'){

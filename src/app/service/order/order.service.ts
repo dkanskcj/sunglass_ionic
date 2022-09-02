@@ -21,4 +21,9 @@ export class OrderService {
     return this.httpClient.get(`${this.baseUrl}/${orderNumber}`);
   }
   
+
+  update(orderNumber: number, body: any){
+    return this.httpClient.put(`${this.baseUrl}/${orderNumber}`, body)
+  }
+
 }

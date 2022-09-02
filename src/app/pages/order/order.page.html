@@ -60,7 +60,7 @@
                     </div>
                 </div>
                 <!-- Order detail Frame -->
-                <div class="px-3 py-[0.09375rem] text-[0.875rem] rounded-md border box-border shadow">
+                <div class="px-3 py-[0.09375rem] text-[0.875rem]">
                     <table class="w-full text-centeritems-center text-left table-fixed">
                         <thead>
                             <tr>
@@ -69,13 +69,16 @@
                                         <div>
                                             전체
                                         </div>
-                                        <input type="checkbox" class="cursor-pointer" (click)="isClicked()">
+                                        <!-- <ng-container *ngFor="let order of orders"> -->
+                                            <input [(ngModel)]="allChecked" type="checkbox" class="cursor-pointer" (click)="checkAll()">
+                                        <!-- </ng-container> -->
                                     </div>
                                 </th>
                                 <th class="p-4 w-full">주문번호</th>
                                 <th class="p-4 w-full">주문상태</th>
                                 <th class="p-4 w-full">배송상태</th>
-                                <th class="p-4 w-full">주문정보요약</th>
+                                <th class="p-4 w-full">주문자정보</th>
+                                <th class="p-4 w-full">상품정보요약</th>
                                 <th class="p-4 w-full">결제정보요약</th>
                                 <th class="p-4 w-full">배송정보요약</th>
                                 <th class="p-4 w-full">주문요청일자</th>
@@ -86,7 +89,7 @@
                                 <tr>
                                     <td class=" w-full h-full">
                                         <div class="flex justify-center items-center">
-                                            <input type="checkbox" class="cursor-pointer checkbox" [checked]="test">
+                                            <input #checkbox type="checkbox" class="cursor-pointer checkbox" (click)="isClicked(order.orderNumber)">
                                         </div>
                                     </td>
                                     <td class="p-4">{{order.createdAt | date: 'yyyyMMdd'}}{{ order.orderNumber }}
@@ -123,19 +126,21 @@
                                             {{ order.shippingStatus }}
                                         </div>
                                     </td>
+                                    <!-- 주문자정보 -->
                                     <td class="p-4">
-                                        {{ order.product }}<br>
-                                        수량 : {{order.amount}}<br>
-                                        {{ order.orderName }} : {{ order.phoneNumber }}<br>
-                                        {{ order.shipAddress}}
+                                        {{ order.orderName }}<br>
+                                        0{{order.phoneNumber}}
+                                    </td>
+                                    <!-- 상품정보 -->
+                                    <td class="p-4">
+                                        {{ order.product }} x {{ order.amount }}
                                     </td>
                                     <!-- 결제 정보 -->
                                     <td class="p-4" *ngIf="order.purchaseMethod === '카드결제'">
-                                        {{ order.orderName }} : {{ order.phoneNumber }}<br>
                                         온라인 {{ order.purchaseMethod }}
                                     </td>
                                     <td class="p-4" *ngIf="order.purchaseMethod !== '카드결제'">
-                                        {{ order.orderName }} : {{ order.phoneNumber }}<br>
+                                        {{ order.orderName }}<br>
                                         ㅇㅇ은행<br>
                                         {{ order.purchase}}
                                     </td>
