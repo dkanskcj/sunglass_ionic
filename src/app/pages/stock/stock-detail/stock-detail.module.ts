@@ -19,7 +19,8 @@ import { AddStockComponent } from '../add-stock/add-stock.component';
     StockDetailPageRoutingModule,
     Ng2SearchPipeModule,
     ComponentsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng2SearchPipeModule
   ],
   declarations: [StockDetailPage, AddStockComponent]
 })

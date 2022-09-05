@@ -21,10 +21,9 @@ type Index_l = {
   styleUrls: ['./order.page.scss'],
 })
 export class OrderPage implements OnInit {
-  @ViewChildren('checkbox') checkboxes:QueryList<ElementRef>;
-  
-  allChecked = false;
+  @ViewChildren('checkbox') checkboxes: QueryList<ElementRef>;
 
+  allChecked = false;
   orders: any;
   test: boolean;
   // ships = [];
@@ -35,6 +34,10 @@ export class OrderPage implements OnInit {
   }
 
   searchText: any;
+  date1: any;
+  date2: any;
+
+  getDate: any;
 
   constructor(
     private http: HttpClient,
@@ -44,7 +47,10 @@ export class OrderPage implements OnInit {
   ) { }
 
   testId: number;
-
+  testClicked(i: any) {
+    this.date1 = i;
+    console.log(this.date1);
+  }
   ngOnInit() {
     this.router.events.pipe(filter(ev => ev instanceof NavigationEnd)).subscribe({
       next: () => {
@@ -55,9 +61,9 @@ export class OrderPage implements OnInit {
     this.getConnections();
   }
 
-  goDetail(ev:any, id:number){
+  goDetail(ev: any, id: number) {
     const { className } = ev.target;
-    if(className.includes('checkbox')){
+    if (className.includes('checkbox')) {
       return;
     }
 
@@ -73,26 +79,39 @@ export class OrderPage implements OnInit {
 
   getAuth() {
     console.log(this.orders.orderStatus)
-    
+
   }
 
-  isClicked(id: number){
+  isClicked(id: number) {
     console.log(id);
     this.test = !this.test;
   }
 
-  checkAll(){
-    for(const item of this.checkboxes){
-      if(this.allChecked){
+  checkAll() {
+    for (const item of this.checkboxes) {
+      if (this.allChecked) {
         item.nativeElement.checked = false;
       } else {
         item.nativeElement.checked = true;
       }
     }
   }
-  
-  
-  
+  inputDate(){
+    this.searchDate()
+  }
+  searchDate() {
+    this.orderService.searchDate(this.date1).subscribe({
+      next: (res) => {
+        console.log(this.date1);
+        this.getDate = res;
+        console.log(res)
+      },
+      error: (error) => {
+
+      }
+    })
+  }
+
   // test1():string{
   //   if(this.orders.orderStatus = '주문승인'){
   //     console.log(this.orders.orderStatus)

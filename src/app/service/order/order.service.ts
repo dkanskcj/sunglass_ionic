@@ -22,6 +22,11 @@ export class OrderService {
   }
   
 
+  searchDate(date1: any){
+    return this.httpClient.get(`${this.baseUrl}/search?date=${date1}`);
+  }
+
+
   update(orderNumber: number, body: any){
     return this.httpClient.put(`${this.baseUrl}/${orderNumber}`, body)
   }

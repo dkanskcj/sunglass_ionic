@@ -37,13 +37,13 @@
                             </select>
                             <div
                                 class="flex items-center justify-start border border-b rounded-md shadow px-3 space-x-2">
-                                <input type="date">
+                                <input type="date" [(ngModel)]="date1" (ngModelChange)="inputDate()">
                                 <!-- <input type="text" class="w-full" placeholder="검색어를 입력해주세요." [(ngModel)]="searchText"> -->
                             </div>
-                            <div class="flex justify-center items-center ">~</div>
+                            <div class="flex justify-center items-center cursor-pointer" (click)="testClicked(date1)">~</div>
                             <div
-                                class="flex items-center justify-start border border-b rounded-md shadow px-3 space-x-2">
-                                <input type="date" data-placeholder="2022.12.31">
+                                class="flex items-center justify-start border border-b rounded-md shadow px-3 space-x-2 cursor-pointer">
+                                <input type="date" [(ngModel)]="date2">
                                 <!-- <input type="text" class="w-full" placeholder="검색어를 입력해주세요." [(ngModel)]="searchText"> -->
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                                 <th class="p-4 w-full">주문요청일자</th>
                             </tr>
                         </thead>
-                        <ng-container *ngFor="let order of orders;">
+                        <ng-container *ngFor="let order of orders | filter: date1">
                             <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center w-full" (click)="goDetail($event, order.orderNumber)">
                                 <tr>
                                     <td class=" w-full h-full">
