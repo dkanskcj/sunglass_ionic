@@ -9,6 +9,7 @@ import { OrderPageRoutingModule } from './order-routing.module';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { OrderPage } from './order.page';
+import { OrderAddmissionComponent } from './order-addmission/order-addmission.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { OrderPage } from './order.page';
     ComponentsModule,
     Ng2SearchPipeModule
   ],
-  declarations: [OrderPage]
+  declarations: [OrderPage, OrderAddmissionComponent]
 })
 export class OrderPageModule {}

@@ -1,0 +1,19 @@
+<ion-content>
+  <div class="flex justify-between items-center px-5 py-[1.15625rem] font-semibold">주문 승인
+    <svg (click)="handleClose()" class="cursor-pointer" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M16.6091 17.7614C16.9272 18.0795 17.4431 18.0795 17.7613 17.7614C18.0795 17.4432 18.0795 16.9272 17.7613 16.6091L13.1523 12L17.7614 7.39091C18.0795 7.07272 18.0795 6.55683 17.7614 6.23864C17.4431 5.92045 16.9272 5.92045 16.6091 6.23864L12 10.8477L7.39091 6.23865C7.07272 5.92046 6.55683 5.92046 6.23864 6.23865C5.92045 6.55684 5.92045 7.07274 6.23864 7.39093L10.8477 12L6.23865 16.6091C5.92046 16.9272 5.92046 17.4431 6.23865 17.7614C6.55684 18.0795 7.07273 18.0795 7.39092 17.7614L12 13.1523L16.6091 17.7614Z"
+        fill="rgb(55, 65, 81)" />
+    </svg>
+  </div>
+  <div class="text-[0.875rem]">
+    <div class="p-5 space-y-[1.6rem] flex justify-center items-center">
+      <!-- content -->
+        선택된 상품들의 '주문대기' 상태를 '주문승인' 상태로 일괄 변경하시겠습니까?
+    </div>
+  </div>
+  <div class="flex justify-end p-5 whitespace-nowrap">
+    <app-buttons class="text-green-500 border border-green-400 items-end rounded-md">일괄 승인</app-buttons>
+  </div>
+</ion-content>

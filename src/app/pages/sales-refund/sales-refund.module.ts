@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { SalesRefundPageRoutingModule } from './sales-refund-routing.module';
 
 import { SalesRefundPage } from './sales-refund.page';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SalesRefundPageRoutingModule
+    SalesRefundPageRoutingModule,
+    Ng2SearchPipeModule
   ],
   declarations: [SalesRefundPage]
 })

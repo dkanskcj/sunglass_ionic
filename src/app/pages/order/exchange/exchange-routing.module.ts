@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ExchangePage
+  },
+  {
+    path: ':id',
+    loadChildren: () => import('./exchange-detail/exchange-detail.module').then( m => m.ExchangeDetailPageModule)
   }
 ];
 

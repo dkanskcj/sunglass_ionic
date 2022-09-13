@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
-import { stocks } from 'src/app/service/stock/stock-interface';
 import { StockService } from 'src/app/service/stock/stock.service';
 import { AddStockComponent } from '../add-stock/add-stock.component';
 
@@ -32,7 +31,7 @@ export class StockDetailPage implements OnInit {
   index_list: index_l[] = [
     {
       sort: '입고',
-      stock_variance: '+100',
+      stock_variance: '+100', 
       stock: 200,
       cost: '20,000원',
       total_cost: '2,000,000원',

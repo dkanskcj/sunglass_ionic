@@ -58,6 +58,27 @@
         border-radius: 8px;
     }
 }
+
+@media (min-width: 680px) {
+    .order_refuse {
+        --width: 348px;
+        --height: 361px;
+        font-size: 16px;
+        --border-radius: 4px;
+        border-radius: 8px;
+    }
+}
+
+@media (min-width: 680px){
+    .addmission {
+        --width:348px;
+        --height:246px;
+        font-size: 16px;
+        --border-radius: 4px;
+        border-radius: 8px;
+    }
+}
+
 .ion-accordion-toggle-icon{
     font-size: 14px;
     color: white;

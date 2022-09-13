@@ -8,9 +8,9 @@
               대쉬보드
             </div>
             <img src="assets/icons/right.svg" class="w-[0.875rem] h-[0.875rem]">
-            <div class="text-gray-500 cursor-pointer hover:bg-gray-200" routerLink="../">주문 관리</div>
+            <div class="text-gray-500 cursor-pointer hover:bg-gray-200" routerLink="../">교환 관리</div>
             <img src="assets/icons/right.svg" class="w-[0.875rem] h-[0.875rem]">
-            <div class="text-gray-500">주문 상세</div>
+            <div class="text-gray-500">교환 상세</div>
           </div>
         </div>
         <div class="flex px-6 py-4 space-x-4">
@@ -22,14 +22,14 @@
     <div>
       <div class="items-center px-12 pt-8 text-[0.875rem]">
         <div class="font-bold text-[1.5rem]">
-          주문 상세
+          교환 상세
         </div>
         <!-- 주문정보 Frame -->
         <div class="pt-8">
           <div class="w-full justify-between flex">
             <!-- 주문정보, 주문상태 -->
             <div class="flex space-x-8">
-              <div class="font-semibold text-[1.25rem]">주문 정보</div>
+              <div class="font-semibold text-[1.25rem]">교환 정보</div>
               <div *ngIf="order?.orderStatus === '주문승인'"
                 class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500">
                 {{ order?.orderStatus }}
@@ -65,7 +65,7 @@
                 <div
                   class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500">
                   주문승인</div>
-                <input type="radio" name="status" class="cursor-pointer" (click)="setOpen()" [checked]="order?.orderStatus=== '주문거절'">
+                <input type="radio" name="status" class="cursor-pointer" [checked]="order?.orderStatus=== '주문거절'">
                 <div class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500">
                   주문거절
                 </div>
@@ -82,23 +82,36 @@
                   <div class="flex">
                     <app-tables label="주문번호" [nextLabel]="order?.createdAt | date: 'yyyyMMdd'"
                       [nextLabel2]="order?.orderNumber"></app-tables>
-                    <app-tables label="상품명" [nextLabel]="order?.product"></app-tables>
-                    <app-tables label="상품 수량" [nextLabel]="order?.amount" nextLabel2="개"></app-tables>
-                    <app-tables label="옵션" nextLabel="나무케이스(+110,000, 레드-1개)"></app-tables>
+                    <app-tables label="기존 상품명" [nextLabel]="order?.product"></app-tables>
+                    <app-tables label="기존 상품 수량" [nextLabel]="order?.amount" nextLabel2="개"></app-tables>
+                    <app-tables label="기존 옵션" nextLabel="나무케이스(+110,000, 레드-1개)"></app-tables>
                   </div>
-                  <!-- Order Information line2 -->
+                  <!-- Order Information line_2 -->
                   <div class="flex">
-                    <app-tables label="주문액" [nextLabel]="order?.totalCost | number: '1.0-0'" nextLabel2="원">
-                    </app-tables>
-                    <app-tables label="쿠폰" [nextLabel]="shipping?.coupon">
-                    </app-tables>
-                    <app-tables label="주문자 명" [nextLabel]="order?.orderName"></app-tables>
-                    <app-tables label="주문자 연락처" nextLabel="0" [nextLabel2]="order?.phoneNumber"></app-tables>
+                    <app-tables label="주문번호" [nextLabel]="order?.createdAt | date: 'yyyyMMdd'"
+                      [nextLabel2]="order?.orderNumber"></app-tables>
+                    <app-tables label="교환 상품명" [nextLabel]="order?.product"></app-tables>
+                    <app-tables label="교환 상품 수량" [nextLabel]="order?.amount-1" nextLabel2="개"></app-tables>
+                    <app-tables label="변경 옵션" nextLabel="나무케이스(+110,000, 블랙-1개)"></app-tables>
                   </div>
                   <!-- Order Information line3 -->
                   <div class="flex">
-                    <app-tables label="메모" [nextLabel]="order?.notice"></app-tables>
+                    <app-tables label="주문액" [nextLabel]="order?.totalCost | number: '1.0-0'" nextLabel2="원">
+                    </app-tables>
+                    <app-tables *ngIf="shipping?.coupon" label="쿠폰" [nextLabel]="shipping?.coupon">
+                    </app-tables>
+                    <app-tables *ngIf="!shipping?.coupon" label="쿠폰" nextLabel="-"></app-tables>
+                    <app-tables label="주문자 명" [nextLabel]="order?.orderName"></app-tables>
+                    <app-tables label="주문자 연락처" nextLabel="0" [nextLabel2]="order?.phoneNumber"></app-tables>
+                  </div>
+                  <!-- Order Information line4 -->
+                  <div class="flex">
+                    <app-tables *ngIf="order?.notice" label="메모" [nextLabel]="order?.notice"></app-tables>
+                    <app-tables *ngIf="!order?.notice" label="메모" nextLabel="-"></app-tables>
                     <app-tables label="배송지" [nextLabel]="order?.shipAddress"></app-tables>
+                    <app-tables label="사유" nextLabel="오주문"></app-tables>
+                    <app-tables label="배송비" [nextLabel]="order?.shipcost | number: '1.0-0'" nextLabel2="원(고객부담)">
+                    </app-tables>
                   </div>
                 </div>
               </div>
@@ -121,6 +134,8 @@
                     <app-tables label="입금정보" [nextLabel]="order?.orderName" nextLabel3="기업은행 "
                       [nextLabel4]="order?.purchase">
                     </app-tables>
+                    <app-tables *ngIf="shipping?.coupon" label="결제액" [nextLabel]="order?.totalCost | number: '1.0-0'"
+                      nextLabel2="원"></app-tables>
                     <app-tables label="결제액" [nextLabel]="order?.totalCost+order?.shipcost | number: '1.0-0'"
                       nextLabel2="원"></app-tables>
                     <app-tables label="결제 방법" nextLabel="온라인 " [nextLabel2]="order?.purchaseMethod"></app-tables>
@@ -156,10 +171,12 @@
                 <div>
                   <!-- shipping Information line_1 -->
                   <div class="flex">
-                    <app-tables label="송장번호" [nextLabel]="order?.createdAt | date: 'yyMMddss'" [nextLabel2]="order?.orderNumber">
+                    <app-tables label="송장번호" [nextLabel]="order?.createdAt | date: 'yyMMddss'"
+                      [nextLabel2]="order?.orderNumber">
                     </app-tables>
                     <app-tables label="택배사" [nextLabel]="order?.shipping"></app-tables>
-                    <app-tables label="배송비" [nextLabel]="order?.shipcost | number: '1.0-0'" nextLabel2="원(고객부담)"></app-tables>
+                    <app-tables label="배송비" [nextLabel]="order?.shipcost | number: '1.0-0'" nextLabel2="원(고객부담)">
+                    </app-tables>
                     <app-tables label="배송지" [nextLabel]="order?.shipAddress"></app-tables>
                   </div>
                 </div>
@@ -189,9 +206,6 @@
                 </div>
               </div>
             </div>
-            <form [formGroup]="testForm" action="">
-            <input type="text" formControlName="phoneNumber"  class="border box-border shadow rounded-md w-full px-3 py-2" [value]="order?.phoneNumber">
-          </form>
             <div class="flex justify-between text-[1.125rem] font-semibold pt-8 pb-[1.125rem]">
               <app-buttons class="border box-border shadow rounded-md text-primary border-primary">목록</app-buttons>
               <app-buttons class="border box-border shadow rounded-md text-red-500 border-red-400"

@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 import { filter, findIndex } from 'rxjs/operators';
 import { OrderService } from 'src/app/service/order/order.service';
+import { OrderAddmissionComponent } from './order-addmission/order-addmission.component';
 
 type Index_l = {
   brand: string;
@@ -43,7 +45,8 @@ export class OrderPage implements OnInit {
     private http: HttpClient,
     private router: Router,
     private orderService: OrderService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private modalController: ModalController
   ) { }
 
   testId: number;
@@ -80,6 +83,14 @@ export class OrderPage implements OnInit {
   getAuth() {
     console.log(this.orders.orderStatus)
 
+  }
+
+  async setOpen(){
+    const modal = await this.modalController.create({
+      component: OrderAddmissionComponent,
+      cssClass: 'addmission'
+    })
+    modal.present();
   }
 
   isClicked(id: number) {

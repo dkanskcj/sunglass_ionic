@@ -1,23 +1,179 @@
 <ion-content>
-  <div class="w-full h-16">
-      <div class="w-full flex justify-between border border-b bg-gray-100 h-16">
-          <div class="flex p-6">
-              <div class="flex w-full px-3 py-[0.75rem] text-[0.875rem] h-[1.125rem] items-center justify-center">
-                  <div class=" cursor-pointer hover:bg-gray-200" routerLink="/dashboard">
-                      대쉬보드
-                  </div>
-                  <img src="assets/icons/right.svg" class="w-[0.875rem] h-[0.875rem]">
-                  <div class="text-gray-500">매출반품 관리</div>
-              </div>
-          </div>
-          <div class="flex px-6 py-4 space-x-4">
-              <img src="assets/icons/alter.svg" class="cursor-pointer w-6 h-6">
-              <img src="assets/icons/profile_icon.svg"
-                  class="cursor-pointer w-8 h-8 hover:bg-red-500 focus:ring-black">
-          </div>
-      </div>
-  </div>
-  <div class="text-[1.5rem] items-center p-12">
-      매출반품 관리
-  </div>
+    <ion-content>
+        <!-- <div class="modal-container" id="modal"> -->
+        <div class="bg-gray-50">
+            <div class="w-full h-16">
+                <div class="w-full flex justify-between border border-b bg-gray-100 h-16">
+                    <div class="flex p-6">
+                        <div
+                            class="flex w-full px-3 py-[0.75rem] text-[0.875rem] h-[1.125rem] items-center justify-center">
+                            <div class=" cursor-pointer hover:bg-gray-200" routerLink="/dashboard">
+                                대쉬보드
+                            </div>
+                            <img src="assets/icons/right.svg" class="w-[0.875rem] h-[0.875rem]">
+                            <div class="text-gray-500">매출반품 관리</div>
+                        </div>
+                    </div>
+                    <div class="flex px-6 py-4 space-x-4">
+                        <img src="assets/icons/alter.svg" class="cursor-pointer w-6 h-6">
+                        <img src="assets/icons/profile_icon.svg" class="cursor-pointer w-8 h-8">
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between items-center px-12 pt-12">
+                <div class="text-[1.5rem] font-semibold">매출반품 관리</div>
+                <!-- <button class="w-14 h-[2.3125rem] rounded-0.375rem text-white bg-primary" (click)="setOpen()">등록</button> -->
+
+            </div>
+            <div class="flex gap-2 my-8 mx-12 shadow bg-white">
+                <div>
+                    <div class="flex p-5 space-x-4 w-full text-[0.875rem]">
+                        <div class="space-y-2">
+                            <select id="select-menu" [(ngModel)]="selectedOption" class="bx--text-input" required
+                                name="actionSelection"
+                                class="w-[7.5rem] border box-border shadow flex justify-center rounded-md items-center px-3 py-2 text-[0.875rem] cursor-pointer">
+                                <option *ngFor="let action of actions" [value]="action.id">{{action.name}}</option>
+                            </select>
+                            <div>
+                                <div *ngIf="selectedOption==1">
+                                    <!-- <div>1 selected</div> -->
+                                </div>
+                                <div *ngIf="selectedOption==2">
+                                    <!-- <div>2 selected</div> -->
+                                </div>
+                                <div *ngIf="selectedOption==3">
+                                    <!-- <div>3 selected</div> -->
+                                </div>
+                                <div *ngIf="selectedOption==4">
+                                    <!-- <div>4 selected</div> -->
+                                </div>
+                                <div *ngIf="selectedOption==5">
+                                    <!-- <div>5 selected</div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="w-full h-[2.3125rem] flex items-center justify-start border box-border shadow rounded-md px-3 space-x-2">
+                            <img src="assets/icons/search_icon.svg" class="">
+                            <input type="text" class="w-full" placeholder="검색어를 입력해주세요." [(ngModel)]="searchText">
+                        </div>
+                    </div>
+                    <div class="px-3 py-[0.09375rem] text-[0.875rem]">
+                        <table class="w-full text-centeritems-center text-left table-fixed">
+                            <thead>
+                                <tr>
+                                    <th class="p-[1rem] text-left h-[3.0625rem] flex justify-start items-center">상품명
+                                    </th>
+                                    <th class="p-[1rem] h-[3.0625rem]">반품정보</th>
+                                    <th class="p-[1rem] h-[3.0625rem]">택배사</th>
+                                    <th class="p-[1rem] h-[3.0625rem]">환불액</th>
+                                    <th class="p-[1rem] h-[3.0625rem]">반품배송비</th>
+                                    <th class="p-[1rem] h-[3.0625rem]">반품상태</th>
+                                    <th class="p-[1rem] h-[3.0625rem]">일자</th>
+                                </tr>
+                            </thead>
+                            <ng-container *ngFor="let refund of refundList | filter: searchText; index as i">
+                                <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center">
+                                    <tr routerLink="">
+                                        <td class="px-4 h-[4.125rem]">{{ refund.product }}</td>
+                                        <td class="px-4 h-[4.125rem]">{{ refund.refundName }}</td>
+                                        <td class="px-4 h-[4.125rem]">{{ refund.shippingCompany }}</td>
+                                        <td class="px-4 h-[4.125rem]">{{ refund.refundCost | number: '1.0-0' }}원</td>
+                                        <td class="px-4 h-[4.125rem]">{{ refund.shipCost | number: '1.0-0'}}원</td>
+                                        <td class="px-4 h-[4.125rem]">
+                                            <div *ngIf="refund.refundStatus === '반품완료'"
+                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500">
+                                            {{ refund.refundStatus }}
+                                        </div>
+                                        <div *ngIf="refund.refundStatus === '반품중'"
+                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500">
+                                            {{ refund.refundStatus }}
+                                        </div>
+                                        <div *ngIf="refund.refundStatus === '반품대기중'"
+                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500">
+                                            {{ refund.refundStatus }}
+                                        </div>
+                                        <div *ngIf="refund.refundStatus === '반품취소'"
+                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500">
+                                            {{ refund.refundStatus }}
+                                        </div>
+                                        </td>
+                                        <td class="p-4 h-[4.125rem]">
+                                            <div>
+                                                반품신청일자 : {{ refund.refundApplication }}<br>
+                                            </div>
+                                            <div class="flex">
+                                                반품완료일자 : {{ refund?.refundComplete }} <div *ngIf="!refund?.refundComplete"> -</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </ng-container>
+                            <!-- <ng-container *ngFor="let stock of stocks | filter:searchText; index as i">
+                                <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center">
+                                    <tr [routerLink]="stock.id">
+                                        <td class="px-4 h-[4.125rem]">{{ stock.company }}</td>
+                                        <td class="px-4 h-[4.125rem]">{{ stock.products }}<br>
+                                            <div *ngIf="stock.stock_option">(옵션){{ stock.stock_option }}</div>
+                                        </td>
+                                        <td class="px-4 h-[4.125rem]">{{ stock.stock }}</td>
+                                        <td class="px-4 h-[4.125rem]">{{ stock.createdAt | date: 'yyyy-MM-dd' }}</td>
+                                        <td class="px-4 h-[4.125rem]">{{ stock.updatedAt | date: 'yyyy-MM-dd' }}</td>
+                                    </tr>
+                                </tbody>
+                            </ng-container> -->
+                        </table>
+                    </div>
+                    <div class="flex justify-between px-5">
+                        <div class="pt-[1.625rem] pb-[1.875rem] flex justify-center items-center">
+                            <div
+                                class="ml-2 flex w-[3.9375rem] h-[2.375rem] border border-gray-700 rounded-lg items-center justify-center shadow-sm">
+                                <div class="text-[0.875rem] pr-1">
+                                    <select name="test" id="" class="w-full px-2 justify-center">
+                                        <option value="10">10</option>
+                                        <option value="20">20</option>
+                                        <option value="30">30</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="px-2 text-[0.875rem]">
+                                개씩 보기
+                            </div>
+                        </div>
+
+                        <div class="grid grid-flow-col justify-center items-center pr-5 text-center text-gray-700">
+                            <img src="assets/icons/first_page.svg"
+                                class="w-[2.25rem] h-[2.25rem] rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+                            <img src="assets/icons/left_page.svg"
+                                class="w-[2.25rem] h-[2.25rem] rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+                            <div
+                                class="rounded-lg w-[2.25rem] h-[2.25rem] flex justify-center items-center bg-primary text-white active:bg-primary active:text-white cursor-pointer">
+                                1</div>
+                            <div
+                                class="w-[2.25rem] h-[2.25rem] rounded-lg flex justify-center items-center bg-gray-100 hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+                                2</div>
+                            <div
+                                class="w-[2.25rem] h-[2.25rem] rounded-lg flex justify-center items-center hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+                                3</div>
+                            <div
+                                class="w-[2.25rem] h-[2.25rem] rounded-lg flex justify-center items-center hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+                                4</div>
+                            <img src="assets/icons/more_dot.svg"
+                                class="w-[2.25rem] h-[2.25rem] rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+
+                            <img src="assets/icons/right_page.svg"
+                                class="w-[2.25rem] h-[2.25rem] rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+                            <img src="assets/icons/last_page.svg"
+                                class="w-[2.25rem] h-[2.25rem] rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <ion-modal [isOpen]="isModalOpen" class="mymodal w-full h-full">
+            <ng-template>
+                
+            </ng-template>
+        </ion-modal> -->
+    </ion-content>
 </ion-content>

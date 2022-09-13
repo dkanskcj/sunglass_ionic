@@ -8,6 +8,7 @@ import { OrderDetailPageRoutingModule } from './order-detail-routing.module';
 
 import { OrderDetailPage } from './order-detail.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { RefuseComponent } from './refuse/refuse.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { ComponentsModule } from 'src/app/components/components.module';
     ComponentsModule,
     ReactiveFormsModule
   ],
-  declarations: [OrderDetailPage]
+  declarations: [OrderDetailPage, RefuseComponent]
 })
 export class OrderDetailPageModule {}

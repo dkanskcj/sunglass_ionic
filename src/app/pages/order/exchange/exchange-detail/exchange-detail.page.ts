@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { CompanyService } from 'src/app/service/company/company.service';
 import { Order } from 'src/app/service/order/order-interface';
 import { OrderService } from 'src/app/service/order/order.service';
 import { ShippingService } from 'src/app/service/shipping/shipping.service';
-import { RefuseComponent } from './refuse/refuse.component';
+
+
+
 
 @Component({
-  selector: 'app-order-detail',
-  templateUrl: './order-detail.page.html',
-  styleUrls: ['./order-detail.page.scss'],
+  selector: 'app-exchange-detail',
+  templateUrl: './exchange-detail.page.html',
+  styleUrls: ['./exchange-detail.page.scss'],
 })
-export class OrderDetailPage implements OnInit {
+export class ExchangeDetailPage implements OnInit {
 
   order: Order
   orderId: number
@@ -104,19 +106,4 @@ export class OrderDetailPage implements OnInit {
       }
     })
   }
-
-  test: boolean = false;
-  checked(id: number) {
-    if (this.order.orderStatus = '주문승인') {
-      return !this.test
-    }
-  }
-  async setOpen() {
-    const modal = await this.modalController.create({
-      component: RefuseComponent,
-      cssClass: 'order_refuse'
-    })
-    modal.present();
-  }
-
 }
