@@ -54,13 +54,13 @@
                             </thead>
                             <ng-container *ngFor="let company of companys | filter:searchText">
                                 <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center cursor-pointer">
-                                    <tr [routerLink]="company.id">
-                                        <td class="px-4 h-[4.125rem]">{{ company.name }}</td>
+                                    <tr>
+                                        <td class="px-4 h-[4.125rem]" [routerLink]="company.id">{{ company.name }}</td>
                                         <td class="px-4 h-[4.125rem]">{{ company.owner }}</td>
                                         <td class="px-4 h-[4.125rem]">{{ company.companyNumber }}</td>
                                         <td class="px-4 h-[4.125rem]">{{ company.address }}</td>
                                         <td class="px-4 h-[4.125rem]">{{ company.tel }}</td>
-                                        <td class="px-4 h-[4.125rem]">{{ company.createdAt|date }}</td>
+                                        <td class="px-4 h-[4.125rem]" (click)="deleteConnections(company.id)">{{ company.createdAt|date }}</td>
                                     </tr>
                                 </tbody>
                             </ng-container>

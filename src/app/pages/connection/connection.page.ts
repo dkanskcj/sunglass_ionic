@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { filter, first } from 'rxjs/operators';
 import { CompanyService } from 'src/app/service/company/company.service';
 type Index_l = { 
   brand: string;
@@ -104,6 +104,7 @@ export class ConnectionPage implements OnInit {
       }
     })
     this.getConnections();
+    // this.deleteConnections();
   }
 
   getConnections() {
@@ -111,5 +112,14 @@ export class ConnectionPage implements OnInit {
       this.companys=result;
       console.log(this.companys);
     });
+  }
+
+  deleteConnections(id: number){
+    const company = this.companys.find(x => x.id === id);
+    console.log(company);
+    if(!company) { return; }
+    this.companyService.delete(id)
+      .pipe(first())
+      .subscribe(() => this.companys = this.companys.filter(x => x.id !== id))
   }
 }

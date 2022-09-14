@@ -29,4 +29,9 @@ export class CompanyService {
     return this.httpClient.post(`${this.baseUrl}`, body);
   }
 
+  delete(id: number) {
+    return this.httpClient.delete(`${this.baseUrl}/${id}`)
+  }
+
+
 }

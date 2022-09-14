@@ -6,6 +6,8 @@ import { ModalController } from '@ionic/angular';
 import { filter } from 'rxjs/operators';
 import { StockService } from 'src/app/service/stock/stock.service';
 import { RegisterStockComponent } from '../stock/register-stock/register-stock.component';
+import { CustomerBurdenComponent } from './customer-burden/customer-burden.component';
+import { ShippingCompanyBurdenComponent } from './shipping-company-burden/shipping-company-burden.component';
 type Index_l = {
   brand: string;
   name: string;
@@ -260,6 +262,26 @@ export class SalesRefundPage implements OnInit {
   getAuth() {
     console.log(this.orders.orderStatus)
 
+  }
+  // valueOfrefundCost(){
+  //   if(this.refundList){
+  //     this.refundList.
+  //   }
+  // }
+
+  async customerOpen(){
+    const modal = await this.modalController.create({
+      component: CustomerBurdenComponent,
+      cssClass: ''
+    })
+    modal.present();
+  }
+  async companyOpen(){
+    const modal = await this.modalController.create({
+      component: ShippingCompanyBurdenComponent,
+      cssClass: ''
+    })
+    modal.present();
   }
 
   // async setOpen(){

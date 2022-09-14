@@ -72,38 +72,40 @@
                                     <th class="p-[1rem] h-[3.0625rem]">일자</th>
                                 </tr>
                             </thead>
-                            <ng-container *ngFor="let refund of refundList | filter: searchText; index as i">
+                            <ng-container *ngFor="let refund of refundList | filter: searchText; let i = index">
                                 <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center">
-                                    <tr routerLink="">
+                                    <tr>
                                         <td class="px-4 h-[4.125rem]">{{ refund.product }}</td>
                                         <td class="px-4 h-[4.125rem]">{{ refund.refundName }}</td>
                                         <td class="px-4 h-[4.125rem]">{{ refund.shippingCompany }}</td>
                                         <td class="px-4 h-[4.125rem]">{{ refund.refundCost | number: '1.0-0' }}원</td>
-                                        <td class="px-4 h-[4.125rem]">{{ refund.shipCost | number: '1.0-0'}}원</td>
+                                        <td class="px-4 h-[4.125rem]" *ngIf="refund.shipCost === 0" (click)="customerOpen()">{{ refund.shipCost | number: '1.0-0'}}원</td>
+                                        <td class="px-4 h-[4.125rem]" *ngIf="refund.shipCost !== 0" (click)="companyOpen()">{{ refund.shipCost | number: '1.0-0'}}원</td>
                                         <td class="px-4 h-[4.125rem]">
                                             <div *ngIf="refund.refundStatus === '반품완료'"
-                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500">
-                                            {{ refund.refundStatus }}
-                                        </div>
-                                        <div *ngIf="refund.refundStatus === '반품중'"
-                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500">
-                                            {{ refund.refundStatus }}
-                                        </div>
-                                        <div *ngIf="refund.refundStatus === '반품대기중'"
-                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500">
-                                            {{ refund.refundStatus }}
-                                        </div>
-                                        <div *ngIf="refund.refundStatus === '반품취소'"
-                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500">
-                                            {{ refund.refundStatus }}
-                                        </div>
+                                                class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500">
+                                                {{ refund.refundStatus }}
+                                            </div>
+                                            <div *ngIf="refund.refundStatus === '반품중'"
+                                                class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500">
+                                                {{ refund.refundStatus }}
+                                            </div>
+                                            <div *ngIf="refund.refundStatus === '반품대기중'"
+                                                class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500">
+                                                {{ refund.refundStatus }}
+                                            </div>
+                                            <div *ngIf="refund.refundStatus === '반품취소'"
+                                                class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500">
+                                                {{ refund.refundStatus }}
+                                            </div>
                                         </td>
                                         <td class="p-4 h-[4.125rem]">
                                             <div>
                                                 반품신청일자 : {{ refund.refundApplication }}<br>
                                             </div>
                                             <div class="flex">
-                                                반품완료일자 : {{ refund?.refundComplete }} <div *ngIf="!refund?.refundComplete"> -</div>
+                                                반품완료일자 : {{ refund?.refundComplete }} <div
+                                                    *ngIf="!refund?.refundComplete"> -</div>
                                             </div>
                                         </td>
                                     </tr>

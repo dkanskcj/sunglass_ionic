@@ -8,6 +8,7 @@ import { SalesRefundPageRoutingModule } from './sales-refund-routing.module';
 
 import { SalesRefundPage } from './sales-refund.page';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { SalesRefundDetailComponent } from './sales-refund-detail/sales-refund-detail.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     SalesRefundPageRoutingModule,
     Ng2SearchPipeModule
   ],
-  declarations: [SalesRefundPage]
+  declarations: [SalesRefundPage, SalesRefundDetailComponent]
 })
 export class SalesRefundPageModule {}

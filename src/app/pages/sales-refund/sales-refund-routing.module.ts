@@ -7,6 +7,14 @@ const routes: Routes = [
   {
     path: '',
     component: SalesRefundPage
+  },
+  {
+    path: ':refundName',
+    loadChildren: () => import('./sales-refund-detail/sales-refund-detail.component').then(m=>m.SalesRefundDetailComponent)
+  },
+  {
+    path: ':refundName',
+    loadChildren: () => import('./sales-refund-detailssss/sales-refund-detailssss.module').then( m => m.SalesRefundDetailssssPageModule)
   }
 ];
 

@@ -57,8 +57,8 @@
             </div>
             <!-- 추가 이미지 -->
             <div class="flex px-5">
-              <div class="w-full h-31 rounded-lg outline-dashed outline-gray-200 p-4 flex space-x-[0.625rem]">
-                <div class="w-23 h-23 rounded-lg outline-dotted outline-gray-200 p-4 flex justify-start cursor-pointer">
+              <div class="w-full h-[9.875rem] rounded-lg outline-dashed outline-gray-200 p-4 flex space-x-[0.625rem]">
+                <div class="w-[7.875rem] h-[7.875rem] rounded-lg outline-dotted outline-gray-200 p-4 flex justify-start cursor-pointer">
                   <label for="custom" class="cursor-pointer">
                     <img src="assets/icons/add_img.svg" class="p-8">
                     <input type="file" for="dropzone-file" multiple (change)="onSelectFileImage($event)"
@@ -67,7 +67,7 @@
                 </div>
                 <ng-container *ngFor="let u of urls; let index = index">
                   <div class="relative">
-                    <img [src]="u" class="w-[11.625rem] h-[11.625rem] rounded-lg flex justify-start">
+                    <img [src]="u" class="w-[7.875rem] h-[7.875rem] rounded-lg flex justify-start">
                     <img src="assets/icons/image_cancel.svg" class="my_cancel cursor-pointer"
                       (click)="removeImage(index)">
                   </div>
@@ -127,7 +127,8 @@
             <div class="space-y-2">
               <div class="font-semibold">상품명</div>
               <div class="flex space-x-2">
-                <input formControlName="name" type="text" class="rounded-md border box-border shadow text-[0.875rem] w-[22.5rem] p-[0.625rem]">
+                <input formControlName="name" type="text"
+                  class="rounded-md border box-border shadow text-[0.875rem] w-[22.5rem] p-[0.625rem]">
                 <div
                   class="border box-border shadow rounded-lg px-3 py-2 text-[0.875rem] bg-primary text-white cursor-pointer">
                   중복검사</div>
@@ -184,8 +185,8 @@
                     <div>
                       <div class="font-semibold">할인 금액/율</div>
                       <div class="flex">
-                        <input formControlName="discount" class="px-3 py-2 w-[11.25rem] border box-border shadow rounded-l-lg"
-                          >
+                        <input formControlName="discount"
+                          class="px-3 py-2 w-[11.25rem] border box-border shadow rounded-l-lg">
                         <!-- </div> -->
                         <select name="가격"
                           class="ml-[-0.0625rem] px-3 py-2 border box-border shadow rounded-r-lg w-[3.8125rem] cursor-pointer">
@@ -274,7 +275,7 @@
               <div class="font-semibold">재고수량</div>
               <div class="flex justify-between px-3 py-2  w-[4.125rem] rounded-md border box-border shadow">
                 <input formControlName="amount" class="w-[4.125rem] text-[0.875rem] flex justify-center items-center">
-                  <!-- <div contenteditable="true">
+                <!-- <div contenteditable="true">
                   </div> -->
                 <!-- </div> -->
                 <div class="flex justify-center items-center text-[0.875rem]">개</div>
@@ -690,7 +691,8 @@
                 <!-- model name -->
                 <div class="space-y-2">
                   <div class="font-semibold">모델명</div>
-                  <input formControlName="modelName" type="text" class="w-[22.5rem] rounded-md border box-border shadow px-3 py-2">
+                  <input formControlName="modelName" type="text"
+                    class="w-[22.5rem] rounded-md border box-border shadow px-3 py-2">
                 </div>
                 <!-- input brand -->
                 <div class="space-y-2">
@@ -708,7 +710,8 @@
                     </div>
                   </div>
                   <div class="flex space-x-2" *ngIf="!isBrandInput">
-                    <input formControlName="brandName" type="text" class="w-[15rem] rounded-md border box-border shadow px-3 py-2">
+                    <input formControlName="brandName" type="text"
+                      class="w-[15rem] rounded-md border box-border shadow px-3 py-2">
                     <input type="checkbox" class="cursor-pointer">
                     <div class="flex justify-center items-center">자체 브랜드</div>
                   </div>
@@ -721,7 +724,8 @@
                 <!-- origin -->
                 <div class="space-y-2">
                   <div class="font-semibold">원산지</div>
-                  <input formControlName="origin" type="text" class="w-[22.5rem] rounded-md border box-border shadow px-3 py-2">
+                  <input formControlName="origin" type="text"
+                    class="w-[22.5rem] rounded-md border box-border shadow px-3 py-2">
                 </div>
                 <!-- KC certification -->
                 <div class="space-y-2">
@@ -945,7 +949,8 @@
               <!-- Refund/Exchange Shipping Company -->
               <div class="space-y-2">
                 <div class="font-semibold">반품/교환 택배사</div>
-                <input formControlName="courier" type="text" class="w-[11.25rem] rounded-md border box-border shadow px-3 py-2">
+                <input formControlName="courier" type="text"
+                  class="w-[11.25rem] rounded-md border box-border shadow px-3 py-2">
               </div>
               <!-- Refund Shipping Cost(One-Way) -->
               <div class="space-y-2">
@@ -964,9 +969,11 @@
                   <!-- </div> -->
                   <div class="">원</div>
                 </div>
-              </div>  
+              </div>
               <!-- Refund/Exchange Address -->
-              <form [formGroup]="frm" class="space-y-2">
+              <!-- <form [formGroup]="frm" class="space-y-2"> -->
+              <div>
+
                 <div class="font-semibold">반품/교환 주소지</div>
                 <div class="flex space-x-2">
                   <!-- Daum Search Address Popup() -->
@@ -974,38 +981,42 @@
                     class="flex w-[22.5rem]  justify-between rounded-md border box-border shadow py-[0.625rem] px-3 text-[0.875rem]">
                     <input name="address" formControlName="address" (click)="openDaumPopup()" class="w-[22.5rem]">
                   </div>
-                  <div #daum_popup (click)="closeDaumPopup()" 
+                  <div #daum_popup (click)="closeDaumPopup()"
                     style="display:none;position:fixed;z-index:1;-webkit-overflow-scrolling:touch;">
-                    <svg class="cursor-pointer absolute test_post box-border border rounded-md" width="24" height="24" viewBox="0 0 24 24"
-                      fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="cursor-pointer absolute test_post box-border border rounded-md" width="24" height="24"
+                      viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M16.6091 17.7614C16.9272 18.0795 17.4431 18.0795 17.7613 17.7614C18.0795 17.4432 18.0795 16.9272 17.7613 16.6091L13.1523 12L17.7614 7.39091C18.0795 7.07272 18.0795 6.55683 17.7614 6.23864C17.4431 5.92045 16.9272 5.92045 16.6091 6.23864L12 10.8477L7.39091 6.23865C7.07272 5.92046 6.55683 5.92046 6.23864 6.23865C5.92045 6.55684 5.92045 7.07274 6.23864 7.39093L10.8477 12L6.23865 16.6091C5.92046 16.9272 5.92046 17.4431 6.23865 17.7614C6.55684 18.0795 7.07273 18.0795 7.39092 17.7614L12 13.1523L16.6091 17.7614Z"
-                        fill="black"/>
+                        fill="black" />
                     </svg>
                   </div>
-                  <app-buttons class="text-primary border border-primary rounded-md" (click)="openDaumPopup()">주소검색</app-buttons>
+                  <app-buttons class="text-primary border border-primary rounded-md" (click)="openDaumPopup()">주소검색
+                  </app-buttons>
                 </div>
                 <div
                   class="w-[22.5rem] flex justify-between rounded-md border box-border shadow py-[0.625rem] px-3 text-[0.875rem]">
-                  <input formControlName="addr2" name="addr2" class="w-[22.5rem] ">
+                  <input formControlName="addressDetail" name="addressDetail" class="w-[22.5rem] ">
                 </div>
-              </form>
+              </div>
+              <!-- </form> -->
               <!-- Refund, Exchange rep contact -->
               <div class="space-y-2">
                 <div class="font-semibold">반품 교환지 대표 연락처</div>
-                <input formControlName="tel" type="text" class="w-[7.5rem] rounded-md border box-border shadow px-3 py-2">
+                <input formControlName="tel" type="text"
+                  class="w-[7.5rem] rounded-md border box-border shadow px-3 py-2">
               </div>
               <!-- Impossible Reason of Refund/Exchange -->
               <div class="space-y-2">
                 <div class="font-semibold">반품/교환 불가능 사유</div>
-                <input formControlName="cancelReason" class="w-full rounded-md border box-border shadow px-3 py-2" type="text">
-                  1. 구매일로 부터 7일이 지난 경우<br>
-                  2. 고객의 부주의로 제품이 파손된 경우<br>
-                  3. 택을 제거한 경우<br>
-                  4. 제품을 개봉하여 제품을 훼손한 경우<br>
-                  &nbsp;단, 내용 확인을 위해 포장을 개봉한 경우에는 반품 가능합니다.<br>
-                  5. 부소품이 반송되지 않은 경우ex)주문확인서, 단추, 상품의 부속품, 택 라벨, 박스<br>
-                  6. 기타, '전자상거래 등에서의 소비자 보호에 고나한 법률'이 정하는 청약철회 제한사유에 해당하는 경우
+                <input formControlName="cancelReason" class="w-full rounded-md border box-border shadow px-3 py-2"
+                  type="text">
+                1. 구매일로 부터 7일이 지난 경우<br>
+                2. 고객의 부주의로 제품이 파손된 경우<br>
+                3. 택을 제거한 경우<br>
+                4. 제품을 개봉하여 제품을 훼손한 경우<br>
+                &nbsp;단, 내용 확인을 위해 포장을 개봉한 경우에는 반품 가능합니다.<br>
+                5. 부소품이 반송되지 않은 경우ex)주문확인서, 단추, 상품의 부속품, 택 라벨, 박스<br>
+                6. 기타, '전자상거래 등에서의 소비자 보호에 고나한 법률'이 정하는 청약철회 제한사유에 해당하는 경우
                 <!-- </div> -->
               </div>
             </div>
@@ -1018,8 +1029,9 @@
               </div>
             </div>
             <div class="space-y-2">
-              <input formControlName="remark" class="rounded-md border box-border shadow px-3 py-2" value="AS 및 특이사항" type="text">
-                <!-- AS 및 특이사항 -->
+              <input formControlName="remark" class="rounded-md border box-border shadow px-3 py-2" value="AS 및 특이사항"
+                type="text">
+              <!-- AS 및 특이사항 -->
               <!-- </div> -->
             </div>
           </div>
