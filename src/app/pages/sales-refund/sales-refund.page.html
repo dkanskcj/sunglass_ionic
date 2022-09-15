@@ -72,7 +72,7 @@
                                     <th class="p-[1rem] h-[3.0625rem]">일자</th>
                                 </tr>
                             </thead>
-                            <ng-container *ngFor="let refund of refundList | filter: searchText; let i = index">
+                            <ng-container *ngFor="let refund of refundList | filter: searchText; index as i">
                                 <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center">
                                     <tr (click)="handleModalOpen(i)">
                                         <td class="px-4 h-[4.125rem]">{{ refund.product }}</td>
