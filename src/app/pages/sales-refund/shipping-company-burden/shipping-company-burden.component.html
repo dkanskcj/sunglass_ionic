@@ -48,7 +48,10 @@
                 <div *ngIf="input.name.length>=4">
                   {{ input.name }}
                 </div>
-              <input class="px-3 py-2 rounded-md border box-border shadow cursor-pointer" type="text" [value]="input.value">
+              <input *ngIf="input.name !== '반품비'" class="px-3 py-2 rounded-md border box-border shadow cursor-pointer" type="text" [value]="input.value">
+              <div *ngIf="input.name === '반품비'">
+                : {{ input.value }}
+              </div>
             </div>
             <div *ngIf="input?.reason" class="flex justify-center items-center">
               <div class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500">
