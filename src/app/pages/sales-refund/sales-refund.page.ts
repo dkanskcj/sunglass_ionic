@@ -7,6 +7,9 @@ import { filter } from 'rxjs/operators';
 import { StockService } from 'src/app/service/stock/stock.service';
 import { RegisterStockComponent } from '../stock/register-stock/register-stock.component';
 import { CustomerBurdenComponent } from './customer-burden/customer-burden.component';
+import { ReturnCompleteComponent } from './return-complete/return-complete.component';
+import { ReturnCompanyBurdenComponent } from './return/return-company-burden/return-company-burden.component';
+import { ReturnCustomerBurdenComponent } from './return/return-customer-burden/return-customer-burden.component';
 import { ShippingCompanyBurdenComponent } from './shipping-company-burden/shipping-company-burden.component';
 type Index_l = {
   brand: string;
@@ -36,105 +39,108 @@ export class SalesRefundPage implements OnInit {
   searchText: any;
   orders: any;
   stocks = [];
+
+  refunds: any;
+
   refundList: indexList[] = [
     {
       product: '티쓰-001 블랙 썬글라스',
-      refundName:'주문자A',
-      shippingCompany:'택배사A',
-      refundCost:20000,
-      shipCost:3000,
-      refundStatus:'반품완료',
-      refundApplication:'2022-07-14',
-      refundComplete:'2022-07-18'
+      refundName: '주문자A',
+      shippingCompany: '택배사A',
+      refundCost: 20000,
+      shipCost: 3000,
+      refundStatus: '반품완료',
+      refundApplication: '2022-07-14',
+      refundComplete: '2022-07-18'
     },
     {
       product: '티쓰-001 블랙 썬글라스',
-      refundName:'주문자B',
-      shippingCompany:'택배사B',
-      refundCost:20000,
-      shipCost:0,
-      refundStatus:'반품대기중',
-      refundApplication:'2022-07-14',
+      refundName: '주문자B',
+      shippingCompany: '택배사B',
+      refundCost: 20000,
+      shipCost: 0,
+      refundStatus: '반품대기중',
+      refundApplication: '2022-07-14',
       // refundComplete:'2022-07-18'
     },
     {
       product: '티쓰-001 블랙 썬글라스',
-      refundName:'주문자C',
-      shippingCompany:'택배사C',
-      refundCost:20000,
-      shipCost:3000,
-      refundStatus:'반품완료',
-      refundApplication:'2022-07-14',
-      refundComplete:'2022-07-18'
+      refundName: '주문자C',
+      shippingCompany: '택배사C',
+      refundCost: 20000,
+      shipCost: 3000,
+      refundStatus: '반품완료',
+      refundApplication: '2022-07-14',
+      refundComplete: '2022-07-18'
     },
     {
       product: '티쓰-001 블랙 썬글라스',
-      refundName:'주문자A',
-      shippingCompany:'택배사A',
-      refundCost:20000,
-      shipCost:3000,
-      refundStatus:'반품취소',
-      refundApplication:'2022-07-14',
+      refundName: '주문자A',
+      shippingCompany: '택배사A',
+      refundCost: 20000,
+      shipCost: 3000,
+      refundStatus: '반품취소',
+      refundApplication: '2022-07-14',
       // refundComplete:'2022-07-18'
     },
     {
       product: '티쓰-001 블랙 썬글라스',
-      refundName:'주문자A',
-      shippingCompany:'택배사A',
-      refundCost:20000,
-      shipCost:0,
-      refundStatus:'반품중',
-      refundApplication:'2022-07-14',
+      refundName: '주문자A',
+      shippingCompany: '택배사A',
+      refundCost: 20000,
+      shipCost: 0,
+      refundStatus: '반품중',
+      refundApplication: '2022-07-14',
       // refundComplete:'2022-07-18'
     },
     {
       product: '티쓰-001 블랙 썬글라스',
-      refundName:'주문자A',
-      shippingCompany:'택배사A',
-      refundCost:20000,
-      shipCost:3000,
-      refundStatus:'반품중',
-      refundApplication:'2022-07-14',
+      refundName: '주문자A',
+      shippingCompany: '택배사A',
+      refundCost: 20000,
+      shipCost: 3000,
+      refundStatus: '반품중',
+      refundApplication: '2022-07-14',
       // refundComplete:'2022-07-18'
     },
     {
       product: '티쓰-001 블랙 썬글라스',
-      refundName:'주문자A',
-      shippingCompany:'택배사A',
-      refundCost:20000,
-      shipCost:0,
-      refundStatus:'반품중',
-      refundApplication:'2022-07-14',
+      refundName: '주문자A',
+      shippingCompany: '택배사A',
+      refundCost: 20000,
+      shipCost: 0,
+      refundStatus: '반품중',
+      refundApplication: '2022-07-14',
       // refundComplete:'2022-07-18'
     },
     {
       product: '티쓰-001 블랙 썬글라스',
-      refundName:'주문자A',
-      shippingCompany:'택배사A',
-      refundCost:20000,
-      shipCost:0,
-      refundStatus:'반품중',
-      refundApplication:'2022-07-14',
+      refundName: '주문자A',
+      shippingCompany: '택배사A',
+      refundCost: 20000,
+      shipCost: 0,
+      refundStatus: '반품중',
+      refundApplication: '2022-07-14',
       // refundComplete:'2022-07-18'
     },
     {
       product: '티쓰-001 블랙 썬글라스',
-      refundName:'주문자A',
-      shippingCompany:'택배사A',
-      refundCost:20000,
-      shipCost:3000,
-      refundStatus:'반품중',
-      refundApplication:'2022-07-14',
+      refundName: '주문자A',
+      shippingCompany: '택배사A',
+      refundCost: 20000,
+      shipCost: 3000,
+      refundStatus: '반품중',
+      refundApplication: '2022-07-14',
       // refundComplete:'2022-07-18'
     },
     {
       product: '티쓰-001 블랙 썬글라스',
-      refundName:'주문자A',
-      shippingCompany:'택배사A',
-      refundCost:20000,
-      shipCost:3000,
-      refundStatus:'반품중',
-      refundApplication:'2022-07-14',
+      refundName: '주문자A',
+      shippingCompany: '택배사A',
+      refundCost: 20000,
+      shipCost: 3000,
+      refundStatus: '반품중',
+      refundApplication: '2022-07-14',
       // refundComplete:'2022-07-18'
     },
   ]
@@ -263,27 +269,57 @@ export class SalesRefundPage implements OnInit {
     console.log(this.orders.orderStatus)
 
   }
+
+
   // valueOfrefundCost(){
   //   if(this.refundList){
   //     this.refundList.
   //   }
   // }
-
-  async customerOpen(){
+  async handleModalTest(index: number) {
+    const component = this.refundList[index].shipCost === 0 ? ShippingCompanyBurdenComponent : CustomerBurdenComponent;
+    const cssClass = this.refundList[index].shipCost === 0 ? 'companyRefund' : 'customerRefund';
     const modal = await this.modalController.create({
-      component: CustomerBurdenComponent,
-      cssClass: ''
+      component,
+      cssClass
     })
-    modal.present();
-  }
-  async companyOpen(){
-    const modal = await this.modalController.create({
-      component: ShippingCompanyBurdenComponent,
-      cssClass: ''
-    })
+    this.refunds = this.refundList[index];
     modal.present();
   }
 
+  async handleModalOpen(index: number) {
+    if (this.refundList[index].refundStatus === '반품중') {
+      const component = this.refundList[index].shipCost === 0 ? ReturnCompanyBurdenComponent : ReturnCustomerBurdenComponent;
+      const cssClass = this.refundList[index].shipCost === 0 ? 'returnCompany' : 'returnCustomer';
+      const modal = await this.modalController.create({
+        component,
+        cssClass
+      })
+      this.refunds = this.refundList[index];
+      console.log(this.refunds);
+      modal.present();
+    }
+    if (this.refundList[index].refundStatus === '반품대기중') {
+      const component = this.refundList[index].shipCost === 0 ? ShippingCompanyBurdenComponent : CustomerBurdenComponent;
+      const cssClass = this.refundList[index].shipCost === 0 ? 'companyRefund' : 'customerRefund';
+      const modal = await this.modalController.create({
+        component,
+        cssClass
+      })
+      this.refunds = this.refundList[index];
+      console.log(this.refunds);
+      modal.present();
+    }
+    if(this.refundList[index].refundStatus === '반품완료') {
+      const modal = await this.modalController.create({
+        component: ReturnCompleteComponent,
+        cssClass: '',
+      })
+      this.refunds = this.refundList[index];
+      console.log(this.refunds);
+      modal.present();
+    }
+  }
   // async setOpen(){
   //   const modal = await this.modalController.create({
   //     component: OrderAddmissionComponent,

@@ -1,0 +1,7 @@
+ion-modal {
+    --backdrop-opacity:0.6;
+}
+
+ion-modal + ion-modal {
+    --backdrop-opacity:0.6 !important;
+}

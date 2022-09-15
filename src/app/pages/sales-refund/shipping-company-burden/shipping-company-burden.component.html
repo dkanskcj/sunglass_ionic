@@ -1,3 +1,67 @@
-<p>
-  shipping-company-burden works!
-</p>
+<ion-content>
+  <div class="flex justify-between items-center px-5 py-4 font-semibold">반품 대기중
+    <svg (click)="handleClose()" class="cursor-pointer" width="24" height="24" viewBox="0 0 24 24" fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M16.6091 17.7614C16.9272 18.0795 17.4431 18.0795 17.7613 17.7614C18.0795 17.4432 18.0795 16.9272 17.7613 16.6091L13.1523 12L17.7614 7.39091C18.0795 7.07272 18.0795 6.55683 17.7614 6.23864C17.4431 5.92045 16.9272 5.92045 16.6091 6.23864L12 10.8477L7.39091 6.23865C7.07272 5.92046 6.55683 5.92046 6.23864 6.23865C5.92045 6.55684 5.92045 7.07274 6.23864 7.39093L10.8477 12L6.23865 16.6091C5.92046 16.9272 5.92046 17.4431 6.23865 17.7614C6.55684 18.0795 7.07273 18.0795 7.39092 17.7614L12 13.1523L16.6091 17.7614Z"
+        fill="rgb(55, 65, 81)" />
+    </svg>
+  </div>
+  <div class="text-[0.875rem]">
+    <div class="p-5 space-y-[0.625rem]">
+      <div class="font-semibold">
+        반품 정보
+      </div>
+      <ng-container *ngFor="let refund of refunds; index as i; last as last; odd as odd; even as even; first as first">
+        <div>
+          <div class="flex gap-2 p-[0.625rem]">
+            <div>
+              {{ refund.product }}
+              <!-- {{ i }} -->
+            </div>
+          </div>
+          <div *ngIf="refund.reason" class="flex justify-center items-center">
+            <div class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500">
+              {{ refund.reason }}
+            </div>
+          </div>
+          <div class="p-[0.625rem] border-b-2 border-t-black" *ngIf="last">
+          </div>
+        </div>
+      </ng-container>
+      <!-- shippingCompany infor Frame -->
+      <div class="p-[0.625rem]">
+        <div class="flex justify-between">
+          <div class="font-semibold">
+            택배사 정보
+          </div>
+          <div class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500">
+            배송대기중
+          </div>
+        </div>
+        <ng-container *ngFor="let input of inputs; odd as odd">
+          <div>
+            <div class="flex p-[0.625rem] gap-2 items-center">
+              <div *ngIf="input.name.length<4" class="pl-[0.875rem]">
+                {{ input.name }}
+              </div>
+                <div *ngIf="input.name.length>=4">
+                  {{ input.name }}
+                </div>
+              <input class="px-3 py-2 rounded-md border box-border shadow cursor-pointer" type="text" [value]="input.value">
+            </div>
+            <div *ngIf="input?.reason" class="flex justify-center items-center">
+              <div class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500">
+                {{ input.reason }}
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div class="flex justify-between p-5 whitespace-nowrap font-semibold">
+    <app-buttons class="text-gray-500 border border-gray-400 items-end rounded-md" (click)="modalOpen()">거절</app-buttons>
+    <app-buttons class="text-primary border border-primary items-end rounded-md">승인</app-buttons>
+  </div>
+</ion-content>
