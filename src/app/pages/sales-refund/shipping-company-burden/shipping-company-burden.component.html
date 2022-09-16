@@ -25,8 +25,8 @@
               {{ refund.reason }}
             </div>
           </div>
-          <div class="p-[0.625rem] border-b-2 border-t-black" *ngIf="last">
-          </div>
+        </div>
+        <div class="p-[0.625rem] border-b-2 border-t-black" *ngIf="last">
         </div>
       </ng-container>
       <!-- shippingCompany infor Frame -->
@@ -35,8 +35,8 @@
           <div class="font-semibold">
             택배사 정보
           </div>
-          <div class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500">
-            배송대기중
+          <div [ngClass]="testTest()">
+            {{ salesRefund.refundStatus }}
           </div>
         </div>
         <ng-container *ngFor="let input of inputs; odd as odd">
@@ -45,10 +45,11 @@
               <div *ngIf="input.name.length<4" class="pl-[0.875rem]">
                 {{ input.name }}
               </div>
-                <div *ngIf="input.name.length>=4">
-                  {{ input.name }}
-                </div>
-              <input *ngIf="input.name !== '반품비'" class="px-3 py-2 rounded-md border box-border shadow cursor-pointer" type="text" [value]="input.value">
+              <div *ngIf="input.name.length>=4">
+                {{ input.name }}
+              </div>
+              <input *ngIf="input.name !== '반품비'" class="px-3 py-2 rounded-md border box-border shadow cursor-pointer"
+                type="text" [value]="input.value">
               <div *ngIf="input.name === '반품비'">
                 : {{ input.value }}
               </div>
@@ -64,7 +65,9 @@
     </div>
   </div>
   <div class="flex justify-between p-5 whitespace-nowrap font-semibold">
-    <app-buttons class="text-gray-500 border border-gray-400 items-end rounded-md" (click)="modalOpen()">거절</app-buttons>
-    <app-buttons class="text-primary border border-primary items-end rounded-md">승인</app-buttons>
+    <app-buttons class="text-gray-500 border border-gray-400 items-end rounded-md" (click)="modalOpen()">거절
+    </app-buttons>
+    <app-buttons class="text-primary border border-primary items-end rounded-md" (click)="handleApprove()">승인
+    </app-buttons>
   </div>
 </ion-content>

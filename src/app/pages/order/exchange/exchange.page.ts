@@ -25,6 +25,17 @@ export class ExchangePage implements OnInit {
   isOptionGroup: boolean = true;
   getDate: any;
 
+  selectedOption = '0';
+  actions = [
+    { id: '0', name: '교환상태 선택' },
+    { id: '전체', name: '전체' },
+    { id: '교환거절', name: '교환거절' },
+    { id: '교환승인', name: '교환승인' },
+    { id: '교환취소', name: '교환취소' }
+  ]
+
+
+
   toggleOptionGroupSetting() {
     this.isOptionGroup = !this.isOptionGroup;
   }
@@ -102,8 +113,33 @@ export class ExchangePage implements OnInit {
     })
   }
 
+  orderClass(status: any) {
+    if (status === '주문승인') {
+      return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500'
+    }
+    if (status === '주문취소') {
+      return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500'
+    }
+    if (status === '주문대기') {
+      return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500'
+    }
+    if (status === '주문거절') {
+      return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500'
+    }
+  }
+  shippingClass(status: any){
+    if (status === '배송완료') {
+      return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500'
+    }
+    if (status === '배송대기중') {
+      return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500'
+    }
+    if (status === '배송중') {
+      return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500'
+    }
+  }
 
-  async setOpen(){
+  async setOpen() {
     const modal = await this.modalController.create({
       component: ExchangeAddmissionComponent,
       cssClass: 'addmission'
@@ -111,7 +147,7 @@ export class ExchangePage implements OnInit {
     modal.present();
   }
 
-  async setOpen2(){
+  async setOpen2() {
     const modal = await this.modalController.create({
       component: ExchangeAllCheckedComponent,
       cssClass: 'addmission'

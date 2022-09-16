@@ -13,8 +13,7 @@
                 </div>
                 <div class="flex px-6 py-4 space-x-4">
                     <img src="assets/icons/alter.svg" class="cursor-pointer w-6 h-6">
-                    <img src="assets/icons/profile_icon.svg"
-                        class="cursor-pointer w-8 h-8  ">
+                    <img src="assets/icons/profile_icon.svg" class="cursor-pointer w-8 h-8  ">
                 </div>
             </div>
         </div>
@@ -29,18 +28,18 @@
                 <div class="w-full p-5 flex text-[0.875rem]">
                     <div class="w-full flex justify-between h-[2.3125rem]">
                         <div class="flex space-x-4">
-                            <!-- <div class="whitespace-nowrap py-[10.09375rem] pr-4">일자 선택</div> -->
-                            <select name="구분 선택" class="select py-2 border rounded-md px-3 shadow text-[0.875rem]">
-                                <option value="1">주문상태 선택</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
+                            <select id="select-menu" [(ngModel)]="selectedOption" class="bx--text-input" required
+                                name="actionSelection"
+                                class="w-fit border box-border shadow flex justify-center rounded-md items-center px-3 py-2 text-[0.875rem] cursor-pointer">
+                                <option *ngFor="let action of actions" [value]="action.id">{{action.name}}</option>
                             </select>
                             <div
                                 class="flex items-center justify-start border border-b rounded-md shadow px-3 space-x-2">
                                 <input type="date" [(ngModel)]="date1" (ngModelChange)="inputDate()">
                                 <!-- <input type="text" class="w-full" placeholder="검색어를 입력해주세요." [(ngModel)]="searchText"> -->
                             </div>
-                            <div class="flex justify-center items-center cursor-pointer" (click)="testClicked(date1)">~</div>
+                            <div class="flex justify-center items-center cursor-pointer" (click)="testClicked(date1)">~
+                            </div>
                             <div
                                 class="flex items-center justify-start border border-b rounded-md shadow px-3 space-x-2 cursor-pointer">
                                 <input type="date" [(ngModel)]="date2">
@@ -70,7 +69,8 @@
                                             전체
                                         </div>
                                         <!-- <ng-container *ngFor="let order of orders"> -->
-                                            <input [(ngModel)]="allChecked" type="checkbox" class="cursor-pointer" (click)="checkAll()">
+                                        <input [(ngModel)]="allChecked" type="checkbox" class="cursor-pointer"
+                                            (click)="checkAll()">
                                         <!-- </ng-container> -->
                                     </div>
                                 </th>
@@ -84,45 +84,25 @@
                                 <th class="p-4 w-full">주문요청일자</th>
                             </tr>
                         </thead>
-                        <ng-container *ngFor="let order of orders | filter: date1">
-                            <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center w-full" (click)="goDetail($event, order.orderNumber)">
+                        <ng-container *ngFor="let order of orders | filter: date1 | filter: selectedOption">
+                            <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center w-full"
+                                (click)="goDetail($event, order.orderNumber)">
                                 <tr>
                                     <td class=" w-full h-full">
                                         <div class="flex justify-center items-center">
-                                            <input #checkbox type="checkbox" class="cursor-pointer checkbox" (click)="isClicked(order.orderNumber)">
+                                            <input #checkbox type="checkbox" class="cursor-pointer checkbox"
+                                                (click)="isClicked(order.orderNumber)">
                                         </div>
                                     </td>
                                     <td class="p-4">{{order.createdAt | date: 'yyyyMMdd'}}{{ order.orderNumber }}
                                     </td>
                                     <td class="p-4">
-                                        <div *ngIf="order.orderStatus === '주문승인'"
-                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500">
-                                            {{ order.orderStatus }}
-                                        </div>
-                                        <div *ngIf="order.orderStatus === '주문취소'"
-                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500">
-                                            {{ order.orderStatus }}
-                                        </div>
-                                        <div *ngIf="order.orderStatus === '주문대기'"
-                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500">
-                                            {{ order.orderStatus }}
-                                        </div>
-                                        <div *ngIf="order.orderStatus === '주문거절'"
-                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500">
+                                        <div [ngClass]="orderClass(order.orderStatus)">
                                             {{ order.orderStatus }}
                                         </div>
                                     </td>
                                     <td class="p-4">
-                                        <div *ngIf="order.shippingStatus === '배송완료'"
-                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500">
-                                            {{ order.shippingStatus }}
-                                        </div>
-                                        <div *ngIf="order.shippingStatus === '배송대기중'"
-                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500">
-                                            {{ order.shippingStatus }}
-                                        </div>
-                                        <div *ngIf="order.shippingStatus === '배송중'"
-                                            class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500">
+                                        <div [ngClass]="shippingClass(order.shippingStatus)">
                                             {{ order.shippingStatus }}
                                         </div>
                                     </td>

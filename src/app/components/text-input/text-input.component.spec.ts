@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { SalesRefundDetailComponent } from './sales-refund-detail.component';
+import { TextInputComponent } from './text-input.component';
 
-describe('SalesRefundDetailComponent', () => {
-  let component: SalesRefundDetailComponent;
-  let fixture: ComponentFixture<SalesRefundDetailComponent>;
+describe('TextInputComponent', () => {
+  let component: TextInputComponent;
+  let fixture: ComponentFixture<TextInputComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SalesRefundDetailComponent ],
+      declarations: [ TextInputComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SalesRefundDetailComponent);
+    fixture = TestBed.createComponent(TextInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

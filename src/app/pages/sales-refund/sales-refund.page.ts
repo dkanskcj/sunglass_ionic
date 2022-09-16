@@ -211,16 +211,15 @@ export class SalesRefundPage implements OnInit {
 
   updateStockForm: FormGroup;
   Stock: any;
-  selectedOption = 0;
+  selectedOption = '0';
   actions = [
-    { id: 0, name: '옵션 선택' },
-    // { id: 1, name: '0개' },
-    { id: 1, name: '1개' },
-    { id: 2, name: '2개' },
-    { id: 3, name: '3개' },
-    { id: 4, name: '4개' },
-    { id: 5, name: '5개' },
+    { id: '0', name: '옵션 선택' },
+    { id: '반품대기중', name: '반품대기중' },
+    { id: '반품취소', name: '반품취소' },
+    { id: '반품중', name: '반품중' },
+    { id: '반품완료', name: '반품완료' }
   ]
+
   constructor(
     private modalController: ModalController,
     private http: HttpClient,
@@ -267,21 +266,21 @@ export class SalesRefundPage implements OnInit {
 
   getAuth() {
     console.log(this.orders.orderStatus)
-
+  }
+  
+  handleApprove(){
+    console.log('test')
   }
 
-
-  // valueOfrefundCost(){
-  //   if(this.refundList){
-  //     this.refundList.
-  //   }
-  // }
   async handleModalTest(index: number) {
     const component = this.refundList[index].shipCost === 0 ? ShippingCompanyBurdenComponent : CustomerBurdenComponent;
     const cssClass = this.refundList[index].shipCost === 0 ? 'companyRefund' : 'customerRefund';
     const modal = await this.modalController.create({
       component,
-      cssClass
+      cssClass,
+      componentProps:{
+        salesRefund : this.refundList[index]
+      }
     })
     this.refunds = this.refundList[index];
     modal.present();
@@ -290,41 +289,38 @@ export class SalesRefundPage implements OnInit {
   async handleModalOpen(index: number) {
     if (this.refundList[index].refundStatus === '반품중') {
       const component = this.refundList[index].shipCost === 0 ? ReturnCompanyBurdenComponent : ReturnCustomerBurdenComponent;
-      const cssClass = this.refundList[index].shipCost === 0 ? 'returnCompany' : 'returnCustomer';
+      const cssClass = this.refundList[index].shipCost === 0 ? 'returningCompany' : 'returningCustomer';
       const modal = await this.modalController.create({
         component,
-        cssClass
+        cssClass,
+        componentProps:{
+          salesRefund : this.refundList[index]
+        }
       })
-      this.refunds = this.refundList[index];
-      console.log(this.refunds);
       modal.present();
     }
     if (this.refundList[index].refundStatus === '반품대기중') {
       const component = this.refundList[index].shipCost === 0 ? ShippingCompanyBurdenComponent : CustomerBurdenComponent;
       const cssClass = this.refundList[index].shipCost === 0 ? 'companyRefund' : 'customerRefund';
       const modal = await this.modalController.create({
+        id: 'refundPending',
         component,
-        cssClass
+        cssClass,
+        componentProps:{
+          salesRefund : this.refundList[index],
+        }
       })
-      this.refunds = this.refundList[index];
-      console.log(this.refunds);
       modal.present();
     }
     if(this.refundList[index].refundStatus === '반품완료') {
       const modal = await this.modalController.create({
         component: ReturnCompleteComponent,
-        cssClass: '',
+        cssClass: 'returnComplete',
+        componentProps:{
+          salesRefund : this.refundList[index]
+        }
       })
-      this.refunds = this.refundList[index];
-      console.log(this.refunds);
       modal.present();
     }
   }
-  // async setOpen(){
-  //   const modal = await this.modalController.create({
-  //     component: OrderAddmissionComponent,
-  //     cssClass: 'addmission'
-  //   })
-  //   modal.present();
-  // }
 }

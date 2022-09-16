@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 
@@ -20,6 +20,7 @@ type refundTitle = {
   styleUrls: ['./customer-burden.component.scss'],
 })
 export class CustomerBurdenComponent implements OnInit {
+  @Input() salesRefund: any;
 
   inputs: shippingInput[] = [
     {
@@ -64,19 +65,7 @@ export class CustomerBurdenComponent implements OnInit {
     },
     {
       product: '환불액 : 20000'
-    },      // children:[
-      //   {
-      //     product: '상품명',
-      //     amount: '수량',
-      //     refundName: '반품자명',
-      //     phoneNumber: '연락처',
-      //     accountName: '입금자명',
-      //     accountInfo: '계좌정보',
-      //     address: '주소',
-      //     reason: '사유',
-      //     refundCost: '환불액',
-      //   }
-      // ]
+    },
   ]
 
 
@@ -86,6 +75,7 @@ constructor(
 ) { }
 
 ngOnInit() {
+  console.log(this.salesRefund)
 }
 
 

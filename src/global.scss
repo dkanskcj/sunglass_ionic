@@ -110,6 +110,35 @@
     }
 }
 
+@media (min-width: 680px){
+    .returningCompany {
+        --width:348px;
+        --height: 66.6%;
+        font-size: 16px;
+        --border-radius: 4px;
+        border-radius: 8px;
+    }
+}
+
+@media (min-width: 680px){
+    .returningCustomer {
+        --width:348px;
+        --height: 61%;
+        font-size: 16px;
+        --border-radius: 4px;
+        border-radius: 8px;
+    }
+}
+
+@media (min-width: 680px){
+    .returnComplete {
+        --width:348px;
+        --height: 57.75%;
+        font-size: 16px;
+        --border-radius: 4px;
+        border-radius: 8px;
+    }
+}
 
 .ion-accordion-toggle-icon{
     font-size: 14px;

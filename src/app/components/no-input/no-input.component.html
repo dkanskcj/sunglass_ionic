@@ -1,0 +1,12 @@
+<div>
+  <div class="flex gap-2 p-[0.625rem]">
+    <div>
+      {{ title }} : {{ content }}
+    </div>
+  </div>
+  <div *ngIf="reason" class="flex justify-center items-center">
+    <div class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500">
+      {{ reason }}
+    </div>
+  </div>
+</div>

@@ -1,1 +1,64 @@
-<!-- {{  }} -->
+<ion-content>
+    <div class="flex justify-between items-center px-5 py-4 font-semibold">반품 대기중
+      <svg (click)="handleClose()" class="cursor-pointer" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M16.6091 17.7614C16.9272 18.0795 17.4431 18.0795 17.7613 17.7614C18.0795 17.4432 18.0795 16.9272 17.7613 16.6091L13.1523 12L17.7614 7.39091C18.0795 7.07272 18.0795 6.55683 17.7614 6.23864C17.4431 5.92045 16.9272 5.92045 16.6091 6.23864L12 10.8477L7.39091 6.23865C7.07272 5.92046 6.55683 5.92046 6.23864 6.23865C5.92045 6.55684 5.92045 7.07274 6.23864 7.39093L10.8477 12L6.23865 16.6091C5.92046 16.9272 5.92046 17.4431 6.23865 17.7614C6.55684 18.0795 7.07273 18.0795 7.39092 17.7614L12 13.1523L16.6091 17.7614Z"
+          fill="rgb(55, 65, 81)" />
+      </svg>
+    </div>
+    <div class="text-[0.875rem]">
+      <div class="p-5 space-y-[0.625rem]">
+        <div class="font-semibold">
+          반품 완료
+        </div>
+        <app-line title="상품명" [content]="salesRefund.product"></app-line>
+        <app-line title="수량" content="2"></app-line>
+        <app-line title="반품자명" content="윤대현"></app-line>
+        <app-line title="연락처" content="010-1234-5678"></app-line>
+        <app-line title="입금자명" content="윤대현"></app-line>
+        <app-line title="계좌정보" content="기업 098-880-111-1111"></app-line>
+        <app-line title="주소" content="광주 북구 용봉동 850"></app-line>
+        <app-line title="사유" content="제품이 하자가 있네요~" reason="제품하자"></app-line>
+        <app-line title="환불액" [content]="salesRefund.refundCost"></app-line>
+        <!-- shippingCompany infor Frame -->
+        <div class="p-[0.625rem]">
+          <div class="flex justify-between">
+            <div class="font-semibold">
+              택배사 정보
+            </div>
+            <div
+              [ngClass]="salesRefund.refundStatus === '반품중' ? 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500' : 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500'">
+              {{ salesRefund.refundStatus }}
+            </div>
+          </div>
+          <ng-container *ngFor="let input of inputs; odd as odd">
+            <div>
+              <div class="flex p-[0.625rem] gap-2 items-center">
+                <div *ngIf="input.name.length<4" class="pl-[0.875rem]">
+                  {{ input.name }}
+                </div>
+                <div *ngIf="input.name.length>=4">
+                  {{ input.name }}
+                </div>
+                <div *ngIf="input.name !== '반품비'">
+                  : {{ input.value }}
+                </div>
+                <div *ngIf="input.name === '반품비' && salesRefund.shipCost === 3000">
+                  : {{ input.value }}
+                </div>
+                <div *ngIf="input.name === '반품비' && salesRefund.shipCost === 0">
+                    : {{ salesRefund.shipCost }}원
+                  </div>
+              </div>
+              <!-- <div *ngIf="input?.reason" class="flex justify-center items-center">
+                <div class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500">
+                  {{ input.reason }}
+                </div>
+              </div> -->
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </ion-content>

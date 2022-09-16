@@ -14,8 +14,7 @@
                 </div>
                 <div class="flex px-6 py-4 space-x-4">
                     <img src="assets/icons/alter.svg" class="cursor-pointer w-6 h-6">
-                    <img src="assets/icons/profile_icon.svg"
-                        class="cursor-pointer w-8 h-8  ">
+                    <img src="assets/icons/profile_icon.svg" class="cursor-pointer w-8 h-8  ">
                 </div>
             </div>
         </div>
@@ -60,7 +59,8 @@
                                         <td class="px-4 h-[4.125rem]">{{ company.companyNumber }}</td>
                                         <td class="px-4 h-[4.125rem]">{{ company.address }}</td>
                                         <td class="px-4 h-[4.125rem]">{{ company.tel }}</td>
-                                        <td class="px-4 h-[4.125rem]" (click)="deleteConnections(company.id)">{{ company.createdAt|date }}</td>
+                                        <td class="px-4 h-[4.125rem]" (click)="deleteConnections(company.id)">{{
+                                            company.createdAt|date }}</td>
                                     </tr>
                                 </tbody>
                             </ng-container>
@@ -83,7 +83,8 @@
                             </div>
                         </div>
 
-                        <div class="grid grid-flow-col justify-center items-center pr-5 text-center text-gray-700">
+                        <app-pager></app-pager>
+                        <!-- <div class="grid grid-flow-col justify-center items-center pr-5 text-center text-gray-700">
                             <img src="assets/icons/first_page.svg"
                                 class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
                             <img src="assets/icons/left_page.svg"
@@ -107,7 +108,7 @@
                                 class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
                             <img src="assets/icons/last_page.svg"
                                 class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

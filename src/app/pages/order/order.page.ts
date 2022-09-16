@@ -41,6 +41,17 @@ export class OrderPage implements OnInit {
 
   getDate: any;
 
+  selectedOption = '0';
+  actions = [
+    { id: '0', name: '주문상태 선택' },
+    { id: '0', name: '전체' },
+    { id: '주문대기', name: '주문대기' },
+    { id: '주문거절', name: '주문거절' },
+    { id: '주문승인', name: '주문승인' },
+    { id: '주문취소', name: '주문취소' }
+  ]
+
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -123,21 +134,30 @@ export class OrderPage implements OnInit {
     })
   }
 
-  // test1():string{
-  //   if(this.orders.orderStatus = '주문승인'){
-  //     console.log(this.orders.orderStatus)
-  //     return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500'
-  //   }
-  //   if(this.orders.orderStatus = '주문취소'){
-  //     console.log(this.orders.orderStatus)
-  //     return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500'
-  //   }
-  //   if(this.orders.orderStatus = '주문대기'){
-  //     console.log(this.orders.orderStatus)
-  //     return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500'
-  //   }
-  //   if(this.orders.orderStatus = '주문거절'){
-  //     return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500'
-  //   }
-  // }
+  orderClass(state: any){
+    if(state === '주문승인'){
+      return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500'
+    }
+    if(state === '주문취소'){
+      return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500'
+    }
+    if(state === '주문대기'){
+      return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500'
+    }
+    if(state === '주문거절'){
+      return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500'
+    }
+  }
+
+  shippingClass(status: any){
+    if (status === '배송완료') {
+      return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500'
+    }
+    if (status === '배송대기중') {
+      return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500'
+    }
+    if (status === '배송중') {
+      return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500'
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ReasonModalComponent } from './reason-modal/reason-modal.component';
 
@@ -20,6 +20,9 @@ type refundTitle = {
   styleUrls: ['./shipping-company-burden.component.scss'],
 })
 export class ShippingCompanyBurdenComponent implements OnInit {
+  @Input() salesRefund: any;
+  test = '반품중';
+
   inputs: shippingInput[] = [
     {
       name: '택배사',
@@ -39,7 +42,7 @@ export class ShippingCompanyBurdenComponent implements OnInit {
       reason: '제품하자'
     }
   ]
-  
+
   refunds: refundTitle[] = [
     {
       product: '상품 명 : 티쓰-001 블랙 썬글라스'
@@ -63,40 +66,79 @@ export class ShippingCompanyBurdenComponent implements OnInit {
       product: '주소 : 광주 북구 용봉동 850',
     },
     {
-      product: '사유 : 부모님한테 걸렸어요 ㅠㅠ',
+      product: '사유 : 제품 불량이요~',
       reason: '제품하자'
     },
     {
       product: '환불액 : 20000'
-    },      // children:[
-      //   {
-      //     product: '상품명',
-      //     amount: '수량',
-      //     refundName: '반품자명',
-      //     phoneNumber: '연락처',
-      //     accountName: '입금자명',
-      //     accountInfo: '계좌정보',
-      //     address: '주소',
-      //     reason: '사유',
-      //     refundCost: '환불액',
-      //   }
-      // ]
+    },
   ]
   constructor(
     private modalController: ModalController
   ) { }
 
-  ngOnInit() {}
-
-  handleClose(){
-    this.modalController.dismiss();
+  ngOnInit() {
+    console.log(this.salesRefund);
   }
 
-  async modalOpen(){
+  handleApprove() {
+    // console.log('test');
+    return this.modalController.dismiss(this.salesRefund.refundStatus = '반품중');
+  }
+
+  handleClose() {
+    this.modalController.dismiss(null ,null, 'refundPending');
+  }
+
+  testTest() {
+    if (this.salesRefund.refundStatus === '반품중') {
+      return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500'
+    }
+    if (this.salesRefund.refundStatus === '반품대기중') {
+      return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500'
+    }
+    if (this.salesRefund.refundStatus === '반품취소') {
+      return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500'
+    }
+  }
+
+
+  async modalOpen() {
     const modal = await this.modalController.create({
       component: ReasonModalComponent,
       cssClass: 'refundReason',
+      componentProps: {
+        reason: this.salesRefund
+      }
     })
+    // console.log('----포장 준비중----')
+    // console.log('-------------------')
+    // console.log('|\\               /|')
+    // console.log('| \\             / |')
+    // console.log('|  \\           /  |')
+    // console.log('|   \\         /   |')
+    // console.log('|    \\       /    |')
+    // console.log('|     \\     /     |')
+    // console.log('|      \\   /      |')
+    // console.log('|       \\ /       |')
+    // console.log('|        X        |')
+    // console.log('|       / \\       |')
+    // console.log('|      /   \\      |')
+    // console.log('|     /     \\     |')
+    // console.log('|    /       \\    |')
+    // console.log('|   /         \\   |')
+    // console.log('|  /           \\  |')
+    // console.log('| /             \\ |')
+    // console.log('|/               \\|')
+    // console.log('-------------------')
+    // console.log('----  포장 끝  ----')
+
     modal.present();
+
+    modal.onWillDismiss().then(res => {
+      if (res.role === '1') {
+        this.handleClose()
+      }
+    })
   }
 }
