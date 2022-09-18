@@ -4,7 +4,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, first } from 'rxjs/operators';
 import { CompanyService } from 'src/app/service/company/company.service';
-type Index_l = { 
+import { pagination } from 'src/service/pagination.service';
+
+type Index_l = {
   brand: string;
   name: string;
   stock: number;
@@ -19,15 +21,18 @@ type Index_l = {
 })
 export class ConnectionPage implements OnInit {
   createForm = new FormGroup({
-    name:new FormControl(null),
-    tel:new FormControl(null),
-    owner:new FormControl(null),
-    companyNumber:new FormControl(null),
-    address:new FormControl(null)
+    name: new FormControl(null),
+    tel: new FormControl(null),
+    owner: new FormControl(null),
+    companyNumber: new FormControl(null),
+    address: new FormControl(null)
   })
 
+  pager: any;
+  allItems: any;
+  pagedItems: any;
   searchText: any;
-  companys=[];
+  companys = [];
   index_list: Index_l[] = [
     {
       brand: '티쓰',
@@ -90,12 +95,22 @@ export class ConnectionPage implements OnInit {
       customer: '거래처B 외 2곳',
     },
   ];
+
+  selectedOption: number = 10;
+  actions = [
+    { id: 10, name: 10 },
+    { id: 20, name: 20 },
+    { id: 30, name: 30 }
+  ]
   constructor(
-    private http: HttpClient, 
-    private router:Router, 
+    private http: HttpClient,
+    private router: Router,
     private companyService: CompanyService,
-    private route: ActivatedRoute
-    ) { }
+    private route: ActivatedRoute,
+    private pagination: pagination
+  ) {
+
+   }
 
   ngOnInit() {
     this.router.events.pipe(filter(ev => ev instanceof NavigationEnd)).subscribe({
@@ -104,22 +119,47 @@ export class ConnectionPage implements OnInit {
       }
     })
     this.getConnections();
+    this.selectedOption;
     // this.deleteConnections();
   }
 
+
+  dataChanged(number: number) {
+    this.selectedOption = number;
+    this.setPage(1);
+    // console.log('testtesttest')
+    // console.log(this.selectedOption)
+}
+
   getConnections() {
     this.http.get<any[]>('http://localhost:3000/company').subscribe(result => {
-      this.companys=result;
-      console.log(this.companys);
+      this.companys = result;
+      // console.log(this.companys);
+      this.allItems = this.companys;
+      this.setPage(1);
     });
   }
 
-  deleteConnections(id: number){
+  deleteConnections(id: number) {
     const company = this.companys.find(x => x.id === id);
     console.log(company);
-    if(!company) { return; }
+    if (!company) { return; }
     this.companyService.delete(id)
       .pipe(first())
       .subscribe(() => this.companys = this.companys.filter(x => x.id !== id))
+  }
+
+  setPage(page: number) {
+    // get pager object from service
+    this.pager = this.pagination.getPager(this.allItems.length, page, this.selectedOption);
+    console.log('pager')
+    console.log(this.pager)
+    
+    // this.pager.pageSize = pageSize;
+    // this.pager.endIndex = pageSize-1;
+    // get current page of items
+    this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    console.log('pagedItems')
+    console.log(this.pagedItems)
   }
 }
