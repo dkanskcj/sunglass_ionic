@@ -35,6 +35,9 @@ export class ReturnCompleteComponent implements OnInit {
       reason: '제품하자'
     }
   ]
+
+  refundReturnComplete = new Date()
+
   constructor(
     private modalController: ModalController,
   ) { }

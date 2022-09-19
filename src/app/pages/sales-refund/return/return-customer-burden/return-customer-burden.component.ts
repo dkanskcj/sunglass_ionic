@@ -29,6 +29,9 @@ export class ReturnCustomerBurdenComponent implements OnInit {
       value: '010-1234-5678'
     },
   ]
+
+  refundComplete = new Date()
+
   constructor(
     private modalController: ModalController
   ) { }
@@ -41,6 +44,9 @@ export class ReturnCustomerBurdenComponent implements OnInit {
   }
 
   handleReturnComplete(){
-    return this.modalController.dismiss(this.salesRefund.refundStatus = '반품완료');
+    return this.modalController.dismiss((
+      this.salesRefund.refundStatus = '반품완료',
+      this.salesRefund.refundComplete = this.refundComplete
+      ));
   }
 }

@@ -45,7 +45,7 @@ export class SalesRefundPage implements OnInit {
   stocks = [];
 
   refunds: any;
-
+  refundDate = new Date();
   refundList: indexList[] = [
     {
       product: '티쓰-001 블랙 썬글라스',
@@ -85,7 +85,7 @@ export class SalesRefundPage implements OnInit {
       shipCost: 3000,
       refundStatus: '반품취소',
       refundApplication: '2022-07-14',
-      // refundComplete:'2022-07-18'
+      refundComplete:'2022-07-18'
     },
     {
       product: '티쓰-001 블랙 썬글라스',
@@ -258,6 +258,7 @@ export class SalesRefundPage implements OnInit {
     this.getConnections();
     this.allItems = this.refundList
     this.setPage(1)
+    // this.refundDate
   }
 
   async setOpen() {
@@ -302,14 +303,10 @@ export class SalesRefundPage implements OnInit {
   }
 
   setPage(page: number) {
-    // get pager object from service
     this.pager = this.pagination.getPager(this.allItems.length, page, this.selectedOption2);
     console.log('pager')
     console.log(this.pager)
 
-    // this.pager.pageSize = pageSize;
-    // this.pager.endIndex = pageSize-1;
-    // get current page of items
     this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
     console.log('pagedItems')
     console.log(this.pagedItems)

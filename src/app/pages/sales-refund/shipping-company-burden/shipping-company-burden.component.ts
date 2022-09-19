@@ -80,7 +80,7 @@ export class ShippingCompanyBurdenComponent implements OnInit {
   ngOnInit() {
     console.log(this.salesRefund);
   }
-
+  refundDate = new Date()
   handleApprove() {
     // console.log('test');
     return this.modalController.dismiss(this.salesRefund.refundStatus = '반품중');

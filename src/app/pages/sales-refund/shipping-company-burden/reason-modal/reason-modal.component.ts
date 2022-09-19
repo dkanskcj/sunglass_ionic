@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -8,15 +8,16 @@ import { ModalController } from '@ionic/angular';
 })
 export class ReasonModalComponent implements OnInit {
   @Input() reason: any;
-
-
+  refundDate = new Date();
+  // test: any
   constructor(
     private modalController: ModalController
   ) { }
 
   ngOnInit() {
     // console.log('배송이 완료되었습니다.')
-    console.log(this.reason);
+    console.log(this.refundDate)
+    console.log(this.reason)
   }
 
   handleClose(){
@@ -25,6 +26,6 @@ export class ReasonModalComponent implements OnInit {
 
 
   returnRefuse(){
-    return this.modalController.dismiss(this.reason.refundStatus = '반품취소', '1');
+    return this.modalController.dismiss((this.reason.refundStatus = '반품취소', this.reason.refundComplete = this.refundDate ), '1');
   }
 }

@@ -34,6 +34,9 @@ export class ReturnCompanyBurdenComponent implements OnInit {
       reason: '제품하자'
     }
   ]
+
+  refundComplete = new Date()
+
   constructor(
     private modalController: ModalController
   ) { }
@@ -48,8 +51,8 @@ export class ReturnCompanyBurdenComponent implements OnInit {
 
   handleReturnComplete() {
     console.log(this.inputs)
-    return this.modalController.dismiss(
-      this.salesRefund.refundStatus = '반품완료'
-      );
+    return this.modalController.dismiss((
+      this.salesRefund.refundStatus = '반품완료', this.salesRefund.refundComplete = this.refundComplete
+      ));
   }
 }
