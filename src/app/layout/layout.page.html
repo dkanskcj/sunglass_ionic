@@ -11,7 +11,7 @@
       <div class="h-[0.0625rem] bg-primary-Lighter"></div>
       <div class="py-5">
         <div class="space-y-[0.125rem]">
-          <div *ngFor="let menu of menus; index as mi">
+          <div *ngFor="let menu of menus; index as i">
             <!-- 상위 메뉴 -->
             <div (click)="menu.isOpen = !menu.isOpen"
               class="flex justify-between px-5 py-[0.875rem] w-full hover:bg-primary-select cursor-pointer rounded-[0.75rem]"
@@ -24,12 +24,13 @@
             </div>
             <!-- 하위 메뉴 -->
             <div class="flex flex-col rounded-lg bg-primary-noselect" *ngIf="menu.children?.length > 0 && menu.isOpen">
-              <ng-container *ngFor="let child of menu.children; index as i">
-                <div (click)="menuClick(i)" [ngClass]="activeIndex === i ? 'text-white':'bg-primary-noselect'"
+              <ng-container *ngFor="let child of menu.children; index as i" >
+                <div (click)="clickedChild($event)" [ngClass]="child.url === currentUrl ? 'bg-primary-select text-white':'bg-primary-noselect'"
                   class="bg-primary-noselect rounded-[0.75rem] flex justify-between rounded-t-lg px-5 py-[1.03125rem] space-x-3 w-full hover:bg-primary-select cursor-pointer"
                   [routerLink]="child.url">
                   <div class="flex gap-3 justify-between">
-                    <img src="assets/icons/nosel_Dot.svg">{{ child.name }}
+                    <img src="assets/icons/Dot.svg" *ngIf="child.url === currentUrl">
+                    <img src="assets/icons/nosel_Dot.svg" *ngIf="child.url !== currentUrl">{{ child.name }}
                   </div>
                 </div>
               </ng-container>

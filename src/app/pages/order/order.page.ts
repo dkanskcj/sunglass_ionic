@@ -4,6 +4,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { filter, findIndex } from 'rxjs/operators';
 import { OrderService } from 'src/app/service/order/order.service';
+import { pagination } from 'src/service/pagination.service';
 import { OrderAddmissionComponent } from './order-addmission/order-addmission.component';
 
 type Index_l = {
@@ -38,7 +39,9 @@ export class OrderPage implements OnInit {
   searchText: any;
   date1: any;
   date2: any;
-
+  pagedItems: any;
+  allItems: any;
+  pager: any;
   getDate: any;
 
   selectedOption = '0';
@@ -50,14 +53,19 @@ export class OrderPage implements OnInit {
     { id: '주문승인', name: '주문승인' },
     { id: '주문취소', name: '주문취소' }
   ]
-
-
+  selectedOption2 = 10;
+  actions2 = [
+    { id: 10, name: 10 },
+    { id: 20, name: 20 },
+    { id: 30, name: 30 },
+  ]
   constructor(
     private http: HttpClient,
     private router: Router,
     private orderService: OrderService,
     private route: ActivatedRoute,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private pagination: pagination
   ) { }
 
   testId: number;
@@ -87,19 +95,23 @@ export class OrderPage implements OnInit {
   getConnections() {
     this.http.get<any[]>('http://localhost:3000/ordertest').subscribe(result => {
       this.orders = result;
+      this.allItems = this.orders
+      this.setPage(1)
       console.log(this.orders)
     });
   }
 
   getAuth() {
     console.log(this.orders.orderStatus)
-
   }
 
-  async setOpen(){
+  async setOpen() {
     const modal = await this.modalController.create({
       component: OrderAddmissionComponent,
-      cssClass: 'addmission'
+      cssClass: 'addmission',
+      componentProps: {
+        status: this.orders
+      }
     })
     modal.present();
   }
@@ -118,7 +130,7 @@ export class OrderPage implements OnInit {
       }
     }
   }
-  inputDate(){
+  inputDate() {
     this.searchDate()
   }
   searchDate() {
@@ -134,22 +146,22 @@ export class OrderPage implements OnInit {
     })
   }
 
-  orderClass(state: any){
-    if(state === '주문승인'){
+  orderClass(state: any) {
+    if (state === '주문승인') {
       return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500'
     }
-    if(state === '주문취소'){
+    if (state === '주문취소') {
       return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500'
     }
-    if(state === '주문대기'){
+    if (state === '주문대기') {
       return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500'
     }
-    if(state === '주문거절'){
+    if (state === '주문거절') {
       return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500'
     }
   }
 
-  shippingClass(status: any){
+  shippingClass(status: any) {
     if (status === '배송완료') {
       return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500'
     }
@@ -159,5 +171,20 @@ export class OrderPage implements OnInit {
     if (status === '배송중') {
       return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500'
     }
+  }
+
+  dataChanged(number: number){
+    this.selectedOption2 = number;
+    this.setPage(1)
+  }
+
+
+  setPage(page: number) {
+    this.pager = this.pagination.getPager(this.allItems.length, page, this.selectedOption2);
+    console.log('pager')
+    console.log(this.pager)
+    this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    console.log('pagedItems')
+    console.log(this.pagedItems)
   }
 }

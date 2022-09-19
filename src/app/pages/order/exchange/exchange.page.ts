@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { filter } from 'rxjs/operators';
 import { OrderService } from 'src/app/service/order/order.service';
+import { pagination } from 'src/service/pagination.service';
 import { ExchangeAddmissionComponent } from './exchange-addmission/exchange-addmission.component';
 import { ExchangeAllCheckedComponent } from './exchange-all-checked/exchange-all-checked.component';
 
@@ -15,6 +16,10 @@ import { ExchangeAllCheckedComponent } from './exchange-all-checked/exchange-all
 export class ExchangePage implements OnInit {
   @ViewChildren('checkbox') checkboxes: QueryList<ElementRef>;
 
+  pager: any;
+  allItems: any;
+
+  pagedItems: any;
   searchText: any;
   date1: any;
   date2: any;
@@ -26,12 +31,18 @@ export class ExchangePage implements OnInit {
   getDate: any;
 
   selectedOption = '0';
+  selectedOption2 : number = 10;
   actions = [
     { id: '0', name: '교환상태 선택' },
     { id: '전체', name: '전체' },
     { id: '교환거절', name: '교환거절' },
     { id: '교환승인', name: '교환승인' },
     { id: '교환취소', name: '교환취소' }
+  ]
+  actions2 = [
+    {id: 10, name: 10},
+    {id: 20, name: 20},
+    {id: 30, name: 30},
   ]
 
 
@@ -44,7 +55,8 @@ export class ExchangePage implements OnInit {
     private router: Router,
     private orderService: OrderService,
     private route: ActivatedRoute,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private pagination: pagination
   ) { }
 
   testId: number;
@@ -56,7 +68,6 @@ export class ExchangePage implements OnInit {
     this.router.events.pipe(filter(ev => ev instanceof NavigationEnd)).subscribe({
       next: () => {
         this.getConnections();
-        // this.test1();
       }
     })
     this.getConnections();
@@ -75,6 +86,8 @@ export class ExchangePage implements OnInit {
     this.http.get<any[]>('http://localhost:3000/ordertest').subscribe(result => {
       this.orders = result;
       console.log(this.orders)
+      this.allItems = this.orders;
+      this.setPage(1);
     });
   }
 
@@ -100,6 +113,7 @@ export class ExchangePage implements OnInit {
   inputDate() {
     this.searchDate()
   }
+
   searchDate() {
     this.orderService.searchDate(this.date1).subscribe({
       next: (res) => {
@@ -139,6 +153,23 @@ export class ExchangePage implements OnInit {
     }
   }
 
+  setPage(page: number) {
+    // get pager object from service
+    this.pager = this.pagination.getPager(this.allItems.length, page, this.selectedOption2);
+    console.log('pager')
+    console.log(this.pager)
+    this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    console.log('pagedItems')
+    console.log(this.pagedItems)
+  }
+ 
+  dataChanged(number: number) {
+    this.selectedOption2 = number;
+    this.setPage(1);
+    // console.log('testtesttest')
+    // console.log(this.selectedOption)
+  }
+
   async setOpen() {
     const modal = await this.modalController.create({
       component: ExchangeAddmissionComponent,
@@ -150,7 +181,7 @@ export class ExchangePage implements OnInit {
   async setOpen2() {
     const modal = await this.modalController.create({
       component: ExchangeAllCheckedComponent,
-      cssClass: 'addmission'
+      cssClass: 'addmission',
     })
     modal.present();
   }

@@ -5,6 +5,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { filter } from 'rxjs/operators';
 import { StockService } from 'src/app/service/stock/stock.service';
+import { pagination } from 'src/service/pagination.service';
 import { RegisterStockComponent } from './register-stock/register-stock.component';
 
 type Index_l = {
@@ -22,7 +23,9 @@ type Index_l = {
 export class StockPage implements OnInit {
   isModalOpen = false;
   searchText: any;
-
+  allItems : any[];
+  pagedItems: any[];
+  pager: any;
   stocks = [];
   index_list: Index_l[] = [
     {
@@ -99,11 +102,20 @@ export class StockPage implements OnInit {
     { id: 4, name: '4개' },
     { id: 5, name: '5개' },
   ]
+
+  selectedOption2 = 10;
+  actions2 = [
+    { id: 10, name: 10 },
+    { id: 20, name: 20 },
+    { id: 30, name: 30 },
+  ]
+
   constructor(
     private modalController: ModalController,
     private http: HttpClient,
     private router: Router,
     private stockService: StockService,
+    private pagination: pagination
   ) {
   }
 
@@ -119,6 +131,8 @@ export class StockPage implements OnInit {
   getConnections() {
     this.http.get<any[]>('http://localhost:3000/stocktest').subscribe(result => {
       this.stocks = result;
+      this.allItems = this.stocks;
+      this.setPage(1)
     });
   }
 
@@ -131,6 +145,11 @@ export class StockPage implements OnInit {
     console.log(Validators.required);
   }
 
-
+  setPage(page: number){
+    this.pager = this.pagination.getPager(this.allItems.length, page, this.selectedOption2);
+    console.log(this.pager)
+    this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    console.log(this.pagedItems)
+  }
 
 }

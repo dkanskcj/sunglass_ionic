@@ -13,6 +13,11 @@ type Index_l = {
   customer: string;
 }
 
+type PageInfo = {
+  pageNo: number;
+  pageSize: number;
+}
+
 
 @Component({
   selector: 'app-connection',
@@ -27,6 +32,8 @@ export class ConnectionPage implements OnInit {
     companyNumber: new FormControl(null),
     address: new FormControl(null)
   })
+
+  count: number;
 
   pager: any;
   allItems: any;
@@ -97,6 +104,12 @@ export class ConnectionPage implements OnInit {
   ];
 
   selectedOption: number = 10;
+
+  pageInfo: PageInfo = {
+    pageNo: 1,
+    pageSize: 10
+  }
+
   actions = [
     { id: 10, name: 10 },
     { id: 20, name: 20 },
@@ -119,6 +132,7 @@ export class ConnectionPage implements OnInit {
       }
     })
     this.getConnections();
+
     this.selectedOption;
     // this.deleteConnections();
   }
@@ -132,34 +146,34 @@ export class ConnectionPage implements OnInit {
   }
 
   getConnections() {
-    this.http.get<any[]>('http://localhost:3000/company').subscribe(result => {
-      this.companys = result;
-      // console.log(this.companys);
+    this.http.get<any[]>(`http://localhost:3000/company?pageNo=${this.pageInfo.pageNo}&pageSize=${this.pageInfo.pageSize}`).subscribe(result => {
+      this.companys = result['items'];
+      this.count = result['count']
       this.allItems = this.companys;
       this.setPage(1);
     });
   }
 
+  getPage(e: any) {
+    this.pageInfo.pageNo = e;
+    this.getConnections()
+  }
+
   deleteConnections(id: number) {
     const company = this.companys.find(x => x.id === id);
-    console.log(company);
     if (!company) { return; }
     this.companyService.delete(id)
       .pipe(first())
       .subscribe(() => this.companys = this.companys.filter(x => x.id !== id))
   }
 
-  setPage(page: number) {
+  setPage(page?: number) {
     // get pager object from service
     this.pager = this.pagination.getPager(this.allItems.length, page, this.selectedOption);
-    console.log('pager')
     console.log(this.pager)
-
     // this.pager.pageSize = pageSize;
     // this.pager.endIndex = pageSize-1;
     // get current page of items
     this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    console.log('pagedItems')
-    console.log(this.pagedItems)
   }
 }

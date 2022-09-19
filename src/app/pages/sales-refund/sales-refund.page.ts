@@ -5,6 +5,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { filter } from 'rxjs/operators';
 import { StockService } from 'src/app/service/stock/stock.service';
+import { pagination } from 'src/service/pagination.service';
 import { RegisterStockComponent } from '../stock/register-stock/register-stock.component';
 import { CustomerBurdenComponent } from './customer-burden/customer-burden.component';
 import { ReturnCompleteComponent } from './return-complete/return-complete.component';
@@ -38,6 +39,9 @@ export class SalesRefundPage implements OnInit {
   isModalOpen = false;
   searchText: any;
   orders: any;
+  pager: any;
+  allItems: any;
+  pagedItems: any;
   stocks = [];
 
   refunds: any;
@@ -143,6 +147,16 @@ export class SalesRefundPage implements OnInit {
       refundApplication: '2022-07-14',
       // refundComplete:'2022-07-18'
     },
+    {
+      product: '티쓰-001 블랙 썬글라스',
+      refundName: '주문자A',
+      shippingCompany: '택배사A',
+      refundCost: 200001,
+      shipCost: 3000,
+      refundStatus: '반품중',
+      refundApplication: '2022-07-14',
+      // refundComplete:'2022-07-18'
+    },
   ]
 
 
@@ -219,12 +233,18 @@ export class SalesRefundPage implements OnInit {
     { id: '반품중', name: '반품중' },
     { id: '반품완료', name: '반품완료' }
   ]
-
+  selectedOption2 = 10;
+  actions2 = [
+    { id: 10, name: 10 },
+    { id: 20, name: 20 },
+    { id: 30, name: 30 },
+  ]
   constructor(
     private modalController: ModalController,
     private http: HttpClient,
     private router: Router,
     private stockService: StockService,
+    private pagination: pagination
   ) {
   }
 
@@ -236,6 +256,8 @@ export class SalesRefundPage implements OnInit {
       }
     })
     this.getConnections();
+    this.allItems = this.refundList
+    this.setPage(1)
   }
 
   async setOpen() {
@@ -272,6 +294,27 @@ export class SalesRefundPage implements OnInit {
     console.log('test')
   }
 
+  dataChanged(number: number) {
+    this.selectedOption2 = number;
+    this.setPage(1);
+    // console.log('testtesttest')
+    // console.log(this.selectedOption)
+  }
+
+  setPage(page: number) {
+    // get pager object from service
+    this.pager = this.pagination.getPager(this.allItems.length, page, this.selectedOption2);
+    console.log('pager')
+    console.log(this.pager)
+
+    // this.pager.pageSize = pageSize;
+    // this.pager.endIndex = pageSize-1;
+    // get current page of items
+    this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    console.log('pagedItems')
+    console.log(this.pagedItems)
+  }
+
   async handleModalTest(index: number) {
     const component = this.refundList[index].shipCost === 0 ? ShippingCompanyBurdenComponent : CustomerBurdenComponent;
     const cssClass = this.refundList[index].shipCost === 0 ? 'companyRefund' : 'customerRefund';
@@ -287,37 +330,37 @@ export class SalesRefundPage implements OnInit {
   }
 
   async handleModalOpen(index: number) {
-    if (this.refundList[index].refundStatus === '반품중') {
-      const component = this.refundList[index].shipCost === 0 ? ReturnCompanyBurdenComponent : ReturnCustomerBurdenComponent;
-      const cssClass = this.refundList[index].shipCost === 0 ? 'returningCompany' : 'returningCustomer';
+    if (this.pagedItems[index].refundStatus === '반품중') {
+      const component = this.pagedItems[index].shipCost === 0 ? ReturnCompanyBurdenComponent : ReturnCustomerBurdenComponent;
+      const cssClass = this.pagedItems[index].shipCost === 0 ? 'returningCompany' : 'returningCustomer';
       const modal = await this.modalController.create({
         component,
         cssClass,
         componentProps:{
-          salesRefund : this.refundList[index]
+          salesRefund : this.pagedItems[index]
         }
       })
       modal.present();
     }
-    if (this.refundList[index].refundStatus === '반품대기중') {
-      const component = this.refundList[index].shipCost === 0 ? ShippingCompanyBurdenComponent : CustomerBurdenComponent;
-      const cssClass = this.refundList[index].shipCost === 0 ? 'companyRefund' : 'customerRefund';
+    if (this.pagedItems[index].refundStatus === '반품대기중') {
+      const component = this.pagedItems[index].shipCost === 0 ? ShippingCompanyBurdenComponent : CustomerBurdenComponent;
+      const cssClass = this.pagedItems[index].shipCost === 0 ? 'companyRefund' : 'customerRefund';
       const modal = await this.modalController.create({
         id: 'refundPending',
         component,
         cssClass,
         componentProps:{
-          salesRefund : this.refundList[index],
+          salesRefund : this.pagedItems[index],
         }
       })
       modal.present();
     }
-    if(this.refundList[index].refundStatus === '반품완료') {
+    if(this.pagedItems[index].refundStatus === '반품완료') {
       const modal = await this.modalController.create({
         component: ReturnCompleteComponent,
         cssClass: 'returnComplete',
         componentProps:{
-          salesRefund : this.refundList[index]
+          salesRefund : this.pagedItems[index]
         }
       })
       modal.present();

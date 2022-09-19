@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -7,16 +7,27 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./order-addmission.component.scss'],
 })
 export class OrderAddmissionComponent implements OnInit {
+  @Input() status: any = [];
 
   constructor(
     private modalController: ModalController
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.status);
+  }
 
 
 
-  handleClose(){
+  handleClose(){  
     return this.modalController.dismiss();
+  }
+
+  changeOrderStatus(){
+    if(this.status.orderStatus !== '주문승인')
+    {
+      this.status.orderStatus = '주문승인';
+    }
+    // console.log(this.status.orderStatus = '주문승인')
   }
 }

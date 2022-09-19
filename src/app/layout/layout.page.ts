@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 type Menu = {
   icon?: string;
@@ -13,7 +14,7 @@ type Menu = {
 type ChildrenMenu = {
   name: string;
   url: string;
-  // num?: number;
+  num?: number;
 }
 
 
@@ -25,7 +26,8 @@ type ChildrenMenu = {
 export class LayoutPage implements OnInit {
   id: number;
 
-
+  currentUrl: string;
+  imgValue: string;
   menus: Menu[] = [
     {
       icon: 'assets/icons/dashboard.svg',
@@ -38,11 +40,13 @@ export class LayoutPage implements OnInit {
       children: [
         {
           name: '상품 관리',
-          url: '/items'
+          url: '/items',
+          num: 1
         },
         {
           name: '재고 관리',
-          url: '/stock'
+          url: '/stock',
+          num: 2
         }
       ],
       isOpen: false
@@ -53,19 +57,23 @@ export class LayoutPage implements OnInit {
       children: [
         {
           name: '주문 관리',
-          url: '/order'
+          url: '/order',
+          num: 3
         },
         {
           name: '교환 관리',
-          url: '/exchange'
+          url: '/exchange',
+          num: 4
         },
         {
           name: '반품 관리',
-          url: '/refund'
+          url: '/refund',
+          num: 5
         },
         {
           name: '배송 관리',
-          url: '/shipping'
+          url: '/shipping',
+          num: 6
         }
       ],
       isOpen: false
@@ -76,11 +84,13 @@ export class LayoutPage implements OnInit {
       children: [
         {
           name: '매출 정산 관리',
-          url: '/total_sales'
+          url: '/total_sales',
+          num: 7
         },
         {
           name: '반품 정산 관리',
-          url: '/total_refund_sales'
+          url: '/total_refund_sales',
+          num: 8
         }
       ],
       isOpen: false
@@ -110,22 +120,33 @@ export class LayoutPage implements OnInit {
   isChildMenu = false;
   activeIndex = -1;
 
-  menuClick(index) {
-    this.activeIndex = index;
-    console.log(this.activeIndex);
-    // console.log(men);
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private router: Router
+  ) {
   }
-
-  constructor(private route: ActivatedRoute, private http: HttpClient) {
-    // this.route.snapshot
-  }
-
   ngOnInit() {
-    // this.getIndex
-    // this.route.queryParams.subscribe(params => {
-    // this.id = params['id'];
-    // console.log(this.id)
-    // });
+    this.router.events.pipe(filter(ev => ev instanceof NavigationEnd)).subscribe({
+      next: (res) => {
+        this.currentUrl = res['url'];
+      }
+    })
   }
+
+  clickedChild(e: any){
+    console.log(this.currentUrl)
+    // if(this.currentUrl )
+  }
+
+  // menuClick(index: boolean) {
+    
+  //   this.isChildMenu = !index;
+    
+  //   this.imgValue = 'assets/icons/Dot.svg'
+  //   console.log(this.route.params)
+  //   console.log(this.isChildMenu)
+  // // console.log(men);
+  // }
 
 }

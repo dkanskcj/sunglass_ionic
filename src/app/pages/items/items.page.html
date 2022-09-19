@@ -93,10 +93,9 @@
                             </option>
                         </select>
                         <div class="px-2 text-[0.875rem]">
-                            개씩 보기 {{selectedOption2}}
+                            개씩 보기
                         </div>
                     </div>
-                    <!-- <app-pager [pagedItems]="index_list"></app-pager> -->
                     <div class="grid grid-flow-col justify-center items-center pr-5 text-center text-gray-700"
                         *ngIf="pager?.pages && pager?.pages.length">
                         <img src="assets/icons/first_page.svg" (click)="setPage(1)"
@@ -104,7 +103,7 @@
                         <img src="assets/icons/left_page.svg" (click)="setPage(pager.currentPage - 1)"
                             class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
 
-                        <div *ngFor="let page of pager.pages" (click)="setPage(page)"
+                        <div *ngFor="let page of pager.pages" (click)="setPage(page)" [ngClass]="pager.currentPage === page ? 'border border-primary':''"
                             class="rounded-lg w-9 h-9 flex justify-center items-center active:bg-primary active:text-white cursor-pointer">
                             {{page}}
                         </div>

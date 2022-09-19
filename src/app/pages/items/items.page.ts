@@ -22,10 +22,10 @@ export class ItemsPage implements OnInit {
 
   pager: any;
   allItems: any;
-  pagedItems: any;
+  pagedItems: any[];
   products=[];
 
-  selectedOption: any;
+  selectedOption: any = 0;
   actions = [
     { id: 0, name: '옵션 선택' },
     { id: true, name: '판매중' },
@@ -172,7 +172,7 @@ export class ItemsPage implements OnInit {
     //   console.log(result);
     // });
     this.selectedOption2
-    this.allItems = this.index_list;
+    this.allItems = this.index_list
     console.log(this.allItems)
     console.log(this.allItems.length)
     this.setPage(1);

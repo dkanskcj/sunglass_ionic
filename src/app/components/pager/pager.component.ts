@@ -8,11 +8,13 @@ import { pagination } from 'src/service/pagination.service';
   styleUrls: ['./pager.component.scss'],
 })
 export class PagerComponent implements OnInit {
+
+  @Output() clickedPage: EventEmitter<number> = new EventEmitter<number>();
   @Input() allItems: any[];
-  @Input() pager: any = {};
+  pager: any = {};
   @Input() pagedItems: any[];
-  @Output() isToggle = new EventEmitter<any>();
-  
+  @Input() count: number;
+  @Input() selectedOption: number = 10;
   
   
   constructor(
@@ -21,11 +23,13 @@ export class PagerComponent implements OnInit {
   ) { }
   
   ngOnInit() {
+    this.pager = this.paginationService.getPager(this.allItems.length, 1, this.selectedOption);
+    console.log(this.count)
   }
 
   setPage(page: number) {
-    this.pager = this.paginationService.getPager(this.allItems.length, page, 10);
-
+    this.pager = this.paginationService.getPager(this.count, page, this.selectedOption);
     this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    this.clickedPage.emit(page);
   }
 }

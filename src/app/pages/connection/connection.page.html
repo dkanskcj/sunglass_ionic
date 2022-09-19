@@ -23,8 +23,8 @@
             <app-buttons class="text-primary border border-primary rounded-md" routerLink="register">등록</app-buttons>
         </div>
         <div class="gap-2 mt-8 mx-12 bg-white space-y-1">
-            <div class="h-[57.1875rem] flex gap-2  shadow">
-                <div class="h-[53.625rem]">
+            <div class="flex gap-2 shadow">
+                <div>
                     <div class="flex p-5 space-x-4 w-full h-[3.3125rem] text-[0.875rem]">
                         <!-- <select name="브랜드" value="거래처 선택"
                         class="select w-[6.729375rem] h-[2.3125rem] border rounded-md px-3 text-[0.875rem]">
@@ -68,62 +68,36 @@
                     </div>
                     <div class="flex justify-between px-5">
                         <div class="pt-[1.625rem] pb-[1.875rem] flex justify-center items-center">
-                            <select id="select-menu" [(ngModel)]="selectedOption" (ngModelChange)="dataChanged($event)" class="bx--text-input" required
-                                name="actionSelection"
+                            <select id="select-menu" [(ngModel)]="selectedOption" (ngModelChange)="dataChanged($event)"
+                                required name="actionSelection"
                                 class="w-fit border box-border shadow flex justify-center rounded-md items-center px-3 py-2 text-[0.875rem] cursor-pointer">
                                 <option *ngFor="let action of actions" [value]="action.id">{{action.name}}
                                 </option>
                             </select>
                             <div class="px-2 text-[0.875rem]">
-                                개씩 보기
+                                개씩 보기 {{ selectedOption }}
                             </div>
                         </div>
-                        <!-- <app-pager [pagedItems]="companys"></app-pager> -->
-                        
-                        <div class="grid grid-flow-col justify-center items-center pr-5 text-center text-gray-700"
+                        <app-pager (clickedPage)="getPage($event)" [allItems]="allItems" *ngIf="allItems"
+                            [pagedItems]="pagedItems" [count]="count"></app-pager>
+                        <!-- <div class="grid grid-flow-col justify-center items-center pr-5 text-center text-gray-700"
                             *ngIf="pager?.pages && pager?.pages.length">
                             <img src="assets/icons/first_page.svg" (click)="setPage(1)"
-                                class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+                                class="px-3 py-2 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
                             <img src="assets/icons/left_page.svg" (click)="setPage(pager.currentPage - 1)"
-                                class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+                                class="px-3 py-2 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
 
-                            <div *ngFor="let page of pager.pages" (click)="setPage(page)"
-                                class="rounded-lg w-9 h-9 flex justify-center items-center active:bg-primary active:text-white cursor-pointer">
+                            <div *ngFor="let page of pager.pages" (click)="setPage(page)" [ngClass]="pager.currentPage === page ? 'border border-primary':''"
+                                class="rounded-lg px-3 py-2 flex justify-center items-center active:bg-primary active:text-white cursor-pointer">
                                 {{page}}
                             </div>
                             <img src="assets/icons/more_dot.svg"
-                                class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+                                class="px-3 py-2 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
 
                             <img src="assets/icons/right_page.svg" (click)="setPage(pager.currentPage + 1)"
-                                class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+                                class="px-3 py-2 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
                             <img src="assets/icons/last_page.svg" (click)="setPage(pager.totalPages)"
-                                class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
-                        </div>
-                        <!-- <app-pager></app-pager> -->
-                        <!-- <div class="grid grid-flow-col justify-center items-center pr-5 text-center text-gray-700">
-                            <img src="assets/icons/first_page.svg"
-                                class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
-                            <img src="assets/icons/left_page.svg"
-                                class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
-                            <div
-                                class="rounded-lg w-9 h-9 flex justify-center items-center bg-primary text-white active:bg-primary active:text-white cursor-pointer">
-                                1</div>
-                            <div
-                                class="w-9 h-9 rounded-lg flex justify-center items-center bg-gray-100 hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
-                                2</div>
-                            <div
-                                class="w-9 h-9 rounded-lg flex justify-center items-center hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
-                                3</div>
-                            <div
-                                class="w-9 h-9 rounded-lg flex justify-center items-center hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
-                                4</div>
-                            <img src="assets/icons/more_dot.svg"
-                                class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
-
-                            <img src="assets/icons/right_page.svg"
-                                class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
-                            <img src="assets/icons/last_page.svg"
-                                class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+                                class="px-3 py-2 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
                         </div> -->
                     </div>
                 </div>
