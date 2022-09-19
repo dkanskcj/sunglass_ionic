@@ -1,33 +1,31 @@
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { pagination } from 'src/service/pagination.service';
 
 @Component({
   selector: 'app-pager',
   templateUrl: './pager.component.html',
   styleUrls: ['./pager.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PagerComponent implements OnInit {
-  constructor(private http: HttpClient, private paginationService: pagination) { }
+  @Input() allItems: any[];
+  @Input() pager: any = {};
+  @Input() pagedItems: any[];
+  @Output() isToggle = new EventEmitter<any>();
+  
+  
+  
+  constructor(
+    private http: HttpClient,
+    private paginationService: pagination
+  ) { }
+  
+  ngOnInit() {
+  }
 
-    // array of all items to be paged
-    private allItems: any[];
+  setPage(page: number) {
+    this.pager = this.paginationService.getPager(this.allItems.length, page, 10);
 
-    // pager object
-    pager: any = {};
-
-    // paged items
-    pagedItems: any[];
-
-    ngOnInit() {
-    }
-
-    setPage(page: number) {
-        // get pager object from service
-        this.pager = this.paginationService.getPager(this.allItems.length, page, 10);
-
-        // get current page of items
-        this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    }
+    this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
+  }
 }

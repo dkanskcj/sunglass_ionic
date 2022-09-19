@@ -110,7 +110,7 @@ export class ConnectionPage implements OnInit {
     private pagination: pagination
   ) {
 
-   }
+  }
 
   ngOnInit() {
     this.router.events.pipe(filter(ev => ev instanceof NavigationEnd)).subscribe({
@@ -129,7 +129,7 @@ export class ConnectionPage implements OnInit {
     this.setPage(1);
     // console.log('testtesttest')
     // console.log(this.selectedOption)
-}
+  }
 
   getConnections() {
     this.http.get<any[]>('http://localhost:3000/company').subscribe(result => {
@@ -154,7 +154,7 @@ export class ConnectionPage implements OnInit {
     this.pager = this.pagination.getPager(this.allItems.length, page, this.selectedOption);
     console.log('pager')
     console.log(this.pager)
-    
+
     // this.pager.pageSize = pageSize;
     // this.pager.endIndex = pageSize-1;
     // get current page of items
