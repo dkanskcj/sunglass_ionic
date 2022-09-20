@@ -7,39 +7,43 @@
         fill="rgb(55, 65, 81)" />
     </svg>
   </div>
-  <div class="text-[0.875rem]">
-    <div class="p-5 space-y-[0.625rem]">
-      <!-- 입, 출고 -->
-      <div class="space-y-2">
-        <div>구분</div>
-        <select name="구분" class="w-full px-3 py-2 border box-border shadow rounded-md cursor-pointer">
-          <option value="In">입고</option>
-          <option value="Ex">출고</option>
-        </select>
-      </div>
-      <!-- 재고 변동량 -->
-      <div class="space-y-2">
-        <div>재고 변동량</div>
-        <div class="w-full px-3 py-2 border box-border shadow rounded-md flex justify-between">
-          <div contenteditable="true" class="w-full cursor-pointer"></div>
-          <div>개</div>
+  <form [formGroup]="createForm">
+    <div class="text-[0.875rem]">
+      <div class="p-5 space-y-[0.625rem]">
+        <!-- 입, 출고 -->
+        <div class="space-y-2">
+          <div>구분</div>
+          <select formControlName="sort"
+            class="w-full px-3 py-2 border box-border shadow rounded-md cursor-pointer">
+            <option *ngFor="let action of sortingActions" [value]="action.value">{{ action.value }}</option>
+          </select>
+
         </div>
-      </div>
-      <!-- 변동 사유 -->
-      <div class="space-y-2">
-        <div>사유</div>
-        <div class="w-full px-3 py-2 border box-border shadow rounded-md flex justify-between">
-          <div contenteditable="true" class="w-full cursor-pointer">제품 하차</div>
+        <!-- 재고 변동량 -->
+        <div class="space-y-2">
+          <div>재고 변동량</div>
+          <div class="w-full border box-border shadow rounded-md flex justify-between">
+            <input type="number" formControlName="stock_variance" class="w-full px-3 py-2 cursor-pointer">
+            <div class="flex items-center pr-2">개</div>
+          </div>
         </div>
-      </div>
-      <!-- 변동 일자 -->
-      <div class="space-y-2">
-        <div>변동일자</div>
-        <input type="date" class="px-3 py-2 border box-border shadow rounded-md cursor-pointer w-full">
+        <!-- 변동 사유 -->
+        <div class="space-y-2">
+          <div>사유</div>
+          <div class="w-full border box-border shadow rounded-md flex justify-between">
+            <input value="제품하차" formControlName="reason" class="w-full px-3 py-2 cursor-pointer">
+          </div>
+        </div>
+        <!-- 변동 일자 -->
+        <div class="space-y-2">
+          <div>변동일자</div>
+          <input formControlName="addDate" type="date" class="px-3 py-2 border box-border shadow rounded-md cursor-pointer w-full">
+        </div>
       </div>
     </div>
-  </div>
+  </form>
   <div class="flex justify-end p-5 whitespace-nowrap">
-    <app-buttons class="text-primary border border-primary items-end rounded-md">추가</app-buttons>
+    <app-buttons class="text-primary border border-primary items-end rounded-md" (click)="testClicked()">추가
+    </app-buttons>
   </div>
 </ion-content>

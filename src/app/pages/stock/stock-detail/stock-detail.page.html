@@ -36,10 +36,9 @@
       <div class="flex justify-between p-5 space-x-4 w-full text-[0.875rem]">
         <div class="w-full flex space-x-4">
           <!-- <div class="whitespace-nowrap py-[10.09375rem] pr-4">일자 선택</div> -->
-          <select name="구분 선택" class="select py-2 border rounded-md px-3 text-[0.875rem]">
-            <option value="1">구분 선택</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
+          <select name="sorting" [(ngModel)]="selectedSortingOption"
+          class="w-fit border box-border shadow flex justify-center rounded-md items-center px-3 py-2 text-[0.875rem] cursor-pointer">
+            <option *ngFor="let action of sortingActions" [value]="action.id">{{ action.value }}</option>
           </select>
           <div class="flex items-center justify-start border border-b rounded-md px-3 space-x-2">
             <input type="date">
@@ -71,16 +70,17 @@
               </th>
             </tr>
           </thead>
-          <ng-container *ngFor="let Index_l of index_list | filter:searchText">
+          <ng-container *ngFor="let Index_l of index_list | filter:searchText | filter: selectedSortingOption; index as i">
             <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center">
               <tr>
                 <td class="px-4 h-[4.125rem]">{{ Index_l.sort }}</td>
                 <td class="px-4 h-[4.125rem]">{{ Index_l.stock_variance }}</td>
-                <td class="px-4 h-[4.125rem]">{{ Index_l.stock }}</td>
-                <td class="px-4 h-[4.125rem]">단가 : {{ Index_l.cost }}<br>총액 : {{ Index_l.testnum | number:'1.0-0' }}
+                <td class="px-4 h-[4.125rem]" (click)="getJaego(i)">{{ Index_l.stock + Index_l.stock_variance }}</td>
+                <td class="px-4 h-[4.125rem]">단가 : {{ Index_l.cost | number: '1.0-0' }}<br>총액 : {{ Index_l?.cost*Index_l?.stock |
+                  number:'1.0-0' }}
                 </td>
                 <td class="px-4 h-[4.125rem]">{{ Index_l.reason }}</td>
-                <td class="px-4 h-[4.125rem]">{{ Index_l.date }}</td>
+                <td class="px-4 h-[4.125rem]">{{ Index_l.date }}{{ Index_l?.addDate | date: 'YYYY.MM.dd' }}</td>
               </tr>
             </tbody>
           </ng-container>
