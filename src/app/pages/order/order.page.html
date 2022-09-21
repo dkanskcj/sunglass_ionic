@@ -36,14 +36,12 @@
                             <div
                                 class="flex items-center justify-start border border-b rounded-md shadow px-3 space-x-2">
                                 <input type="date" [(ngModel)]="date1" (ngModelChange)="inputDate()">
-                                <!-- <input type="text" class="w-full" placeholder="검색어를 입력해주세요." [(ngModel)]="searchText"> -->
                             </div>
                             <div class="flex justify-center items-center cursor-pointer" (click)="testClicked(date1)">~
                             </div>
                             <div
                                 class="flex items-center justify-start border border-b rounded-md shadow px-3 space-x-2 cursor-pointer">
                                 <input type="date" [(ngModel)]="date2">
-                                <!-- <input type="text" class="w-full" placeholder="검색어를 입력해주세요." [(ngModel)]="searchText"> -->
                             </div>
                         </div>
                         <div class="flex items-center space-x-6">
@@ -84,14 +82,14 @@
                                 <th class="p-4 w-full">주문요청일자</th>
                             </tr>
                         </thead>
-                        <ng-container *ngFor="let order of pagedItems | filter: date1 | filter: selectedOption">
+                        <ng-container *ngFor="let order of pagedItems | filter: date1 | filter: selectedOption; index as i">
                             <tbody class="hover:bg-gray-100 active:bg-gray-200 items-center w-full"
                                 (click)="goDetail($event, order.orderNumber)">
                                 <tr>
                                     <td class=" w-full h-full">
                                         <div class="flex justify-center items-center">
                                             <input #checkbox type="checkbox" class="cursor-pointer checkbox"
-                                                (click)="isClicked(order.orderNumber)">
+                                                (click)="isClicked($event, i)">
                                         </div>
                                     </td>
                                     <td class="p-4">{{order.createdAt | date: 'yyyyMMdd'}}{{ order.orderNumber }}

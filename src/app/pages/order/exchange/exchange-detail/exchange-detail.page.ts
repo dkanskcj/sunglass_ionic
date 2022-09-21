@@ -3,7 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { CompanyService } from 'src/app/service/company/company.service';
-import { Order } from 'src/app/service/order/order-interface';
+import { IOrder } from 'src/app/service/order/order-interface';
 import { OrderService } from 'src/app/service/order/order.service';
 import { ShippingService } from 'src/app/service/shipping/shipping.service';
 
@@ -17,7 +17,7 @@ import { ShippingService } from 'src/app/service/shipping/shipping.service';
 })
 export class ExchangeDetailPage implements OnInit {
 
-  order: Order
+  order: IOrder
   orderId: number
   company: any
   companyId: number
@@ -50,7 +50,7 @@ export class ExchangeDetailPage implements OnInit {
 
   getOrder(id: number) {
     this.orderService.getOrder(id).subscribe({
-      next: (res: Order) => {
+      next: (res: IOrder) => {
         // console.log(res)
         this.order = res;
         this.order.totalCost = this.order.amount * 15000

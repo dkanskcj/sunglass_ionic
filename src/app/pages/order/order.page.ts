@@ -6,6 +6,7 @@ import { filter, findIndex } from 'rxjs/operators';
 import { OrderService } from 'src/app/service/order/order.service';
 import { pagination } from 'src/service/pagination.service';
 import { OrderAddmissionComponent } from './order-addmission/order-addmission.component';
+import { IOrder } from 'src/app/service/order/order-interface';
 
 type Index_l = {
   brand: string;
@@ -27,19 +28,21 @@ export class OrderPage implements OnInit {
   @ViewChildren('checkbox') checkboxes: QueryList<ElementRef>;
 
   allChecked = false;
-  orders: any;
-  test: boolean;
+  orders: IOrder[];
+  isChecked: boolean;
   // ships = [];
   isOptionGroup: boolean = true;
 
   toggleOptionGroupSetting() {
     this.isOptionGroup = !this.isOptionGroup;
   }
+  
+  modalData: IOrder[] = [];
 
   searchText: any;
-  date1: any;
-  date2: any;
-  pagedItems: any;
+  date1: string;
+  date2: string;
+  pagedItems: [];
   allItems: any;
   pager: any;
   getDate: any;
@@ -80,7 +83,7 @@ export class OrderPage implements OnInit {
         // this.test1();
       }
     })
-    this.getConnections();
+    // this.getConnections();
   }
 
   goDetail(ev: any, id: number) {
@@ -93,16 +96,15 @@ export class OrderPage implements OnInit {
   }
 
   getConnections() {
-    this.http.get<any[]>('http://localhost:3000/ordertest').subscribe(result => {
+    this.http.get<IOrder[]>('http://localhost:3000/ordertest').subscribe((result:IOrder[]) => {
       this.orders = result;
       this.allItems = this.orders
       this.setPage(1)
-      console.log(this.orders)
+      console.log('getConnections() => ', this.orders)
     });
   }
 
   getAuth() {
-    console.log(this.orders.orderStatus)
   }
 
   async setOpen() {
@@ -110,29 +112,45 @@ export class OrderPage implements OnInit {
       component: OrderAddmissionComponent,
       cssClass: 'addmission',
       componentProps: {
-        status: this.orders
+        status: this.modalData
       }
     })
     modal.present();
+    modal.onWillDismiss().then(res =>
+      {
+          this.getConnections();
+      }
+    )
   }
 
-  isClicked(id: number) {
-    console.log(id);
-    this.test = !this.test;
+  isClicked(ev:any, index:number) {
+    const { checked } = ev.target;
+    // console.log(id);
+    if(checked){
+      this.modalData.push(this.orders[index]);
+    } else {
+      this.modalData.filter((item,i)=> i === index);
+    }
   }
 
+  i = 0;
   checkAll() {
     for (const item of this.checkboxes) {
       if (this.allChecked) {
         item.nativeElement.checked = false;
+        this.i = 0;
       } else {
         item.nativeElement.checked = true;
+        // this.i++;
+        // this.isClicked(this.i)
       }
     }
   }
+
   inputDate() {
     this.searchDate()
   }
+
   searchDate() {
     this.orderService.searchDate(this.date1).subscribe({
       next: (res) => {
@@ -181,10 +199,6 @@ export class OrderPage implements OnInit {
 
   setPage(page: number) {
     this.pager = this.pagination.getPager(this.allItems.length, page, this.selectedOption2);
-    console.log('pager')
-    console.log(this.pager)
     this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    console.log('pagedItems')
-    console.log(this.pagedItems)
   }
 }

@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Order } from './order-interface';
+import { IOrder } from './order-interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
   private baseUrl = 'http://localhost:3000/ordertest';
-  orderList : Order[] = [];
+  orderList : IOrder[] = [];
 
   constructor(
     private httpClient: HttpClient
@@ -31,4 +31,7 @@ export class OrderService {
     return this.httpClient.put(`${this.baseUrl}/${orderNumber}`, body)
   }
 
+  updateStatus(body: any){
+    return this.httpClient.patch(`${this.baseUrl}/update-order`, body)
+  }
 }

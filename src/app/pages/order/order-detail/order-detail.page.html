@@ -31,25 +31,9 @@
               <!-- 주문정보, 주문상태 -->
               <div class="flex space-x-8">
                 <div class="font-semibold text-[1.25rem]">주문 정보</div>
-                <!-- <div *ngIf="order?.orderStatus === '주문승인'"
-                  class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500">
-                  {{ order?.orderStatus }}
-                </div> -->
-                <div [ngClass]="getOrderStatus(order.orderStatus)">
+                <div [ngClass]="getOrderStatus(order?.orderStatus)">
                   {{ order?.orderStatus }}
                 </div>
-                <!-- <div *ngIf="order?.orderStatus === '주문취소'"
-                  class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500">
-                  {{ order?.orderStatus }}
-                </div>
-                <div *ngIf="order?.orderStatus === '주문대기'"
-                  class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500">
-                  {{ order?.orderStatus }}
-                </div>
-                <div *ngIf="order?.orderStatus === '주문거절'"
-                  class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500">
-                  {{ order?.orderStatus }}
-                </div> -->
               </div>
               <!-- radio order status -->
               <div class="flex">
@@ -61,16 +45,18 @@
                   </div>
                 </div>
                 <div class="flex items-center space-x-2">
-                  <input type="radio" name="status" class="cursor-pointer" [checked]="order?.orderStatus=== '주문대기'">
+                  <input type="radio" name="status" class="cursor-pointer"
+                    [checked]="order?.orderStatus === status.PENDING" (click)="isOrderStatusChecked(status.PENDING)">
                   <div
                     class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500">
                     주문대기</div>
-                  <input formControlName="orderStatus" type="radio" name="status" class="cursor-pointer" [checked]="order?.orderStatus=== '주문승인'">
+                  <input type="radio" name="status" class="cursor-pointer"
+                    [checked]="order?.orderStatus === status.SUCCESS" (click)="isOrderStatusChecked(status.SUCCESS)">
                   <div
                     class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500">
                     주문승인</div>
                   <input type="radio" name="status" class="cursor-pointer" (click)="setOpen()"
-                    [checked]="order?.orderStatus=== '주문거절'">
+                    [checked]="order?.orderStatus === status.REJECT">
                   <div class="w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500">
                     주문거절
                   </div>
@@ -197,13 +183,13 @@
                   </div>
                 </div>
               </div>
-              <input type="text" formControlName="phoneNumber"
-                class="border box-border shadow rounded-md w-full px-3 py-2" [value]="order?.phoneNumber">
+              <!-- <input formControlName="phoneNumber" type="text"
+                class="border box-border shadow rounded-md w-full px-3 py-2"> -->
               <div class="flex justify-between text-[1.125rem] font-semibold pt-8 pb-[1.125rem]">
                 <app-buttons class="border box-border shadow rounded-md text-primary border-primary" routerLink="../">목록
                 </app-buttons>
                 <app-buttons class="border box-border shadow rounded-md text-red-500 border-red-400"
-                  (click)="updateOrdertest()">저장</app-buttons>
+                  (click)="updateOrder()">저장</app-buttons>
               </div>
             </div>
           </div>
