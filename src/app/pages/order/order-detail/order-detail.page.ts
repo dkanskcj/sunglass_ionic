@@ -149,6 +149,13 @@ export class OrderDetailPage implements OnInit, AfterViewInit {
       console.log('hi',this.order.orderStatus)
       console.log('isOrderStatusChecked CANCEL => ',status)
     }
+    if(this.order.orderStatus === OrderStatus.REJECT){
+      console.log('hi', this.order.orderStatus)
+    }
+    // if(this.order.orderStatus === OrderStatus.SUCCESS){
+    //   console.log('hi', this.order.orderStatus)
+
+    // }
     else{
       this.testForm.controls['orderStatus'].setValue(status);
       console.log('isOrderStatusChecked => ', status)

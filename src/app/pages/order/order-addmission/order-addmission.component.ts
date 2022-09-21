@@ -24,13 +24,22 @@ export class OrderAddmissionComponent implements OnInit {
     // console.log(this.status.slice())
   }
 
+  classChange(){
+    if(this.isLoading = true){
+      return 'text-green-500 border border-green-400 items-end rounded-md'
+    }
+    else{
+      return 'text-red-500 border border-red-400 items-end rounded-md'
+    }
+  }
 
 
   handleClose(){  
-    return this.modalController.dismiss();
+    return this.modalController.dismiss(null, 'closeModal');
   }
-
+  isLoading: boolean = true;
   changeOrderStatus(){
+    this.isLoading = false;
     this.orderService.updateStatus(this.status).subscribe(res=>{
       if(res){
         this.modalController.dismiss()

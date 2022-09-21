@@ -22,8 +22,18 @@ export class RefuseComponent implements OnInit {
     return this.modalController.dismiss();
   }
 
+  // click() {
+  //   this.isLoading = true;
+  //   this.button = 'Processing';
+
+  //   setTimeout(() => {
+  //     this.isLoading = false;
+  //     this.button = 'Submit';
+  //     alert('Done loading');
+  //   }, 8000)
+  // }
   sendData(){
-    if(this.status === '주문취소'){
+    if(this.status === '주문취소' || this.status === '주문승인'){
       return this.modalController.dismiss();
     }
     this.status = this.orderStatus;

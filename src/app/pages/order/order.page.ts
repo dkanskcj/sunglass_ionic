@@ -36,7 +36,7 @@ export class OrderPage implements OnInit {
   toggleOptionGroupSetting() {
     this.isOptionGroup = !this.isOptionGroup;
   }
-  
+
   modalData: IOrder[] = [];
 
   searchText: any;
@@ -96,7 +96,7 @@ export class OrderPage implements OnInit {
   }
 
   getConnections() {
-    this.http.get<IOrder[]>('http://localhost:3000/ordertest').subscribe((result:IOrder[]) => {
+    this.http.get<IOrder[]>('http://localhost:3000/ordertest').subscribe((result: IOrder[]) => {
       this.orders = result;
       this.allItems = this.orders
       this.setPage(1)
@@ -116,33 +116,42 @@ export class OrderPage implements OnInit {
       }
     })
     modal.present();
-    modal.onWillDismiss().then(res =>
-      {
-          this.getConnections();
+    modal.onWillDismiss().then(res => {
+      if(res.role !== 'closeModal'){
+        this.getConnections();
       }
+      // else{
+        console.log('test')
+      // }
+    }
     )
   }
 
-  isClicked(ev:any, index:number) {
+  isClicked(ev: any, index: number) {
     const { checked } = ev.target;
-    // console.log(id);
-    if(checked){
+    if (checked) {
+      console.log('isClicked ev => ', checked, 'number : ', index)
+      console.log('isClicked if checked : ', checked)
       this.modalData.push(this.orders[index]);
     } else {
-      this.modalData.filter((item,i)=> i === index);
+      this.modalData.pop();
+      this.modalData.filter((item, i) => (item[index] = [null], i === index));
     }
   }
 
-  i = 0;
-  checkAll() {
+  checkAll(ev: any) {
+    let i: number = 0;
     for (const item of this.checkboxes) {
-      if (this.allChecked) {
-        item.nativeElement.checked = false;
-        this.i = 0;
-      } else {
+      if (!this.allChecked) {
+        this.isClicked(ev, i)
+        i++;
         item.nativeElement.checked = true;
-        // this.i++;
-        // this.isClicked(this.i)
+        if (i > this.checkboxes.length) {
+          i = 0;
+        }
+      } else {
+        i = 0;
+        item.nativeElement.checked = false;
       }
     }
   }
@@ -191,7 +200,7 @@ export class OrderPage implements OnInit {
     }
   }
 
-  dataChanged(number: number){
+  dataChanged(number: number) {
     this.selectedOption2 = number;
     this.setPage(1)
   }
