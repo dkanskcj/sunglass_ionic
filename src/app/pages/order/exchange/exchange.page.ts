@@ -7,6 +7,13 @@ import { OrderService } from 'src/app/service/order/order.service';
 import { pagination } from 'src/service/pagination.service';
 import { ExchangeAddmissionComponent } from './exchange-addmission/exchange-addmission.component';
 import { ExchangeAllCheckedComponent } from './exchange-all-checked/exchange-all-checked.component';
+import { IOrder } from 'src/app/service/order/order-interface';
+
+type PageInfo = {
+  pageNo: number;
+  pageSize: number;
+}  
+
 
 @Component({
   selector: 'app-exchange',
@@ -29,7 +36,7 @@ export class ExchangePage implements OnInit {
   // ships = [];
   isOptionGroup: boolean = true;
   getDate: any;
-
+  count: number;
   selectedOption = '0';
   selectedOption2 : number = 10;
   actions = [
@@ -45,7 +52,10 @@ export class ExchangePage implements OnInit {
     {id: 30, name: 30},
   ]
 
-
+  pageInfo: PageInfo = {
+    pageNo: 1,
+    pageSize: 10
+  }
 
   toggleOptionGroupSetting() {
     this.isOptionGroup = !this.isOptionGroup;
@@ -82,19 +92,18 @@ export class ExchangePage implements OnInit {
     this.router.navigateByUrl(`/exchange/${id}`);
   }
 
+  
   getConnections() {
-    this.http.get<any[]>('http://localhost:3000/ordertest').subscribe(result => {
-      this.orders = result;
-      console.log(this.orders)
+    this.http.get<IOrder[]>(`http://localhost:3000/ordertest?pageNo=${this.pageInfo.pageNo}&pageSize=${this.pageInfo.pageSize}`).subscribe((result: IOrder[]) => {
+      console.log('asdfasdfasdfa',result)
+      this.orders = result['items']
+      this.count = result['count']
       this.allItems = this.orders;
       this.setPage(1);
+      console.log('getConnections() this.allItems => ', this.allItems)
     });
   }
 
-  getAuth() {
-    console.log(this.orders.orderStatus)
-
-  }
 
   isClicked(id: number) {
     console.log(id);
@@ -153,18 +162,22 @@ export class ExchangePage implements OnInit {
     }
   }
 
+  getPage(e: any) {
+    this.pageInfo.pageNo = e;
+    this.getConnections()
+  }
+
   setPage(page: number) {
     // get pager object from service
-    this.pager = this.pagination.getPager(this.allItems.length, page, this.selectedOption2);
-    console.log('pager')
-    console.log(this.pager)
+    this.pager = this.pagination.getPager(this.count, page, this.selectedOption2);
+    console.log('this.pager = > ',this.pager)
     this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    console.log('pagedItems')
-    console.log(this.pagedItems)
+    console.log('this.pagedItems => ',this.pagedItems)
   }
  
   dataChanged(number: number) {
     this.selectedOption2 = number;
+    this.getConnections();
     this.setPage(1);
     // console.log('testtesttest')
     // console.log(this.selectedOption)

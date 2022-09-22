@@ -146,15 +146,11 @@ export class OrderDetailPage implements OnInit, AfterViewInit {
 
   isOrderStatusChecked(status: OrderStatus) {
     if(this.order.orderStatus === OrderStatus.CANCEL){
-      console.log('hi',this.order.orderStatus)
-      console.log('isOrderStatusChecked CANCEL => ',status)
     }
     if(this.order.orderStatus === OrderStatus.REJECT){
-      console.log('hi', this.order.orderStatus)
     }
     // if(this.order.orderStatus === OrderStatus.SUCCESS){
     //   console.log('hi', this.order.orderStatus)
-
     // }
     else{
       this.testForm.controls['orderStatus'].setValue(status);
@@ -195,6 +191,18 @@ export class OrderDetailPage implements OnInit, AfterViewInit {
     }
     if (status === '주문거절') {
       return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-red-50 border-red-200 text-red-500';
+    }
+  }
+  
+  getShippingStatus(status: any){
+    if(status === '배송완료'){
+      return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-green-50 border-green-200 text-green-500'
+    }
+    if(status === '배송중'){
+      return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-yellow-50 border-yellow-200 text-yellow-500'
+    }
+    if(status === '배송대기중'){
+      return 'w-fit h-fit px-2 py-1 border box-border rounded-md bg-gray-50 border-gray-200 text-gray-500'
     }
   }
 }

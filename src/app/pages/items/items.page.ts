@@ -189,8 +189,8 @@ export class ItemsPage implements OnInit {
   setPage(page: number) {
     // get pager object from service
     this.pager = this.pagination.getPager(this.allItems.length, page, this.selectedOption2);
-    console.log('pager')
-    console.log(this.pager)
+    console.log('pager => ', this.pager)
+    // console.log(this.pager)
 
     // this.pager.pageSize = pageSize;
     // this.pager.endIndex = pageSize-1;

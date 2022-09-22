@@ -24,12 +24,17 @@ export class PagerComponent implements OnInit {
   
   ngOnInit() {
     this.pager = this.paginationService.getPager(this.allItems.length, 1, this.selectedOption);
-    console.log(this.count)
+    
   }
 
   setPage(page: number) {
-    this.pager = this.paginationService.getPager(this.count, page, this.selectedOption);
-    this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    this.clickedPage.emit(page);
+    // if(page === 1){
+    //   console.log('t')
+    // }
+    // else{
+      this.pager = this.paginationService.getPager(this.count, page, this.selectedOption);
+      this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
+      this.clickedPage.emit(page);
+    // }
   }
 }

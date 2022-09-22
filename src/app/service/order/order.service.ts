@@ -13,6 +13,10 @@ export class OrderService {
     private httpClient: HttpClient
   ) { }
 
+  getOrders() {
+    return this.orderList;
+  }
+  
   getOrder(id: number){
     return this.httpClient.get(`${this.baseUrl}/${id}`);
   }

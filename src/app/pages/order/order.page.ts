@@ -19,6 +19,12 @@ type Index_l = {
   update: string;
 }
 
+type PageInfo = {
+  pageNo: number;
+  pageSize: number;
+}
+
+
 @Component({
   selector: 'app-order',
   templateUrl: './order.page.html',
@@ -32,6 +38,7 @@ export class OrderPage implements OnInit {
   isChecked: boolean;
   // ships = [];
   isOptionGroup: boolean = true;
+  count: number;
 
   toggleOptionGroupSetting() {
     this.isOptionGroup = !this.isOptionGroup;
@@ -56,6 +63,10 @@ export class OrderPage implements OnInit {
     { id: '주문승인', name: '주문승인' },
     { id: '주문취소', name: '주문취소' }
   ]
+  pageInfo: PageInfo = {
+    pageNo: 1,
+    pageSize: 10
+  }
   selectedOption2 = 10;
   actions2 = [
     { id: 10, name: 10 },
@@ -83,7 +94,6 @@ export class OrderPage implements OnInit {
         // this.test1();
       }
     })
-    // this.getConnections();
   }
 
   goDetail(ev: any, id: number) {
@@ -96,11 +106,13 @@ export class OrderPage implements OnInit {
   }
 
   getConnections() {
-    this.http.get<IOrder[]>('http://localhost:3000/ordertest').subscribe((result: IOrder[]) => {
-      this.orders = result;
+    this.http.get<IOrder[]>(`http://localhost:3000/ordertest?pageNo=${this.pageInfo.pageNo}&pageSize=${this.pageInfo.pageSize}`).subscribe((result: IOrder[]) => {
+      console.log('asdfasdfasdfa', result)
+      this.orders = result['items']
+      this.count = result['count']
       this.allItems = this.orders
       this.setPage(1)
-      console.log('getConnections() => ', this.orders)
+      console.log('getConnections() this.allItems => ', this.allItems)
     });
   }
 
@@ -117,25 +129,29 @@ export class OrderPage implements OnInit {
     })
     modal.present();
     modal.onWillDismiss().then(res => {
-      if(res.role !== 'closeModal'){
+      if (res.role !== 'closeModal') {
         this.getConnections();
       }
       // else{
-        console.log('test')
+      console.log('test')
       // }
     }
     )
   }
 
+  getPage(e: any) {
+    this.pageInfo.pageNo = e;
+    this.getConnections()
+  }
+
   isClicked(ev: any, index: number) {
     const { checked } = ev.target;
     if (checked) {
-      console.log('isClicked ev => ', checked, 'number : ', index)
-      console.log('isClicked if checked : ', checked)
       this.modalData.push(this.orders[index]);
     } else {
       this.modalData.pop();
       this.modalData.filter((item, i) => (item[index] = [null], i === index));
+      console.log('isClicked modalData => ', this.modalData)
     }
   }
 
@@ -143,15 +159,11 @@ export class OrderPage implements OnInit {
     let i: number = 0;
     for (const item of this.checkboxes) {
       if (!this.allChecked) {
-        this.isClicked(ev, i)
-        i++;
         item.nativeElement.checked = true;
-        if (i > this.checkboxes.length) {
-          i = 0;
-        }
+        this.modalData = this.orders;
       } else {
-        i = 0;
         item.nativeElement.checked = false;
+        this.modalData = [];
       }
     }
   }
@@ -201,13 +213,16 @@ export class OrderPage implements OnInit {
   }
 
   dataChanged(number: number) {
-    this.selectedOption2 = number;
+    this.pageInfo.pageSize = number;
+    this.getConnections();
     this.setPage(1)
   }
 
 
   setPage(page: number) {
-    this.pager = this.pagination.getPager(this.allItems.length, page, this.selectedOption2);
+    this.pager = this.pagination.getPager(this.count, page, this.selectedOption2);
+    console.log('this.pager = > ', this.pager)
     this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
+    console.log('this.pagedItems => ', this.pagedItems)
   }
 }

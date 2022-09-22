@@ -1,18 +1,20 @@
 <div class="grid grid-flow-col justify-center items-center pr-5 text-center text-gray-700">
-    <!-- *ngIf="pager?.pages && pager?.pages.length" -->
     <img src="assets/icons/first_page.svg" (click)="setPage(1)"
         class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
-    <img src="assets/icons/left_page.svg" (click)="setPage(pager.currentPage - 1)"
+    <img src="assets/icons/left_page.svg" *ngIf="pager.currentPage-1 !== 0" (click)="setPage(pager.currentPage - 1)"
         class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
-
-    <div *ngFor="let page of pager.pages" (click)="setPage(page)" [ngClass]="pager.currentPage === page ? 'border border-primary':''"
+    <img src="assets/icons/left_page.svg" *ngIf="pager.currentPage-1 === 0"
+        class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+    <div *ngFor="let page of pager.pages" (click)="setPage(page)"
+        [ngClass]="pager.currentPage === page ? 'border border-primary':''"
         class="rounded-lg w-9 h-9 flex justify-center items-center active:bg-primary active:text-white cursor-pointer">
         {{page}}
     </div>
     <img src="assets/icons/more_dot.svg"
         class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
-
-    <img src="assets/icons/right_page.svg" (click)="setPage(pager.currentPage + 1)"
+    <img src="assets/icons/right_page.svg" *ngIf="pager.currentPage === pager.endPage"
+        class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
+    <img src="assets/icons/right_page.svg" *ngIf="pager.currentPage !== pager.endPage" (click)="setPage(pager.currentPage + 1)"
         class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
     <img src="assets/icons/last_page.svg" (click)="setPage(pager.totalPages)"
         class="w-9 h-9 rounded-lg hover:bg-gray-100 active:bg-primary active:text-white cursor-pointer">
